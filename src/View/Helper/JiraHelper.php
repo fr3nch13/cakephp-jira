@@ -74,6 +74,16 @@ class JiraHelper extends Helper
     }
 
     /**
+     * Gets a list of all open issues within your project.
+     *
+     * @return array A list of issue objects.
+     */
+    public function getOpenIssues()
+    {
+        return $this->JiraProjectReader->getOpenIssues();
+    }
+
+    /**
      * Gets info on a particular issue within your project.
      *
      * @param int $id The issue id. The integer part without the project key.

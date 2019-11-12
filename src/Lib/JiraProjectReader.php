@@ -10,7 +10,7 @@ use Fr3nch13\Jira\Exception\Exception;
 use Fr3nch13\Jira\Exception\MissingConfigException;
 use JiraRestApi\Configuration\ArrayConfiguration;
 use JiraRestApi\Issue\IssueService;
-use JiraRestApi\Issue\JqlQuery
+use JiraRestApi\Issue\JqlQuery;
 use JiraRestApi\Project\ProjectService;
 
 class JiraProjectReader
@@ -85,8 +85,6 @@ class JiraProjectReader
             'jiraHost' => $schema . '://' . $host,
             'jiraUser' => $username,
             'jiraPassword' => $apiKey,
-            'cookieAuthEnabled' => true,
-            'cookieFile' => TMP . 'jira-cookie.txt'
         ]);
 
         $this->projectKey = $projectKey;
@@ -98,11 +96,11 @@ class JiraProjectReader
      * @return \JiraRestApi\Project\Project The information about the project.
      * @throws \Fr3nch13\Jira\Exception\MissingProjectException If the project can't be found.
      */
-    protected function getInfo()
+    public function getInfo()
     {
         if (!$this->Project) {
             $projSvc = new ProjectService($this->ConfigObj);
-            $this->Project $projSvc->get($this->projectKey);
+            $this->Project = $projSvc->get($this->projectKey);
         }
 
         return $this->Project;
@@ -113,7 +111,7 @@ class JiraProjectReader
      *
      * @return \ArrayObject A list of version objects.
      */
-    protected function getVersions()
+    public function getVersions()
     {
         if (!$this->Versions) {
             $projSvc = new ProjectService($this->ConfigObj);
@@ -129,16 +127,40 @@ class JiraProjectReader
      * @param string|null $type If given, only issues of this type are returned.
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    protected function getIssues($type = null)
+    public function getIssues($type = null)
     {
         if (!$this->Issues) {
             $jql = new JqlQuery();
 
-            $jql->setProject($this->projectKey);
+            $jql->setProject($this->projectKey)
+                ->addAnyExpression('ORDER BY key DESC');
 
             $issueService = new IssueService($this->ConfigObj);
 
-            $this->Issues = $issueService->search($jql->getQuery());
+            $this->Issues = $issueService->search($jql->getQuery(), 0, 1000);
+        }
+
+        return $this->Issues;
+    }
+
+    /**
+     * Get the Project's Open Issues.
+     *
+     * @param string|null $type If given, only issues of this type are returned.
+     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
+     */
+    public function getOpenIssues($type = null)
+    {
+        if (!$this->Issues) {
+            $jql = new JqlQuery();
+
+            $jql->setProject($this->projectKey)
+                ->addAnyExpression('AND status != "Done"')
+                ->addAnyExpression('ORDER BY key DESC');
+
+            $issueService = new IssueService($this->ConfigObj);
+
+            $this->Issues = $issueService->search($jql->getQuery(), 0, 1000);
         }
 
         return $this->Issues;
