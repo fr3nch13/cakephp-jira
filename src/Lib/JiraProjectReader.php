@@ -124,10 +124,9 @@ class JiraProjectReader
     /**
      * Get the Project's Issues.
      *
-     * @param string|null $type If given, only issues of this type are returned.
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getIssues($type = null)
+    public function getIssues()
     {
         if (!$this->Issues) {
             $jql = new JqlQuery();
@@ -146,10 +145,9 @@ class JiraProjectReader
     /**
      * Get the Project's Open Issues.
      *
-     * @param string|null $type If given, only issues of this type are returned.
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getOpenIssues($type = null)
+    public function getOpenIssues()
     {
         if (!$this->Issues) {
             $jql = new JqlQuery();

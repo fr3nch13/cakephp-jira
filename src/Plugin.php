@@ -56,13 +56,15 @@ class Plugin extends BasePlugin
         // Add constants, load configuration defaults,
         // and initiate any required cakephp plugins.
         //$app->addPlugin('Vendor/PluginName');
-        Configure::write('Jira', [
-            'schema' => env('JIRA_SCHEMA', 'https'),
-            'host' => filter_var(env('JIRA_HOST', false), FILTER_VALIDATE_DOMAIN),
-            'username' => env('JIRA_USERNAME', null),
-            'apiKey' => env('JIRA_API_KEY', null),
-            'projectKey' => env('JIRA_PROJECT_KEY', null),
-        ]);
+        if (!Configure::read('Jira')) {
+            Configure::write('Jira', [
+                'schema' => env('JIRA_SCHEMA', 'https'),
+                'host' => filter_var(env('JIRA_HOST', false), FILTER_VALIDATE_DOMAIN),
+                'username' => env('JIRA_USERNAME', null),
+                'apiKey' => env('JIRA_API_KEY', null),
+                'projectKey' => env('JIRA_PROJECT_KEY', null),
+            ]);
+        }
 
         // By default will load `config/bootstrap.php` in the plugin.
         parent::bootstrap($app);
