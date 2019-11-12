@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": ">=7.2.0",
+        "cakephp/cakephp": "3.*",
         "lesstif/php-jira-rest-client": "1.*"
     },
     "autoload": {
