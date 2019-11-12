@@ -1,0 +1,24 @@
+{
+    "name": "fr3nch13/cakephp-jira",
+    "description": "A CakePHP Plugin to intereact with Jira.",
+    "keywords": ["cakephp", "plugin", "jira"],
+    "homepage": "https://github.com/fr3nch13/cakephp-jira",
+    "type": "cakephp-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brian French",
+            "email": "fr3nch13@gmail.com",
+            "homepage": "https://github.com/fr3nch13"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.0",
+        "lesstif/php-jira-rest-client": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fr3nch13\\Jira\\": "src/"
+        }
+    }
+}
