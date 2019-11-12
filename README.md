@@ -5,6 +5,8 @@ This is a CakePHP 3.x plugin to interact with your Jira Server.
 Note: As of the initial version of this plugin, it is read-only,
 and only supports pulling in info from a single project, it's versions, and all of it's issues.
 
+This makes heavy use of [lesstif/php-jira-rest-client's](https://github.com/lesstif/php-jira-rest-client) project as essentially a CakePHP specific wrapper around that project. 
+
 Yes, I know there aren't any unit tests yet. If people other than me start using it, I'll add unit tests... Unless you want to (I would be using phpunit like how CakePHP does it).
 
 ## Installation
