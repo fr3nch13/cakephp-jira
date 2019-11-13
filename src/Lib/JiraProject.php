@@ -236,4 +236,32 @@ class JiraProject
     {
         return $this->getOpenIssues('Bug');
     }
+
+    /**
+     * Submits a feature request
+     *
+     * @param string $summary The subject/summary of the request, 100 characters or less.
+     * @param string $description The detailed description of the request.
+     * @return bool If the request was successfully submitted.
+     */
+    public function submitFeatureRequest(string $summary = '', string $description = '')
+    {
+        //
+
+        return true;
+    }
+
+    /**
+     * Submits a bug.
+     *
+     * @param string $summary The subject/summary of the bug, 100 characters or less.
+     * @param string $description The detailed description of the bug.
+     * @return bool If the bug was successfully submitted.
+     */
+    public function submitBug(string $summary = '', string $description = '')
+    {
+        //
+
+        return true;
+    }
 }
