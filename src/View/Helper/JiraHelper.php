@@ -21,7 +21,7 @@ use Fr3nch13\Jira\Lib\JiraProject;
 class JiraHelper extends Helper
 {
     /**
-     * Contains the loaded Jira Project Reader object.
+     * Contains the loaded Jira Project object.
      *
      * @var \Fr3nch13\Jira\Lib\JiraProject|null
      */

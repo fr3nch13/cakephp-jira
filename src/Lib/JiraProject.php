@@ -67,6 +67,26 @@ class JiraProject
     ];
 
     /**
+     * The Issue Type for featured Requests.
+     * Must be one of the types in the $this->validTypes.
+     * @var string
+     */
+    protected $typeFeatureRequest = 'Story';
+
+    /**
+     * The label used to tag feature requests.
+     * @var string
+     */
+    protected $labelFeatureRequest = 'feature-request';
+
+    /**
+     * The Issue Type for featured Requests.
+     * Must be one of the types in the $this->validTypes.
+     * @var string
+     */
+    protected $typeBug = 'Bug';
+
+    /**
      * Initializer
      *
      * Reads the configuration, and crdate a config object to be passed to the other objects.
@@ -240,11 +260,10 @@ class JiraProject
     /**
      * Submits a feature request
      *
-     * @param string $summary The subject/summary of the request, 100 characters or less.
-     * @param string $description The detailed description of the request.
+     * @param array $data The array of details about the feature request.
      * @return bool If the request was successfully submitted.
      */
-    public function submitFeatureRequest(string $summary = '', string $description = '')
+    public function submitFeatureRequest(array $data = [])
     {
         //
 
@@ -254,11 +273,10 @@ class JiraProject
     /**
      * Submits a bug.
      *
-     * @param string $summary The subject/summary of the bug, 100 characters or less.
-     * @param string $description The detailed description of the bug.
+     * @param array $data The array of details about the bug.
      * @return bool If the bug was successfully submitted.
      */
-    public function submitBug(string $summary = '', string $description = '')
+    public function submitBug(array $data = [])
     {
         //
 
