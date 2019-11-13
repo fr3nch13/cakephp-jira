@@ -184,7 +184,7 @@ class JiraProject
             if ($type && in_array($type, $this->validTypes)) {
                 $jql->setType($type);
             }
-            $jql->addAnyExpression('AND status != "Done"');
+            $jql->addAnyExpression('AND resolution is EMPTY');
             $jql->addAnyExpression('ORDER BY key DESC');
 
             $issueService = new IssueService($this->ConfigObj);
