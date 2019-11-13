@@ -183,4 +183,4 @@ $projectOpenBugs = $this->Jira->getOpenBugs();
 ```
 
 ## TODO:
-- Add the ability to users of the app to submit an issue as either a feature enhancement, or a bug report.
+- Add the ability to users of the app to submit an issue as either a feature request, or a bug report.
