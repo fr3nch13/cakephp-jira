@@ -144,28 +144,42 @@ $projectInfo = $this->Jira->getInfo();
 If you're using Versions in your Project, this returns the list of all versions.
 
 ```php
-$projectInfo = $this->Jira->getVersions();
+$projectVersions = $this->Jira->getVersions();
 ```
 
 ### getIssues()
 Retrieves all of your Issues related to your Project, ordered by their key ex: `PROJECT-81`
 
 ```php
-$projectInfo = $this->Jira->getIssues();
+$projectIssues = $this->Jira->getIssues();
 ```
 
 ### getOpenIssues()
 Retrieves all of your Issues related to your Project, that aren't marked as `Done`, ordered by their key ex: `PROJECT-81`
 
 ```php
-$projectInfo = $this->Jira->getOpenIssues();
+$projectOpenIssues = $this->Jira->getOpenIssues();
 ```
 
 ### getIssue($id)
 Gets a specific Issue from your Project, by it's ID. ex issue id: `PROJECT-81`, just give the `81` part.M
 
 ```php
-$projectInfo = $this->Jira->getIssue('81');
+$projectIssue = $this->Jira->getIssue('81');
+```
+
+### getBugs()
+Retrieves all of your Issues, that are Bugs, related to your Project, ordered by their key ex: `PROJECT-81`
+
+```php
+$projectBugs = $this->Jira->getBugs();
+```
+
+### getOpenBugs()
+Retrieves all of your Issues, that are Bugs, related to your Project, that aren't marked as `Done`, ordered by their key ex: `PROJECT-81`
+
+```php
+$projectOpenBugs = $this->Jira->getOpenBugs();
 ```
 
 ## TODO:
