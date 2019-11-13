@@ -13,7 +13,7 @@ use JiraRestApi\Issue\IssueService;
 use JiraRestApi\Issue\JqlQuery;
 use JiraRestApi\Project\ProjectService;
 
-class JiraProjectReader
+class JiraProject
 {
     /**
      * Config Object.
@@ -40,8 +40,8 @@ class JiraProjectReader
     protected $Versions = null;
 
     /**
-     * The Issues object.
-     * @var \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3|null
+     * The Cached list of issues.
+     * @var array|null
      */
     protected $Issues = null;
 
@@ -50,6 +50,21 @@ class JiraProjectReader
      * @var array
      */
     protected $issuesCache = [];
+
+    /**
+     * Valid Types.
+     * Used to ensure we're getting a valid type when filtering.
+     * Currently only support Jira Core and Software.
+     * @see https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.html
+     * @var array
+     */
+    protected $validTypes = [
+        'Bug',
+        'Epic',
+        'Story',
+        'Subtask',
+        'Task',
+    ];
 
     /**
      * Initializer
@@ -124,44 +139,60 @@ class JiraProjectReader
     /**
      * Get the Project's Issues.
      *
+     * @param string|null $type Filter the Issues by type.
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getIssues()
+    public function getIssues($type = null)
     {
-        if (!$this->Issues) {
+        $cacheKey = 'all';
+        if ($type) {
+            $cacheKey .= '-' . $type;
+        }
+        if (!isset($this->Issues[$cacheKey])) {
             $jql = new JqlQuery();
 
-            $jql->setProject($this->projectKey)
-                ->addAnyExpression('ORDER BY key DESC');
+            $jql->setProject($this->projectKey);
+            if ($type && in_array($type, $this->validTypes)) {
+                $jql->setType($type);
+            }
+            $jql->addAnyExpression('ORDER BY key DESC');
 
             $issueService = new IssueService($this->ConfigObj);
 
-            $this->Issues = $issueService->search($jql->getQuery(), 0, 1000);
+            $this->Issues[$cacheKey] = $issueService->search($jql->getQuery(), 0, 1000);
         }
 
-        return $this->Issues;
+        return $this->Issues[$cacheKey];
     }
 
     /**
      * Get the Project's Open Issues.
      *
+     * @param string|null $type Filter the Issues by type.
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getOpenIssues()
+    public function getOpenIssues($type = null)
     {
-        if (!$this->Issues) {
+        $cacheKey = 'open';
+        if ($type) {
+            $cacheKey .= '-' . $type;
+        }
+        if (!isset($this->Issues[$cacheKey])) {
             $jql = new JqlQuery();
 
-            $jql->setProject($this->projectKey)
-                ->addAnyExpression('AND status != "Done"')
-                ->addAnyExpression('ORDER BY key DESC');
+            $jql->setProject($this->projectKey);
+            if ($type && in_array($type, $this->validTypes)) {
+                $jql->setType($type);
+            }
+            $jql->addAnyExpression('AND status != "Done"');
+            $jql->addAnyExpression('ORDER BY key DESC');
 
             $issueService = new IssueService($this->ConfigObj);
 
-            $this->Issues = $issueService->search($jql->getQuery(), 0, 1000);
+            $this->Issues[$cacheKey] = $issueService->search($jql->getQuery(), 0, 1000);
         }
 
-        return $this->Issues;
+        return $this->Issues[$cacheKey];
     }
 
     /**
@@ -186,5 +217,23 @@ class JiraProjectReader
         }
 
         return $this->issuesCache[$key];
+    }
+
+    /**
+     * Gets a list of issues that are considered bugs.
+     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
+     */
+    public function getBugs()
+    {
+        return $this->getIssues('Bug');
+    }
+
+    /**
+     * Gets a list of open issues that are considered bugs.
+     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
+     */
+    public function getOpenBugs()
+    {
+        return $this->getOpenIssues('Bug');
     }
 }

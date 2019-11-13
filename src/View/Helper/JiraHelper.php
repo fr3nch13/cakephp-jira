@@ -8,7 +8,7 @@ namespace Fr3nch13\Jira\View\Helper;
 use Cake\Core\Configure;
 use Cake\View\Helper;
 use Cake\View\View;
-use Fr3nch13\Jira\Lib\JiraProjectReader;
+use Fr3nch13\Jira\Lib\JiraProject;
 
 /**
  * Jira Helper
@@ -23,9 +23,9 @@ class JiraHelper extends Helper
     /**
      * Contains the loaded Jira Project Reader object.
      *
-     * @var \Fr3nch13\Jira\Lib\JiraProjectReader|null
+     * @var \Fr3nch13\Jira\Lib\JiraProject|null
      */
-    protected $JiraProjectReader = null;
+    protected $JiraProject = null;
 
     /**
      * Initialize the helper
@@ -38,7 +38,7 @@ class JiraHelper extends Helper
     {
         parent::__construct($View, $config);
 
-        $this->JiraProjectReader = new JiraProjectReader();
+        $this->JiraProject = new JiraProject();
     }
 
     /**
@@ -49,7 +49,7 @@ class JiraHelper extends Helper
      */
     public function getInfo()
     {
-        return $this->JiraProjectReader->getInfo();
+        return $this->JiraProject->getInfo();
     }
 
     /**
@@ -59,28 +59,27 @@ class JiraHelper extends Helper
      */
     public function getVersions()
     {
-        return $this->JiraProjectReader->getVersions();
+        return $this->JiraProject->getVersions();
     }
 
     /**
      * Gets a list of all issues within your project.
      *
-     * @param string|null $type If given, only issues of this type are returned.
-     * @return array A list of issue objects.
+     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getIssues($type = null)
+    public function getIssues()
     {
-        return $this->JiraProjectReader->getIssues($type);
+        return $this->JiraProject->getIssues();
     }
 
     /**
      * Gets a list of all open issues within your project.
      *
-     * @return array A list of issue objects.
+     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
     public function getOpenIssues()
     {
-        return $this->JiraProjectReader->getOpenIssues();
+        return $this->JiraProject->getOpenIssues();
     }
 
     /**
@@ -92,6 +91,26 @@ class JiraHelper extends Helper
      */
     public function getIssue($id = null)
     {
-        return $this->JiraProjectReader->getIssue($id);
+        return $this->JiraProject->getIssue($id);
+    }
+
+    /**
+     * Gets a list of all issues that are bugs within your project.
+     *
+     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
+     */
+    public function getBugs()
+    {
+        return $this->JiraProject->getBugs();
+    }
+
+    /**
+     * Gets a list of all open issues that are bugs within your project.
+     *
+     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
+     */
+    public function getOpenBugs()
+    {
+        return $this->JiraProject->getOpenBugs();
     }
 }
