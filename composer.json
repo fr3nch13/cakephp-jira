@@ -15,7 +15,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "7.*",
         "cakephp/cakephp": "3.*",
         "lesstif/php-jira-rest-client": "1.*"
     },
@@ -38,7 +37,7 @@
         "psr-4": {
             "Fr3nch13\\Jira\\Test\\": "tests/",
             "Fr3nch13\\Jira\\Test\\Fixture\\": "tests/Fixture/",
-            "App\\": "tests/testApp/src/"
+            "App\\": "tests/TestApp/src/"
         }
     },
     "scripts": {
