@@ -1,4 +1,5 @@
 <?php
+
 /**
  * JiraHelper
  */
@@ -21,7 +22,14 @@ use Fr3nch13\Jira\Lib\JiraProject;
 class JiraHelper extends Helper
 {
     /**
-     * Contains the loaded Jira Project Reader object.
+     * List of loaded helpers.
+     *
+     * @var array
+     */
+    public $helpers = ['Url', 'Html'];
+
+    /**
+     * Contains the loaded Jira Project object.
      *
      * @var \Fr3nch13\Jira\Lib\JiraProject|null
      */
@@ -112,5 +120,39 @@ class JiraHelper extends Helper
     public function getOpenBugs()
     {
         return $this->JiraProject->getOpenBugs();
+    }
+
+    /**
+     * Created the link to submit a bug.
+     *
+     * @TODO Build out the forms frontend
+     * @param sting|null $name Name of the link
+     * @param array|string|null $url An alternate url, if needed.
+     * @param array $options Additional options, also passthrough to HtmlHelper::link()
+     * @return string The generated link html.
+     */
+    public function bugLink(string $name = '', $url = [], array $options = [])
+    {
+        //
+
+        return true;
+        //return $this->Html->link();
+    }
+
+    /**
+     * Created the link to submit a feature request.
+     *
+     * @TODO Build out the forms frontend
+     * @param sting|null $name Name of the link
+     * @param array|string|null $url An alternate url, if needed.
+     * @param array $options Additional options, also passthrough to HtmlHelper::link()
+     * @return string The generated link html.
+     */
+    public function frLink(string $name = '', $url = [], array $options = [])
+    {
+        //
+
+        return true;
+        //return $this->Html->link();
     }
 }

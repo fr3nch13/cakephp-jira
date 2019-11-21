@@ -20,32 +20,6 @@ use Cake\Routing\Route\DashedRoute;
 class Plugin extends BasePlugin
 {
     /**
-     * Load needed Middleware
-     *
-     * @param object $middleware The passed middleware object.
-     * @return object The modified middleware object.
-     */
-    public function middleware($middleware)
-    {
-        // Add middleware here.
-
-        return parent::middleware($middleware);
-    }
-
-    /**
-     * Add plugin specific commands here.
-     *
-     * @param object $commands The passed commands object.
-     * @return object The modified commands object.
-     */
-    public function console($commands)
-    {
-        // Add console commands here.
-
-        return parent::console($commands);
-    }
-
-    /**
      * Bootstraping for this specific plugin.
      *
      * @param \Cake\Core\PluginApplicationInterface $app The app object.
@@ -68,6 +42,32 @@ class Plugin extends BasePlugin
 
         // By default will load `config/bootstrap.php` in the plugin.
         parent::bootstrap($app);
+    }
+
+    /**
+     * Add plugin specific commands here.
+     *
+     * @param object $commands The passed commands object.
+     * @return object The modified commands object.
+     */
+    public function console($commands)
+    {
+        // Add console commands here.
+
+        return parent::console($commands);
+    }
+
+    /**
+     * Load needed Middleware
+     *
+     * @param object $middleware The passed middleware object.
+     * @return object The modified middleware object.
+     */
+    public function middleware($middleware)
+    {
+        // Add middleware here.
+
+        return parent::middleware($middleware);
     }
 
     /**
