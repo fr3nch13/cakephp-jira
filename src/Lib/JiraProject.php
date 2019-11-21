@@ -13,19 +13,28 @@ use JiraRestApi\Issue\IssueService;
 use JiraRestApi\Issue\JqlQuery;
 use JiraRestApi\Project\ProjectService;
 
+/**
+ * Jira Project class
+ */
 class JiraProject
 {
     /**
      * Config Object.
      * @var \JiraRestApi\Configuration\ArrayConfiguration|null
      */
-    protected $ConfigObj = null;
+    public $ConfigObj = null;
 
     /**
      * The key for the project.
      * @var string|null
      */
-    protected $projectKey = null;
+    public $projectKey = null;
+
+    /**
+     * The project service object.
+     * @var \JiraRestApi\Project\ProjectService|null
+     */
+    public $ProjectService = null;
 
     /**
      * The project object.
@@ -38,6 +47,12 @@ class JiraProject
      * @var \ArrayObject|null
      */
     protected $Versions = null;
+
+    /**
+     * The project service object.
+     * @var \JiraRestApi\Issue\IssueService|null
+     */
+    public $IssueService = null;
 
     /**
      * The Cached list of issues.
@@ -67,27 +82,22 @@ class JiraProject
     ];
 
     /**
-     * The Issue Type for featured Requests.
-     * Must be one of the types in the $this->validTypes.
-     * @var string
+     * Types of issues allowed to be submitted.
+     * @var array
      */
-    protected $typeFeatureRequest = 'Story';
+    protected $allowedTypes = [
+        'Bug' => [
+            'type' => 'Bug', // Must be one of the types in the $this->validTypes.
+            'label' => 'bug-submitted' // The label used to tag user submitted bugs.
+        ],
+        'FeatureRequest' => [
+            'type' => 'Story', // Must be one of the types in the $this->validTypes.
+            'label' => 'feature-request' // The label used to tag feature requests.
+        ]
+    ];
 
     /**
-     * The label used to tag feature requests.
-     * @var string
-     */
-    protected $labelFeatureRequest = 'feature-request';
-
-    /**
-     * The Issue Type for featured Requests.
-     * Must be one of the types in the $this->validTypes.
-     * @var string
-     */
-    protected $typeBug = 'Bug';
-
-    /**
-     * Initializer
+     * Constructor
      *
      * Reads the configuration, and crdate a config object to be passed to the other objects.
      *
@@ -134,8 +144,10 @@ class JiraProject
     public function getInfo()
     {
         if (!$this->Project) {
-            $projSvc = new ProjectService($this->ConfigObj);
-            $this->Project = $projSvc->get($this->projectKey);
+            if (!$this->ProjectService) {
+                $this->ProjectService = new ProjectService($this->ConfigObj);
+            }
+            $this->Project = $this->ProjectService->get($this->projectKey);
         }
 
         return $this->Project;
@@ -149,8 +161,10 @@ class JiraProject
     public function getVersions()
     {
         if (!$this->Versions) {
-            $projSvc = new ProjectService($this->ConfigObj);
-            $this->Versions = $projSvc->getVersions($this->projectKey);
+            if (!$this->ProjectService) {
+                $this->ProjectService = new ProjectService($this->ConfigObj);
+            }
+            $this->Versions = $this->ProjectService->getVersions($this->projectKey);
         }
 
         return $this->Versions;
@@ -177,9 +191,11 @@ class JiraProject
             }
             $jql->addAnyExpression('ORDER BY key DESC');
 
-            $issueService = new IssueService($this->ConfigObj);
+            if (!$this->IssueService) {
+                $this->IssueService = new IssueService($this->ConfigObj);
+            }
 
-            $this->Issues[$cacheKey] = $issueService->search($jql->getQuery(), 0, 1000);
+            $this->Issues[$cacheKey] = $this->IssueService->search($jql->getQuery(), 0, 1000);
         }
 
         return $this->Issues[$cacheKey];
@@ -207,9 +223,11 @@ class JiraProject
             $jql->addAnyExpression('AND resolution is EMPTY');
             $jql->addAnyExpression('ORDER BY key DESC');
 
-            $issueService = new IssueService($this->ConfigObj);
+            if (!$this->IssueService) {
+                $this->IssueService = new IssueService($this->ConfigObj);
+            }
 
-            $this->Issues[$cacheKey] = $issueService->search($jql->getQuery(), 0, 1000);
+            $this->Issues[$cacheKey] = $this->IssueService->search($jql->getQuery(), 0, 1000);
         }
 
         return $this->Issues[$cacheKey];
@@ -230,8 +248,10 @@ class JiraProject
         }
         $key = $this->projectKey . '-' . $id;
         if (!isset($this->issuesCache[$key])) {
-            $issueService = new IssueService($this->ConfigObj);
-            if (!$this->issuesCache[$key] = $issueService->get($key)) {
+            if (!$this->IssueService) {
+                $this->IssueService = new IssueService($this->ConfigObj);
+            }
+            if (!$this->issuesCache[$key] = $this->IssueService->get($key)) {
                 throw new MissingIssueException($key);
             }
         }
@@ -258,8 +278,33 @@ class JiraProject
     }
 
     /**
+     * Methods used to submit an Issue to Jira.
+     */
+
+    /**
+     * Gets the array for the forms when submitting an issue to Jira.
+     *
+     * @param string|null $type The type of issue we're submitting.
+     * @return array The array of data to fill in the form with.
+     */
+    public function getFormData($type = null)
+    {
+        if (!$type) {
+            return [];
+        }
+
+        if (isset($this->formData[$type])) {
+            return $this->formData[$type];
+        }
+
+        return [
+        ];
+    }
+
+    /**
      * Submits a feature request
      *
+     * @todo Build out the feature request form in the frontend.
      * @param array $data The array of details about the feature request.
      * @return bool If the request was successfully submitted.
      */
@@ -273,6 +318,7 @@ class JiraProject
     /**
      * Submits a bug.
      *
+     * @todo Build out the bug form in the frontend.
      * @param array $data The array of details about the bug.
      * @return bool If the bug was successfully submitted.
      */

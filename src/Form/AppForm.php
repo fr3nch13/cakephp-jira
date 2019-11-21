@@ -1,6 +1,6 @@
 <?php
 /**
- * JiraBugForm
+ * AppForm
  */
 
 namespace Fr3nch13\Jira\Form;
@@ -13,11 +13,11 @@ use Fr3nch13\Jira\Exception\Exception;
 use Fr3nch13\Jira\Lib\JiraProject;
 
 /**
- * Jira Bug Form
+ * App Form
  *
- * Used to submit a bug to Jira.
+ * Used to submit an issue to Jira.
  */
-class JiraBugForm extends Form
+class AppForm extends Form
 {
     /**
      * Contains the loaded Jira Project object.
@@ -33,6 +33,12 @@ class JiraBugForm extends Form
     public $formData = [];
 
     /**
+     * The type of issue we're submitting.
+     * @var string|null
+     */
+    public $issueType = null;
+
+    /**
      * Constructor
      *
      * @param \Cake\Event\EventManager|null $eventManager The event manager.
@@ -45,11 +51,11 @@ class JiraBugForm extends Form
 
         $this->JiraProject = new JiraProject();
 
-        $this->setFormData($this->JiraProject->getFormData('Bug'));
+        $this->setFormData($this->JiraProject->getFormData($this->issueType));
     }
 
     /**
-     * Defines the schema fom the JiraProject Object.
+     * Defines the schema from the JiraProject Object.
      *
      * @param \Cake\Form\Schema $schema The existing schema.
      * @return \Cake\Form\Schema The modified schema.
@@ -95,16 +101,16 @@ class JiraBugForm extends Form
     }
 
     /**
-     * Submit the bug to Jira.
+     * Submit the issue to Jira.
      *
      * @param array $data The array of post data from the form template.
-     * @return bool True is the bug was submitted or false if there was an issue.
+     * @return bool True is the issue was submitted or false if there was an problem.
      */
     protected function _execute(array $data = [])
     {
         $data = $data + $this->getFormData();
 
-        return $this->JiraProject->submitBug($data);
+        return $this->JiraProject->submitIssue($data); // submitIssue method doesn't exist, the _execute method should be overwritten.
     }
 
     /**
