@@ -20,6 +20,7 @@ before_script:
     - composer install --prefer-source
 
 script:
+    - composer dumpautoload
     - composer cs-check
     - composer test
     - if [[ $COVERAGE = 1 ]]; then composer test-coverage; fi
