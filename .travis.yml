@@ -1,33 +1,33 @@
 language: php
 
 php:
-  - 7.0
-  - 7.1
-  - 7.2
-  - 7.3
-  - 7.4snapshot
-env:
-  global:
-    - PHPCS=1
+    - 7.0
+    - 7.1
+    - 7.2
+    - 7.3
+    - 7.4snapshot
 
 matrix:
-  fast_finish: true
+    fast_finish: true
+    include:
+        - php: 7.2
+        env: PHPCS=1
 
 before_script:
-  - composer install --prefer-source
+    - composer install --prefer-source
 
 script:
-  - if [[ $PHPCS = 1 ]]; then composer cs-check; fi
-  - if [[ $PHPCS = 1 ]]; then composer test-coverage; fi
-  - if [[ $PHPCS = 1 ]]; then composer test-clover; fi
-  - if [[ $PHPCS = 1 ]]; then composer test; fi
+    - if [[ $PHPCS = 1 ]]; then composer cs-check; fi
+    - if [[ $PHPCS = 1 ]]; then composer test-coverage; fi
+    - if [[ $PHPCS = 1 ]]; then composer test-clover; fi
+    - if [[ $PHPCS = 1 ]]; then composer test; fi
 
 after_success:
-  - if [[ $PHPCS = 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
+    - if [[ $PHPCS = 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
 
 cache:
     directories:
         - $HOME/.composer/cache
 
 notifications:
-  email: false
+    email: false

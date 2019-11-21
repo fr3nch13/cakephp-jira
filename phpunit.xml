@@ -33,8 +33,6 @@
         <whitelist>
             <directory suffix=".php">./src/</directory>
             <directory suffix=".ctp">./src/</directory>
-            <directory suffix=".php">./tests/</directory>
-            <directory suffix=".ctp">./tests/</directory>
         </whitelist>
     </filter>
 

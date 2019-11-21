@@ -1,6 +1,6 @@
 # CakePHP Jira Plugin
 
-[![Build Status](https://img.shields.io/travis/fr3nch13/cakephp-jira/master.svg?style=flat-square)](https://travis-ci.org/fr3nch13/cakephp-jira)
+[![Build Status](https://travis-ci.com/fr3nch13/cakephp-jira.svg?branch=master)](https://travis-ci.com/fr3nch13/cakephp-jira)
 [![Coverage Status](https://img.shields.io/codecov/c/github/fr3nch13/cakephp-jira.svg?style=flat-square)](https://codecov.io/github/fr3nch13/cakephp-jira)
 [![Total Downloads](https://img.shields.io/packagist/dt/fr3nch13/cakephp-jira.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-jira)
 [![Latest Stable Version](https://img.shields.io/packagist/v/fr3nch13/cakephp-jira.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-jira)
