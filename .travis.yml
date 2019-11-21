@@ -13,19 +13,19 @@ jobs:
 
     include:
         - php: 7.2
-          env: PHPCS=1
+          env: COVERAGE=1
 
 before_script:
     - composer install --prefer-source
 
 script:
-    - if [[ $PHPCS = 1 ]]; then composer cs-check; fi
-    - if [[ $PHPCS = 1 ]]; then composer test-coverage; fi
-    - if [[ $PHPCS = 1 ]]; then composer test-clover; fi
-    - if [[ $PHPCS = 1 ]]; then composer test; fi
+    - composer cs-check
+    - composer test
+    - if [[ $COVERAGE = 1 ]]; then composer test-coverage; fi
+    - if [[ $COVERAGE = 1 ]]; then composer test-clover; fi
 
 after_success:
-    - if [[ $PHPCS = 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
+    - if [[ $COVERAGE = 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
 
 cache:
     directories:
