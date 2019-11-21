@@ -133,7 +133,9 @@ class JiraProjectTest extends IntegrationTestCase
      */
     public function testGetFormData()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $data = $this->JiraProject->getFormData();
+
+        $this->assertEquals([], $data);
     }
 
     /**
@@ -143,7 +145,9 @@ class JiraProjectTest extends IntegrationTestCase
      */
     public function testSubmitFeatureRequest()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $data = $this->JiraProject->submitFeatureRequest([]);
+
+        $this->assertEquals(true, $data);
     }
 
     /**
@@ -153,6 +157,8 @@ class JiraProjectTest extends IntegrationTestCase
      */
     public function testSubmitBug()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $data = $this->JiraProject->submitBug([]);
+
+        $this->assertEquals(true, $data);
     }
 }
