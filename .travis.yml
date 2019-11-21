@@ -19,7 +19,7 @@ before_script:
 
 script:
   - if [[ $PHPCS = 1 ]]; then composer cs-check; fi
-  - if [[ $PHPCS = 1 ]]; then composer test-coverage --timeout=0; fi
+  - if [[ $PHPCS = 1 ]]; then composer test-coverage; fi
   - if [[ $PHPCS = 1 ]]; then composer test; fi
 
 after_success:
