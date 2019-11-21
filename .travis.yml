@@ -19,10 +19,11 @@ before_script:
 script:
   - if [[ $PHPCS = 1 ]]; then composer cs-check; fi
   - if [[ $PHPCS = 1 ]]; then composer test-coverage; fi
+  - if [[ $PHPCS = 1 ]]; then composer test-clover; fi
   - if [[ $PHPCS = 1 ]]; then composer test; fi
 
 after_success:
-  - if [[ $PHPCS != 1 && $TRAVIS_PHP_VERSION = 7.1 ]]; then bash <(curl -s https://codecov.io/bash); fi
+  - if [[ $PHPCS = 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
 
 cache:
     directories:
