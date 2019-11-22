@@ -1,4 +1,4 @@
-# [CakePHP Jira Plugin API Documentation](../home)
+# [CakePHP Jira Plugin API Documentation](../home.md)
 
 # Class: \Fr3nch13\Jira\Exception\Exception
 ### Namespace: [\Fr3nch13\Jira\Exception](../namespaces/Fr3nch13.Jira.Exception.md)
@@ -31,14 +31,14 @@ General Exception scoped to this plugin.
 
 ### Top Namespaces
 
-* [\Fr3nch13](../namespaces/Fr3nch13.md)
+* [\Fr3nch13](../namespaces/Fr3nch13.html.md)
 
 ---
 
 ### Reports
-* [Errors - 0](../reports/errors)
-* [Markers - 2](../reports/markers)
-* [Deprecated - 0](../reports/deprecated)
+* [Errors - 0](../reports/errors.md)
+* [Markers - 2](../reports/markers.md)
+* [Deprecated - 0](../reports/deprecated.md)
 
 ---
 

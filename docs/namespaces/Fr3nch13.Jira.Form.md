@@ -1,4 +1,4 @@
-# [CakePHP Jira Plugin API Documentation](../home)
+# [CakePHP Jira Plugin API Documentation](../home.md)
 
 # Namespace: \Fr3nch13\Jira\Form
 ## Parent: [\Fr3nch13\Jira](../namespaces/Fr3nch13.Jira.md)
@@ -13,14 +13,14 @@
 
 ### Top Namespaces
 
-* [\Fr3nch13](../namespaces/Fr3nch13.md)
+* [\Fr3nch13](../namespaces/Fr3nch13.html.md)
 
 ---
 
 ### Reports
-* [Errors - 0](../reports/errors)
-* [Markers - 2](../reports/markers)
-* [Deprecated - 0](../reports/deprecated)
+* [Errors - 0](../reports/errors.md)
+* [Markers - 2](../reports/markers.md)
+* [Deprecated - 0](../reports/deprecated.md)
 
 ---
 

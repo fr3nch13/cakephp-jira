@@ -1,6 +1,5 @@
 /vendor
 /tmp/*/
-*.lock
 !*.gitkeep
 docs/phpdoc-cache-*
 /coverage.xml
