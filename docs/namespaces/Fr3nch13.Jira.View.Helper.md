@@ -1,17 +1,17 @@
 # [CakePHP Jira Plugin API Documentation](../home)
 
 # Namespace: \Fr3nch13\Jira\View\Helper
-## Parent: [\Fr3nch13\Jira\View](../namespaces/Fr3nch13.Jira.View)
+## Parent: [\Fr3nch13\Jira\View](../namespaces/Fr3nch13.Jira.View.md)
 ### Classes
 | Name | Summary |
 | ---- | ------- |
-| [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper) | Jira Helper |
+| [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md) | Jira Helper |
 
 ---
 
 ### Top Namespaces
 
-* [\Fr3nch13](../namespaces/Fr3nch13)
+* [\Fr3nch13](../namespaces/Fr3nch13.md)
 
 ---
 
@@ -22,4 +22,4 @@
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-21 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

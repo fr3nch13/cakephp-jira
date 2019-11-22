@@ -1,7 +1,7 @@
 # [CakePHP Jira Plugin API Documentation](../home)
 
 # Class: \Fr3nch13\Jira\Exception\Exception
-### Namespace: [\Fr3nch13\Jira\Exception](../namespaces/Fr3nch13.Jira.Exception)
+### Namespace: [\Fr3nch13\Jira\Exception](../namespaces/Fr3nch13.Jira.Exception.md)
 ---
 **Summary:**
 
@@ -20,7 +20,7 @@ General Exception scoped to this plugin.
 ### Methods
 ---
 ### Details
-* File: [Exception/Exception.php](../files/Exception.Exception)
+* File: [Exception/Exception.php](../files/Exception.Exception.md)
 * Package: Default
 * Class Hierarchy: 
   * [\Cake\Core\Exception\Exception]()
@@ -31,7 +31,7 @@ General Exception scoped to this plugin.
 
 ### Top Namespaces
 
-* [\Fr3nch13](../namespaces/Fr3nch13)
+* [\Fr3nch13](../namespaces/Fr3nch13.md)
 
 ---
 
@@ -42,4 +42,4 @@ General Exception scoped to this plugin.
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-21 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

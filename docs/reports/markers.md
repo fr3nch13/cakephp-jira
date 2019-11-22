@@ -12,7 +12,7 @@
 
 ### Top Namespaces
 
-* [\Fr3nch13](../namespaces/Fr3nch13)
+* [\Fr3nch13](../namespaces/Fr3nch13.md)
 
 ---
 
@@ -23,4 +23,4 @@
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-21 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

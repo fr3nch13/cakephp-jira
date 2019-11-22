@@ -1,7 +1,7 @@
 # [CakePHP Jira Plugin API Documentation](../home)
 
 # Class: \Fr3nch13\Jira\Lib\JiraProject
-### Namespace: [\Fr3nch13\Jira\Lib](../namespaces/Fr3nch13.Jira.Lib)
+### Namespace: [\Fr3nch13\Jira\Lib](../namespaces/Fr3nch13.Jira.Lib.md)
 ---
 **Summary:**
 
@@ -12,32 +12,32 @@ Jira Project class
 * No constants found
 ---
 ### Properties
-* [public $ConfigObj](../classes/Fr3nch13.Jira.Lib.JiraProject#property_ConfigObj)
-* [public $projectKey](../classes/Fr3nch13.Jira.Lib.JiraProject#property_projectKey)
-* [public $ProjectService](../classes/Fr3nch13.Jira.Lib.JiraProject#property_ProjectService)
-* [public $IssueService](../classes/Fr3nch13.Jira.Lib.JiraProject#property_IssueService)
-* [protected $Project](../classes/Fr3nch13.Jira.Lib.JiraProject#property_Project)
-* [protected $Versions](../classes/Fr3nch13.Jira.Lib.JiraProject#property_Versions)
-* [protected $Issues](../classes/Fr3nch13.Jira.Lib.JiraProject#property_Issues)
-* [protected $issuesCache](../classes/Fr3nch13.Jira.Lib.JiraProject#property_issuesCache)
-* [protected $validTypes](../classes/Fr3nch13.Jira.Lib.JiraProject#property_validTypes)
-* [protected $allowedTypes](../classes/Fr3nch13.Jira.Lib.JiraProject#property_allowedTypes)
+* [public $ConfigObj](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_ConfigObj)
+* [public $projectKey](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_projectKey)
+* [public $ProjectService](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_ProjectService)
+* [public $IssueService](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_IssueService)
+* [protected $Project](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_Project)
+* [protected $Versions](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_Versions)
+* [protected $Issues](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_Issues)
+* [protected $issuesCache](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_issuesCache)
+* [protected $validTypes](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_validTypes)
+* [protected $allowedTypes](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_allowedTypes)
 ---
 ### Methods
-* [public __construct()](../classes/Fr3nch13.Jira.Lib.JiraProject#method___construct)
-* [public getInfo()](../classes/Fr3nch13.Jira.Lib.JiraProject#method_getInfo)
-* [public getVersions()](../classes/Fr3nch13.Jira.Lib.JiraProject#method_getVersions)
-* [public getIssues()](../classes/Fr3nch13.Jira.Lib.JiraProject#method_getIssues)
-* [public getOpenIssues()](../classes/Fr3nch13.Jira.Lib.JiraProject#method_getOpenIssues)
-* [public getIssue()](../classes/Fr3nch13.Jira.Lib.JiraProject#method_getIssue)
-* [public getBugs()](../classes/Fr3nch13.Jira.Lib.JiraProject#method_getBugs)
-* [public getOpenBugs()](../classes/Fr3nch13.Jira.Lib.JiraProject#method_getOpenBugs)
-* [public getFormData()](../classes/Fr3nch13.Jira.Lib.JiraProject#method_getFormData)
-* [public submitFeatureRequest()](../classes/Fr3nch13.Jira.Lib.JiraProject#method_submitFeatureRequest)
-* [public submitBug()](../classes/Fr3nch13.Jira.Lib.JiraProject#method_submitBug)
+* [public __construct()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method___construct)
+* [public getInfo()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getInfo)
+* [public getVersions()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getVersions)
+* [public getIssues()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getIssues)
+* [public getOpenIssues()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getOpenIssues)
+* [public getIssue()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getIssue)
+* [public getBugs()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getBugs)
+* [public getOpenBugs()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getOpenBugs)
+* [public getFormData()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getFormData)
+* [public submitFeatureRequest()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_submitFeatureRequest)
+* [public submitBug()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_submitBug)
 ---
 ### Details
-* File: [Lib/JiraProject.php](../files/Lib.JiraProject)
+* File: [Lib/JiraProject.php](../files/Lib.JiraProject.md)
 * Package: Default
 * Class Hierarchy:
   * \Fr3nch13\Jira\Lib\JiraProject
@@ -155,7 +155,7 @@ Currently only support Jira Core and Software.
 
 **Details:**
 * See Also:
-  * [https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.html](https://confluence.atlassian.com/adminjiracloud/issue-types-844500742)
+  * [https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.html](https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.md)
 
 
 <a name="property_allowedTypes"></a>
@@ -189,7 +189,7 @@ Constructor
 Reads the configuration, and crdate a config object to be passed to the other objects.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject)
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 ##### Throws:
 | Type | Description |
 | ---- | ----------- |
@@ -210,7 +210,7 @@ public getInfo() : \JiraRestApi\Project\Project
 Get the Project's Info.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject)
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 ##### Throws:
 | Type | Description |
 | ---- | ----------- |
@@ -231,7 +231,7 @@ public getVersions() : \ArrayObject
 Get the Project's Versions.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject)
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 
 **Returns:** \ArrayObject - A list of version objects.
 
@@ -248,7 +248,7 @@ public getIssues(string&amp;#124;null  $type = null) : \JiraRestApi\Issue\IssueS
 Get the Project's Issues.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject)
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -269,7 +269,7 @@ public getOpenIssues(string&amp;#124;null  $type = null) : \JiraRestApi\Issue\Is
 Get the Project's Open Issues.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject)
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -290,7 +290,7 @@ public getIssue(integer  $id = null) : \JiraRestApi\Issue\Issue&amp;#124;\JiraRe
 Gets info on a particular issue within your project.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject)
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -316,7 +316,7 @@ public getBugs() : \JiraRestApi\Issue\IssueSearchResult&amp;#124;\JiraRestApi\Is
 Gets a list of issues that are considered bugs.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject)
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 
 **Returns:** \JiraRestApi\Issue\IssueSearchResult&#124;\JiraRestApi\Issue\IssueSearchResultV3 - A list of issue objects.
 
@@ -333,7 +333,7 @@ public getOpenBugs() : \JiraRestApi\Issue\IssueSearchResult&amp;#124;\JiraRestAp
 Gets a list of open issues that are considered bugs.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject)
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 
 **Returns:** \JiraRestApi\Issue\IssueSearchResult&#124;\JiraRestApi\Issue\IssueSearchResultV3 - A list of issue objects.
 
@@ -350,7 +350,7 @@ public getFormData(string&amp;#124;null  $type = null) : array
 Gets the array for the forms when submitting an issue to Jira.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject)
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -371,7 +371,7 @@ public submitFeatureRequest(array  $data = array()) : boolean
 Submits a feature request
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject)
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -396,7 +396,7 @@ public submitBug(array  $data = array()) : boolean
 Submits a bug.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject)
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -414,7 +414,7 @@ Submits a bug.
 
 ### Top Namespaces
 
-* [\Fr3nch13](../namespaces/Fr3nch13)
+* [\Fr3nch13](../namespaces/Fr3nch13.md)
 
 ---
 
@@ -425,4 +425,4 @@ Submits a bug.
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-21 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

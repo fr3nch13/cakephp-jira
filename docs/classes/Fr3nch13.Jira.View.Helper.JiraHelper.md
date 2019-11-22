@@ -1,7 +1,7 @@
 # [CakePHP Jira Plugin API Documentation](../home)
 
 # Class: \Fr3nch13\Jira\View\Helper\JiraHelper
-### Namespace: [\Fr3nch13\Jira\View\Helper](../namespaces/Fr3nch13.Jira.View.Helper)
+### Namespace: [\Fr3nch13\Jira\View\Helper](../namespaces/Fr3nch13.Jira.View.Helper.md)
 ---
 **Summary:**
 
@@ -16,25 +16,25 @@ Helper to write out stuff about your jira project.
 * No constants found
 ---
 ### Properties
-* [public $helpers](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#property_helpers)
-* [public $Url](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#property_Url)
-* [public $Html](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#property_Html)
-* [protected $JiraProject](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#property_JiraProject)
+* [public $helpers](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#property_helpers)
+* [public $Url](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#property_Url)
+* [public $Html](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#property_Html)
+* [protected $JiraProject](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#property_JiraProject)
 ---
 ### Methods
-* [public __construct()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#method___construct)
-* [public getInfo()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#method_getInfo)
-* [public getVersions()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#method_getVersions)
-* [public getIssues()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#method_getIssues)
-* [public getOpenIssues()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#method_getOpenIssues)
-* [public getIssue()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#method_getIssue)
-* [public getBugs()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#method_getBugs)
-* [public getOpenBugs()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#method_getOpenBugs)
-* [public bugLink()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#method_bugLink)
-* [public frLink()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper#method_frLink)
+* [public __construct()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method___construct)
+* [public getInfo()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_getInfo)
+* [public getVersions()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_getVersions)
+* [public getIssues()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_getIssues)
+* [public getOpenIssues()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_getOpenIssues)
+* [public getIssue()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_getIssue)
+* [public getBugs()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_getBugs)
+* [public getOpenBugs()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_getOpenBugs)
+* [public bugLink()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_bugLink)
+* [public frLink()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_frLink)
 ---
 ### Details
-* File: [View/Helper/JiraHelper.php](../files/View.Helper.JiraHelper)
+* File: [View/Helper/JiraHelper.php](../files/View.Helper.JiraHelper.md)
 * Package: Default
 * Class Hierarchy: 
   * [\Cake\View\Helper]()
@@ -96,7 +96,7 @@ public __construct(\Cake\View\View  $View, array  $config = array()) : void
 Initialize the helper
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper)
+* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -118,7 +118,7 @@ public getInfo() : object
 Get the information about the Jira Project
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper)
+* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 ##### Throws:
 | Type | Description |
 | ---- | ----------- |
@@ -139,7 +139,7 @@ public getVersions() : \ArrayObject
 Gets a list of all versions within your project.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper)
+* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 
 **Returns:** \ArrayObject - A list of version objects.
 
@@ -156,7 +156,7 @@ public getIssues() : \JiraRestApi\Issue\IssueSearchResult&amp;#124;\JiraRestApi\
 Gets a list of all issues within your project.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper)
+* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 
 **Returns:** \JiraRestApi\Issue\IssueSearchResult&#124;\JiraRestApi\Issue\IssueSearchResultV3 - A list of issue objects.
 
@@ -173,7 +173,7 @@ public getOpenIssues() : \JiraRestApi\Issue\IssueSearchResult&amp;#124;\JiraRest
 Gets a list of all open issues within your project.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper)
+* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 
 **Returns:** \JiraRestApi\Issue\IssueSearchResult&#124;\JiraRestApi\Issue\IssueSearchResultV3 - A list of issue objects.
 
@@ -190,7 +190,7 @@ public getIssue(integer  $id = null) : object
 Gets info on a particular issue within your project.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper)
+* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -215,7 +215,7 @@ public getBugs() : \JiraRestApi\Issue\IssueSearchResult&amp;#124;\JiraRestApi\Is
 Gets a list of all issues that are bugs within your project.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper)
+* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 
 **Returns:** \JiraRestApi\Issue\IssueSearchResult&#124;\JiraRestApi\Issue\IssueSearchResultV3 - A list of issue objects.
 
@@ -232,7 +232,7 @@ public getOpenBugs() : \JiraRestApi\Issue\IssueSearchResult&amp;#124;\JiraRestAp
 Gets a list of all open issues that are bugs within your project.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper)
+* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 
 **Returns:** \JiraRestApi\Issue\IssueSearchResult&#124;\JiraRestApi\Issue\IssueSearchResultV3 - A list of issue objects.
 
@@ -241,7 +241,7 @@ Gets a list of all open issues that are bugs within your project.
 #### public bugLink() : string
 
 ```
-public bugLink(\Fr3nch13\Jira\View\Helper\sting&amp;#124;null  $name = &#039;&#039;, array&amp;#124;string&amp;#124;null  $url = array(), array  $options = array()) : string
+public bugLink(\Fr3nch13\Jira\View\Helper\sting&amp;#124;null  $name = null, array&amp;#124;string&amp;#124;null  $url = array(), array  $options = array()) : string
 ```
 
 **Summary**
@@ -249,7 +249,7 @@ public bugLink(\Fr3nch13\Jira\View\Helper\sting&amp;#124;null  $name = &#039;&#0
 Created the link to submit a bug.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper)
+* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -268,7 +268,7 @@ Created the link to submit a bug.
 #### public frLink() : string
 
 ```
-public frLink(\Fr3nch13\Jira\View\Helper\sting&amp;#124;null  $name = &#039;&#039;, array&amp;#124;string&amp;#124;null  $url = array(), array  $options = array()) : string
+public frLink(\Fr3nch13\Jira\View\Helper\sting&amp;#124;null  $name = null, array&amp;#124;string&amp;#124;null  $url = array(), array  $options = array()) : string
 ```
 
 **Summary**
@@ -276,7 +276,7 @@ public frLink(\Fr3nch13\Jira\View\Helper\sting&amp;#124;null  $name = &#039;&#03
 Created the link to submit a feature request.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper)
+* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -296,7 +296,7 @@ Created the link to submit a feature request.
 
 ### Top Namespaces
 
-* [\Fr3nch13](../namespaces/Fr3nch13)
+* [\Fr3nch13](../namespaces/Fr3nch13.md)
 
 ---
 
@@ -307,4 +307,4 @@ Created the link to submit a feature request.
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-21 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
