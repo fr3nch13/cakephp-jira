@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "48afbc7def9744e33235084148448804",
+    "content-hash": "01fd3fa2ac10b8727965c9970dc8b994",
     "packages": [
         {
             "name": "aura/intl",
@@ -1995,16 +1995,16 @@
         },
         {
             "name": "fr3nch13/phpdoc-markdown",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fr3nch13/phpdoc-markdown.git",
-                "reference": "5e00117269c088fbb6c0351a87f920d67cfbfa2e"
+                "reference": "19ba21718310eeddcc0e6c24506121c86819caf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fr3nch13/phpdoc-markdown/zipball/5e00117269c088fbb6c0351a87f920d67cfbfa2e",
-                "reference": "5e00117269c088fbb6c0351a87f920d67cfbfa2e",
+                "url": "https://api.github.com/repos/fr3nch13/phpdoc-markdown/zipball/19ba21718310eeddcc0e6c24506121c86819caf4",
+                "reference": "19ba21718310eeddcc0e6c24506121c86819caf4",
                 "shasum": ""
             },
             "require": {
@@ -2038,7 +2038,7 @@
                 "phpDocumentor",
                 "phpdoc"
             ],
-            "time": "2019-11-22T05:33:28+00:00"
+            "time": "2019-11-22T06:35:43+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
