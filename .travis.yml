@@ -2,7 +2,6 @@ language: php
 os: linux
 
 php:
-    - 5.6
     #- 7.0
     #- 7.1
     - 7.2
@@ -33,6 +32,9 @@ script:
     - composer pre-commit
     - if [[ $COVERAGE = 1 ]]; then composer test-coverage; fi
     - if [[ $COVERAGE = 1 ]]; then composer test-clover; fi
+    - composer update
+    - composer dumpautoload
+    - composer pre-commit
 
 after_success:
     - if [[ $COVERAGE = 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
