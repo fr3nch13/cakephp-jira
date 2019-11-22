@@ -131,7 +131,7 @@ class JiraHelper extends Helper
      * @param array $options Additional options, also passthrough to HtmlHelper::link()
      * @return string The generated link html.
      */
-    public function bugLink(string $name = '', $url = [], array $options = [])
+    public function bugLink(string $name = null, $url = [], array $options = [])
     {
         //
 
@@ -148,7 +148,7 @@ class JiraHelper extends Helper
      * @param array $options Additional options, also passthrough to HtmlHelper::link()
      * @return string The generated link html.
      */
-    public function frLink(string $name = '', $url = [], array $options = [])
+    public function frLink(string $name = null, $url = [], array $options = [])
     {
         //
 
