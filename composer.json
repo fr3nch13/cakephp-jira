@@ -22,6 +22,7 @@
         "cakephp/bake": "^1.1",
         "cakephp/cakephp-codesniffer": "3.*",
         "cakephp/debug_kit": "^3.15.0",
+        "fr3nch13/cakephp-pta": "1.*",
         "fr3nch13/phpdoc-markdown": "1.*",
         "mockery/mockery": "^1.2",
         "phpdocumentor/phpdocumentor": "dev-master",
@@ -37,11 +38,15 @@
         "psr-4": {
             "Fr3nch13\\Jira\\Test\\": "tests/",
             "Fr3nch13\\Jira\\Test\\Fixture\\": "tests/Fixture/",
-            "App\\": "tests/TestApp/src/"
+            "App\\": "vendor/cakephp/app/src/"
         }
     },
     "scripts": {
         "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
+        "pre-commit": [
+            "@check",
+            "@phpdoc"
+        ],
         "check": [
             "@cs-check",
             "@test"

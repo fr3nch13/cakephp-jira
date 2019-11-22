@@ -1,7 +1,7 @@
 # [CakePHP Jira Plugin API Documentation](../home)
 
 # Class: \Fr3nch13\Jira\Exception\MissingIssueException
-### Namespace: [\Fr3nch13\Jira\Exception](../namespaces/Fr3nch13.Jira.Exception)
+### Namespace: [\Fr3nch13\Jira\Exception](../namespaces/Fr3nch13.Jira.Exception.md)
 ---
 **Summary:**
 
@@ -16,17 +16,17 @@ Throw when a Project's Issue can't be found.
 * No constants found
 ---
 ### Properties
-* [protected $_defaultCode](../classes/Fr3nch13.Jira.Exception.MissingIssueException#property__defaultCode)
+* [protected $_defaultCode](../classes/Fr3nch13.Jira.Exception.MissingIssueException.md#property__defaultCode)
 ---
 ### Methods
-* [public __construct()](../classes/Fr3nch13.Jira.Exception.MissingIssueException#method___construct)
+* [public __construct()](../classes/Fr3nch13.Jira.Exception.MissingIssueException.md#method___construct)
 ---
 ### Details
-* File: [Exception/MissingIssueException.php](../files/Exception.MissingIssueException)
+* File: [Exception/MissingIssueException.php](../files/Exception.MissingIssueException.md)
 * Package: Default
 * Class Hierarchy:  
   * [\Cake\Core\Exception\Exception]()
-  * [\Fr3nch13\Jira\Exception\Exception](../classes/Fr3nch13.Jira.Exception.Exception)
+  * [\Fr3nch13\Jira\Exception\Exception](../classes/Fr3nch13.Jira.Exception.Exception.md)
   * \Fr3nch13\Jira\Exception\MissingIssueException
 ---
 ## Properties
@@ -62,7 +62,7 @@ Allows you to create exceptions that are treated as framework errors and disable
 when debug mode is off.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Exception\MissingIssueException](../classes/Fr3nch13.Jira.Exception.MissingIssueException)
+* Inherited From: [\Fr3nch13\Jira\Exception\MissingIssueException](../classes/Fr3nch13.Jira.Exception.MissingIssueException.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -79,7 +79,7 @@ when debug mode is off.
 
 ### Top Namespaces
 
-* [\Fr3nch13](../namespaces/Fr3nch13)
+* [\Fr3nch13](../namespaces/Fr3nch13.md)
 
 ---
 
@@ -90,4 +90,4 @@ when debug mode is off.
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-21 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

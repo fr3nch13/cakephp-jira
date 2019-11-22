@@ -1,7 +1,7 @@
 # [CakePHP Jira Plugin API Documentation](../home)
 
 # Class: \Fr3nch13\Jira\Plugin
-### Namespace: [\Fr3nch13\Jira](../namespaces/Fr3nch13.Jira)
+### Namespace: [\Fr3nch13\Jira](../namespaces/Fr3nch13.Jira.md)
 ---
 **Summary:**
 
@@ -14,13 +14,13 @@ Plugin Definitions
 ### Properties
 ---
 ### Methods
-* [public bootstrap()](../classes/Fr3nch13.Jira.Plugin#method_bootstrap)
-* [public console()](../classes/Fr3nch13.Jira.Plugin#method_console)
-* [public middleware()](../classes/Fr3nch13.Jira.Plugin#method_middleware)
-* [public routes()](../classes/Fr3nch13.Jira.Plugin#method_routes)
+* [public bootstrap()](../classes/Fr3nch13.Jira.Plugin.md#method_bootstrap)
+* [public console()](../classes/Fr3nch13.Jira.Plugin.md#method_console)
+* [public middleware()](../classes/Fr3nch13.Jira.Plugin.md#method_middleware)
+* [public routes()](../classes/Fr3nch13.Jira.Plugin.md#method_routes)
 ---
 ### Details
-* File: [Plugin.php](../files/Plugin)
+* File: [Plugin.php](../files/Plugin.md)
 * Package: Default
 * Class Hierarchy: 
   * [\Cake\Core\BasePlugin]()
@@ -40,7 +40,7 @@ public bootstrap(\Cake\Core\PluginApplicationInterface  $app) : void
 Bootstraping for this specific plugin.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Plugin](../classes/Fr3nch13.Jira.Plugin)
+* Inherited From: [\Fr3nch13\Jira\Plugin](../classes/Fr3nch13.Jira.Plugin.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -61,7 +61,7 @@ public console(object  $commands) : object
 Add plugin specific commands here.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Plugin](../classes/Fr3nch13.Jira.Plugin)
+* Inherited From: [\Fr3nch13\Jira\Plugin](../classes/Fr3nch13.Jira.Plugin.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -82,7 +82,7 @@ public middleware(object  $middleware) : object
 Load needed Middleware
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Plugin](../classes/Fr3nch13.Jira.Plugin)
+* Inherited From: [\Fr3nch13\Jira\Plugin](../classes/Fr3nch13.Jira.Plugin.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -103,7 +103,7 @@ public routes(object  $routes) : void
 Add plugin specific routes here.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Plugin](../classes/Fr3nch13.Jira.Plugin)
+* Inherited From: [\Fr3nch13\Jira\Plugin](../classes/Fr3nch13.Jira.Plugin.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -117,7 +117,7 @@ Add plugin specific routes here.
 
 ### Top Namespaces
 
-* [\Fr3nch13](../namespaces/Fr3nch13)
+* [\Fr3nch13](../namespaces/Fr3nch13.md)
 
 ---
 
@@ -128,4 +128,4 @@ Add plugin specific routes here.
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-21 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

@@ -110,6 +110,7 @@ class PluginTest extends TestCase
      */
     public function testRoutes()
     {
+        Router::resetRoutes();
         $collection = new RouteCollection();
         $routeBuilder = new RouteBuilder($collection, '');
         $this->Plugin->routes($routeBuilder);

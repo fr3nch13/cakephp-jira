@@ -1,7 +1,7 @@
 # [CakePHP Jira Plugin API Documentation](../home)
 
 # Class: \Fr3nch13\Jira\Form\FeatureRequestForm
-### Namespace: [\Fr3nch13\Jira\Form](../namespaces/Fr3nch13.Jira.Form)
+### Namespace: [\Fr3nch13\Jira\Form](../namespaces/Fr3nch13.Jira.Form.md)
 ---
 **Summary:**
 
@@ -16,24 +16,24 @@ Used to submit a feature request to Jira.
 * No constants found
 ---
 ### Properties
-* [public $formData](../classes/Fr3nch13.Jira.Form.AppForm#property_formData)
-* [public $issueType](../classes/Fr3nch13.Jira.Form.AppForm#property_issueType)
-* [protected $JiraProject](../classes/Fr3nch13.Jira.Form.AppForm#property_JiraProject)
+* [public $formData](../classes/Fr3nch13.Jira.Form.AppForm.md#property_formData)
+* [public $issueType](../classes/Fr3nch13.Jira.Form.AppForm.md#property_issueType)
+* [protected $JiraProject](../classes/Fr3nch13.Jira.Form.AppForm.md#property_JiraProject)
 ---
 ### Methods
-* [public __construct()](../classes/Fr3nch13.Jira.Form.FeatureRequestForm#method___construct)
-* [public setFormData()](../classes/Fr3nch13.Jira.Form.AppForm#method_setFormData)
-* [public getFormData()](../classes/Fr3nch13.Jira.Form.AppForm#method_getFormData)
-* [protected _buildSchema()](../classes/Fr3nch13.Jira.Form.AppForm#method__buildSchema)
-* [protected _buildValidator()](../classes/Fr3nch13.Jira.Form.AppForm#method__buildValidator)
-* [protected _execute()](../classes/Fr3nch13.Jira.Form.AppForm#method__execute)
+* [public __construct()](../classes/Fr3nch13.Jira.Form.FeatureRequestForm.md#method___construct)
+* [public setFormData()](../classes/Fr3nch13.Jira.Form.AppForm.md#method_setFormData)
+* [public getFormData()](../classes/Fr3nch13.Jira.Form.AppForm.md#method_getFormData)
+* [protected _buildSchema()](../classes/Fr3nch13.Jira.Form.AppForm.md#method__buildSchema)
+* [protected _buildValidator()](../classes/Fr3nch13.Jira.Form.AppForm.md#method__buildValidator)
+* [protected _execute()](../classes/Fr3nch13.Jira.Form.AppForm.md#method__execute)
 ---
 ### Details
-* File: [Form/FeatureRequestForm.php](../files/Form.FeatureRequestForm)
+* File: [Form/FeatureRequestForm.php](../files/Form.FeatureRequestForm.md)
 * Package: Default
 * Class Hierarchy:  
   * [\Cake\Form\Form]()
-  * [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm)
+  * [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
   * \Fr3nch13\Jira\Form\FeatureRequestForm
 ---
 ## Properties
@@ -47,7 +47,7 @@ The form fields and data.
 **Type:** array
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm)
+* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
 
 
 <a name="property_issueType"></a>
@@ -60,7 +60,7 @@ The type of issue we're submitting.
 **Type:** string|null
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm)
+* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
 
 
 <a name="property_JiraProject"></a>
@@ -73,7 +73,7 @@ Contains the loaded Jira Project object.
 **Type:** <a href="../classes/Fr3nch13.Jira.Lib.JiraProject.html">\Fr3nch13\Jira\Lib\JiraProject</a>|null
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm)
+* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
 
 
 
@@ -91,7 +91,7 @@ public __construct(\Cake\Event\EventManager&amp;#124;null  $eventManager = null)
 Constructor
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\FeatureRequestForm](../classes/Fr3nch13.Jira.Form.FeatureRequestForm)
+* Inherited From: [\Fr3nch13\Jira\Form\FeatureRequestForm](../classes/Fr3nch13.Jira.Form.FeatureRequestForm.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -113,7 +113,7 @@ public setFormData(array  $data = array()) : void
 Sets the formData variable.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm)
+* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -134,7 +134,7 @@ public getFormData() : array
 Gets the formData variable.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm)
+* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
 
 **Returns:** array - The array of the current form data.
 
@@ -151,7 +151,7 @@ protected _buildSchema(\Cake\Form\Schema  $schema) : \Cake\Form\Schema
 Defines the schema from the JiraProject Object.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm)
+* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -172,7 +172,7 @@ protected _buildValidator(\Cake\Validation\Validator  $validator) : \Cake\Valida
 Defines the validations
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm)
+* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -193,7 +193,7 @@ protected _execute(array  $data = array()) : boolean
 Submit the issue to Jira.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm)
+* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
@@ -207,7 +207,7 @@ Submit the issue to Jira.
 
 ### Top Namespaces
 
-* [\Fr3nch13](../namespaces/Fr3nch13)
+* [\Fr3nch13](../namespaces/Fr3nch13.md)
 
 ---
 
@@ -218,4 +218,4 @@ Submit the issue to Jira.
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-21 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
