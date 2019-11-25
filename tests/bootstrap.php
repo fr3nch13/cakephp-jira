@@ -13,7 +13,6 @@
 $root = dirname(__DIR__);
 chdir($root);
 require_once $root . '/vendor/fr3nch13/cakephp-pta/tests/plugin_bootstrap.php';
-
 //////
 
 putenv('JIRA_SCHEMA=https');
