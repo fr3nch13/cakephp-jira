@@ -8,6 +8,7 @@ namespace Fr3nch13\Jira\Test\TestCase;
 
 use Cake\TestSuite\IntegrationTestCase;
 use Fr3nch13\Jira\Test\TestCase\JiraTestTrait;
+use JiraRestApi\Issue\Issue;
 use JiraRestApi\Project\Project;
 
 /**
@@ -134,8 +135,17 @@ class JiraProjectTest extends IntegrationTestCase
     public function testModifyAllowedTypes()
     {
         $this->JiraProject->modifyAllowedTypes('Test', [
-            'type' => 'Task',
-            'labels' => 'test-label'
+            'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
+            'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
+            // The form's field information.
+            'formData' => [
+                'fields' => [
+                    'summary' => [
+                        'type' => 'text',
+                        'required' => true,
+                    ]
+                ]
+            ]
         ]);
 
         $types = $this->JiraProject->getAllowedTypes();
@@ -153,8 +163,17 @@ class JiraProjectTest extends IntegrationTestCase
     public function testIsAllowedType()
     {
         $this->JiraProject->modifyAllowedTypes('Test', [
-            'type' => 'Task',
-            'labels' => 'test-label'
+            'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
+            'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
+            // The form's field information.
+            'formData' => [
+                'fields' => [
+                    'summary' => [
+                        'type' => 'text',
+                        'required' => true,
+                    ]
+                ]
+            ]
         ]);
 
         $result = isset($this->JiraProject->allowedTypes['Test']) ? true : false;
@@ -170,26 +189,27 @@ class JiraProjectTest extends IntegrationTestCase
     public function testGetFormData()
     {
         $this->JiraProject->modifyAllowedTypes('Test', [
-            'type' => 'Task',
-            'labels' => 'test-label',
+            'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
+            'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
+            // The form's field information.
             'formData' => [
                 'fields' => [
-                    'name' => [
-                        'type' => 'string',
-                        'required' => true
+                    'summary' => [
+                        'type' => 'text',
+                        'required' => true,
                     ]
                 ]
             ]
         ]);
 
         $data = $this->JiraProject->getFormData('Test');
-        $set = isset($data['fields']['name']['type']) ? true : false;
+        $set = isset($data['fields']['summary']['type']) ? true : false;
 
         // isset
         $this->assertEquals($set, true);
 
         // check value
-        $this->assertEquals($data['fields']['name']['type'], 'string');
+        $this->assertEquals($data['fields']['summary']['type'], 'text');
     }
 
     /**
@@ -199,8 +219,32 @@ class JiraProjectTest extends IntegrationTestCase
      */
     public function testSubmitIssue()
     {
-        $data = $this->JiraProject->submitIssue();
+        $this->JiraProject->modifyAllowedTypes('Test', [
+            'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
+            'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
+            // The form's field information.
+            'formData' => [
+                'fields' => [
+                    'summary' => [
+                        'type' => 'text',
+                        'required' => true,
+                    ],
+                    'description' => [
+                        'type' => 'textarea',
+                        'required' => true,
+                    ]
+                ]
+            ]
+        ]);
 
-        $this->assertEquals(true, $data);
+        // emulate submitted form data
+        $data = [
+            'summary' => 'Summary for TEST-7',
+            'description' => 'Description for TEST-7'
+        ];
+
+        $result = $this->JiraProject->submitIssue('Test', $data);
+
+        $this->assertEquals('7', $result);
     }
 }

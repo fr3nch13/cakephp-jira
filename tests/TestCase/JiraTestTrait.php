@@ -78,6 +78,12 @@ trait JiraTestTrait
     public $IssueSearchResultFeatureRequests = null;
 
     /**
+     * The created Issue when testing a submission.
+     * @var \JiraRestApi\Issue\Issue|null
+     */
+    public $IssueCreatedTest = null;
+
+    /**
      * The issue service object.
      * @var \JiraRestApi\Issue\IssueService|null
      */
@@ -124,6 +130,7 @@ trait JiraTestTrait
                 ->setUserReleaseDate(null);
         }
 
+        // create some generic issues.
         for ($i = 0; $i < 5; $i++) {
             $this->issues[$i] = new Issue();
             $this->issues[$i]->id = $i;
@@ -140,6 +147,7 @@ trait JiraTestTrait
                 ->setIssueType('Task')
                 ->addLabel('testing');
         }
+
         // add a bug issue
         $i = 5;
         $this->issues[$i] = new Issue();
@@ -156,6 +164,7 @@ trait JiraTestTrait
             ->setDescription(__('Description for {0}-{1}', [$this->JiraProject->projectKey, $i]))
             ->setIssueType('Bug')
             ->addLabel('customer-reported');
+
         // add a feature request
         $i = 6;
         $this->issues[$i] = new Issue();
@@ -196,6 +205,12 @@ trait JiraTestTrait
         $this->IssueSearchResultFeatureRequests->setMaxResults(1000);
         $this->IssueSearchResultFeatureRequests->setTotal(1);
         $this->IssueSearchResultFeatureRequests->setIssues([$this->issues[6]]);
+
+        // create the issue that gets created after a 'Test' issue is submitted.
+        $this->IssueCreatedTest = new Issue();
+        $this->IssueCreatedTest->self = 'https://jira.example.com/rest/api/2/issue/7';
+        $this->IssueCreatedTest->id = '7';
+        $this->IssueCreatedTest->key = 'TEST-7';
 
         $this->ProjectService->shouldReceive('get')
             ->with($this->JiraProject->projectKey)
@@ -238,6 +253,10 @@ trait JiraTestTrait
                 return false;
             })
             ->andReturn($this->IssueSearchResultBugs);
+
+        $this->IssueService->shouldReceive('create')
+            ->withAnyArgs()
+            ->andReturn($this->IssueCreatedTest);
 
         $this->Issue = new Issue();
     }

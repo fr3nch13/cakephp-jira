@@ -71,7 +71,7 @@ class AppForm extends Form
             throw new Exception(__('Missing the fields.'));
         }
         foreach ($data['fields'] as $k => $v) {
-            $schema->addField($k, $v['type']);
+            $schema->addField($k, $v);
         }
 
         return $schema;
@@ -112,7 +112,19 @@ class AppForm extends Form
      */
     protected function _execute(array $data = [])
     {
-        return $this->JiraProject->submitIssue($data); // submitIssue method doesn't exist, the _execute method should be overwritten.
+        try {
+            $result = $this->JiraProject->submitIssue($this->issueType, $data);
+        } catch (Exception $e) {
+            $errors = $this->JiraProject->getErrors();
+            foreach ($errors as $k => $v) {
+                // track the errors specific to jira/the JiraProject object.
+                $this->setErrors(["jira" => [$k => $v]]);
+            }
+
+            return false;
+        }
+
+        return $result;
     }
 
     /**

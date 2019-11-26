@@ -1,21 +1,21 @@
 <?php
 
 /**
- * BugsController
+ * TestsController
  */
 
 namespace Fr3nch13\Jira\Controller;
 
 use Fr3nch13\Jira\Controller\AppController;
-use Fr3nch13\Jira\Form\BugForm as JiraForm;
+use Fr3nch13\Jira\Form\TestForm as JiraForm;
 
 /**
- * Bugs Controller
+ * Tests Controller
  *
  * Frontend for submitting bugs to Jira.
  */
 
-class BugsController extends AppController
+class TestsController extends AppController
 {
     /**
      * Initialize method
@@ -26,7 +26,7 @@ class BugsController extends AppController
     {
         parent::initialize();
 
-        $this->humanName = __('Bug');
+        $this->humanName = __('Test');
         $this->JiraForm = new JiraForm();
     }
 }

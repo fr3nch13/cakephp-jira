@@ -15,7 +15,7 @@ use Fr3nch13\Jira\Exception\Exception as BaseException;
 class MissingAllowedTypeException extends BaseException
 {
     /**
-     * Thow a 404 when something is missing.
+     * Throw a 404 when allowed type is missing.
      * @var int
      */
     protected $_defaultCode = 404;

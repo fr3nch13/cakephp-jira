@@ -10,7 +10,7 @@ use Fr3nch13\Jira\Controller\AppController;
 use Fr3nch13\Jira\Form\FeatureRequestForm as JiraForm;
 
 /**
- * Feature Request Controller
+ * Feature Requests Controller
  *
  * Frontend for submitting feature requests to Jira.
  */

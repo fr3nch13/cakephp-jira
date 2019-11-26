@@ -7,9 +7,13 @@ namespace Fr3nch13\Jira\Lib;
 
 use Cake\Core\Configure;
 use Fr3nch13\Jira\Exception\Exception;
+use Fr3nch13\Jira\Exception\IssueSubmissionException;
 use Fr3nch13\Jira\Exception\MissingAllowedTypeException;
 use Fr3nch13\Jira\Exception\MissingConfigException;
+use Fr3nch13\Jira\Exception\MissingIssueFieldException;
+use Fr3nch13\Jira\Exception\MissingProjectException;
 use JiraRestApi\Configuration\ArrayConfiguration;
+use JiraRestApi\Issue\IssueField;
 use JiraRestApi\Issue\IssueService;
 use JiraRestApi\Issue\JqlQuery;
 use JiraRestApi\Project\ProjectService;
@@ -124,6 +128,13 @@ class JiraProject
     ];
 
     /**
+     * This is here for the Form object (or any other object) to use.
+     * It tacks all errors, even if an exception is thrown.
+     * @var array
+     */
+    protected $errors = [];
+
+    /**
      * Constructor
      *
      * Reads the configuration, and crdate a config object to be passed to the other objects.
@@ -135,22 +146,27 @@ class JiraProject
     {
         $schema = Configure::read('Jira.schema');
         if (!$schema) {
+            $this->setError('schema', 'MissingConfigException');
             throw new MissingConfigException('schema');
         }
         $host = Configure::read('Jira.host');
         if (!$host) {
+            $this->setError('host', 'MissingConfigException');
             throw new MissingConfigException('host');
         }
         $username = Configure::read('Jira.username');
         if (!$username) {
+            $this->setError('username', 'MissingConfigException');
             throw new MissingConfigException('username');
         }
         $apiKey = Configure::read('Jira.apiKey');
         if (!$apiKey) {
+            $this->setError('apiKey', 'MissingConfigException');
             throw new MissingConfigException('apiKey');
         }
         $projectKey = Configure::read('Jira.projectKey');
         if (!$projectKey) {
+            $this->setError('projectKey', 'MissingConfigException');
             throw new MissingConfigException('projectKey');
         }
         $this->ConfigObj = new ArrayConfiguration([
@@ -174,7 +190,12 @@ class JiraProject
             if (!$this->ProjectService) {
                 $this->ProjectService = new ProjectService($this->ConfigObj);
             }
-            $this->Project = $this->ProjectService->get($this->projectKey);
+            try {
+                $this->Project = $this->ProjectService->get($this->projectKey);
+            } catch (\JiraRestApi\JiraException $e) {
+                $this->setError($this->projectKey, 'MissingProjectException');
+                throw new MissingProjectException($this->projectKey);
+            }
         }
 
         return $this->Project;
@@ -271,6 +292,7 @@ class JiraProject
     public function getIssue($id = null)
     {
         if (!$id) {
+            $this->setError(__('Missing the Issue\'s ID.'), 'Exception');
             throw new Exception(__('Missing the Issue\'s ID.'));
         }
         $key = $this->projectKey . '-' . $id;
@@ -279,6 +301,7 @@ class JiraProject
                 $this->IssueService = new IssueService($this->ConfigObj);
             }
             if (!$this->issuesCache[$key] = $this->IssueService->get($key)) {
+                $this->setError($key, 'MissingIssueException');
                 throw new MissingIssueException($key);
             }
         }
@@ -311,10 +334,21 @@ class JiraProject
     /**
      * Returns the allowed types and their settings
      *
+     * @param string|null $type The type of issue you want to get.
+     * @throws MissingAllowedTypeException If a type is given, and that type is not configured.
      * @return array the content of $this->allowedTypes.
      */
-    public function getAllowedTypes()
+    public function getAllowedTypes($type = null)
     {
+        if ($type) {
+            if (!isset($this->allowedTypes[$type])) {
+                $this->setError($type, 'MissingAllowedTypeException');
+                throw new MissingAllowedTypeException($type);
+            }
+
+            return $this->allowedTypes[$type];
+        }
+
         return $this->allowedTypes;
     }
 
@@ -323,12 +357,29 @@ class JiraProject
      *
      * @param string $type The type of issue you want to add/modify.
      * @param array $settings The settings for the type.
+     * @throws MissingIssueFieldException If we're adding a new issue type, and the summary field isn't defined.
      * @return void
      */
     public function modifyAllowedTypes($type, $settings = [])
     {
         if (!isset($this->allowedTypes[$type])) {
             $this->allowedTypes[$type] = [];
+            if (!isset($settings['jiraType'])) {
+                $this->setError('jiraType', 'MissingIssueFieldException');
+                throw new MissingIssueFieldException('jiraType');
+            }
+            if (!isset($settings['formData'])) {
+                $this->setError('formData', 'MissingIssueFieldException');
+                throw new MissingIssueFieldException('formData');
+            }
+            if (!isset($settings['formData']['fields'])) {
+                $this->setError('formData.fields', 'MissingIssueFieldException');
+                throw new MissingIssueFieldException('formData.fields');
+            }
+            if (!isset($settings['formData']['fields']['summary'])) {
+                $this->setError('formData.fields.summary', 'MissingIssueFieldException');
+                throw new MissingIssueFieldException('formData.fields.summary');
+            }
         }
 
         $this->allowedTypes[$type] += $settings;
@@ -356,17 +407,20 @@ class JiraProject
     public function getFormData($type = null)
     {
         if (!$type) {
+            $this->setError('[$type is not set]', 'MissingAllowedTypeException');
             throw new MissingAllowedTypeException('[$type is not set]');
         }
 
         if (!$this->isAllowedType($type)) {
+            $this->setError($type, 'MissingAllowedTypeException');
             throw new MissingAllowedTypeException($type);
         }
 
         $allowedTypes = $this->getAllowedTypes();
 
         if (!isset($allowedTypes[$type]['formData'])) {
-            throw new Exception(__('No form data is set'));
+            $this->setError('No form data is set.', 'Exception');
+            throw new Exception(__('No form data is set.'));
         }
 
         return $allowedTypes[$type]['formData'];
@@ -375,7 +429,7 @@ class JiraProject
     /**
      * Sets the formData variable if you want to modify the default/initial values.
      *
-     * @param sting|null $type The type you want to set the data for.
+     * @param string $type The type you want to set the data for.
      *  - Needs to be in the allowedTypes already.
      * @param array $data The definition of the allowed types
      * @throws MissingAllowedTypeException If that type is not configured.
@@ -384,10 +438,12 @@ class JiraProject
     public function setFormData($type, $data = [])
     {
         if (!$type) {
+            $this->setError('[$type is not set]', 'MissingAllowedTypeException');
             throw new MissingAllowedTypeException('[$type is not set]');
         }
 
         if (!$this->isAllowedType($type)) {
+            $this->setError($type, 'MissingAllowedTypeException');
             throw new MissingAllowedTypeException($type);
         }
 
@@ -398,13 +454,171 @@ class JiraProject
      * Submits the Issue
      *
      * @todo Actually submit the form to the jira server.
+     * @param string $type The type you want to set the data for.
+     *  - Needs to be in the allowedTypes already.
      * @param array $data The array of details about the issue.
+     * @throws IssueSubmissionException If submitting the issue fails.
+     * @throws MissingAllowedTypeException If that issue type is not configured.
+     * @throws MissingIssueFieldException If we're adding a new issue, and required fields aren't defined.
      * @return bool If the request was successfully submitted.
      */
-    public function submitIssue(array $data = [])
+    public function submitIssue($type, array $data = [])
     {
-        //
+        if (!$type) {
+            $this->setError('[$type is not set]', 'MissingAllowedTypeException');
+            throw new MissingAllowedTypeException('[$type is not set]');
+        }
+
+        if (!$this->isAllowedType($type)) {
+            $this->setError($type, 'MissingAllowedTypeException');
+            throw new MissingAllowedTypeException($type);
+        }
+
+        if (!isset($data['summary'])) {
+            $this->setError('summary', 'MissingIssueFieldException');
+            throw new MissingIssueFieldException('summary');
+        }
+
+        $typeInfo = $this->getAllowedTypes($type);
+
+        // make sure we can get the project info first.
+        $project = $this->getInfo();
+
+        $issueField = new IssueField();
+        $issueField->setProjectKey($this->projectKey)
+            ->setIssueType($typeInfo['jiraType']);
+
+        /*
+         * Yes, I know I'm not validating the input here.
+         * I'm relying on the underlying IssueField to validate the data.
+         */
+
+        // I know i'm checking above, so this really isn't needed, but keeping here for consistancy/readability.
+        if (isset($data['summary'])) {
+            $issueField->setSummary($data['summary']);
+        }
+        if (isset($data['description'])) {
+            $issueField->setDescription($data['description']);
+        }
+        if (isset($data['priority'])) {
+            $issueField->setPriorityName($data['priority']);
+        }
+        if (isset($data['assignee'])) {
+            $issueField->setPriorityName($data['assignee']);
+        }
+        if (isset($data['version'])) {
+            $issueField->addVersion($data['version']);
+        }
+        if (isset($data['components'])) {
+            $issueField->addComponents($data['components']);
+        }
+        if (isset($data['duedate'])) {
+            $issueField->setDueDate($data['duedate']);
+        }
+
+        // labels should be space seperated
+        if (isset($typeInfo['jiraLabels'])) {
+            if (is_string($typeInfo['jiraLabels'])) {
+                $typeInfo['jiraLabels'] = preg_split('/\s+/', $typeInfo['jiraLabels']);
+            }
+            // track the type with a label
+            $typeInfo['jiraLabels'][] = 'user-submitted-type-' . $type;
+            foreach ($typeInfo['jiraLabels'] as $jiralabel) {
+                $issueField->addLabel($jiralabel);
+            }
+        }
+
+        $issueService = new IssueService($this->ConfigObj);
+
+        try {
+            $ret = $issueService->create($issueField);
+        } catch (\JiraRestApi\JiraException $e) {
+             //Sample return error with json in it.
+             //Pasting here so I can mock this return message in the unit tests.
+             //CURL HTTP Request Failed: Status Code : 400, URL:https://[hostname]/rest/api/2/issue
+             //Error Message : {"errorMessages":[],"errors":{"user_type":"Field 'user_type' cannot be set. It is not on the appropriate screen, or unknown."}}             */
+            $msg = $e->getMessage();
+            if (strpos($msg, '{') !== false) {
+                $msg = str_split($msg);
+                // extract the json message.
+                $json = '';
+                $in = 0;
+                foreach ($msg as $i => $char) {
+                    if ($char == '{') {
+                        $in++;
+                    }
+                    if ($in) {
+                        $json .= $msg[$i];
+                    }
+                    if ($char == '}') {
+                        $in--;
+                    }
+                }
+                if ($json) {
+                    $json = json_decode($json, true);
+                }
+                if ($json) {
+                    $newMsg = [];
+                    if (isset($json['errorMessages'])) {
+                        foreach ($json['errorMessages'] as $jsonMsg) {
+                            $newMsg[] = $jsonMsg;
+                        }
+                        foreach ($json['errors'] as $jsonMsg) {
+                            $newMsg[] = $jsonMsg;
+                        }
+                        $msg = implode("\n", $newMsg);
+                    }
+                }
+            }
+            $this->setError($msg, 'IssueSubmissionException');
+            throw new IssueSubmissionException($msg);
+        }
+
+        if ($ret instanceof \JiraRestApi\Issue\Issue && $ret->id) {
+            return $ret->id;
+        }
 
         return true;
+    }
+
+    /**
+     * Sets an error
+     *
+     * @param string $msg The error message.
+     * @param string $key The key to use in the this->errors array.
+     * @return bool If saved or not.
+     */
+    public function setError($msg = '', $key = '')
+    {
+        if (!trim($msg)) {
+            return false;
+        }
+        if ($key) {
+            $this->errors[$key] = $msg;
+        } else {
+            $this->errors[] = $msg;
+        }
+
+        return true;
+    }
+
+    /**
+     * Gets the accumulated error messages.
+     * If a key is given, return that specific message. If that key doesn't exist, return false.
+     *
+     * @param string|null $key The key to the specific message to get.
+     * @return array|string|false
+     */
+    public function getErrors($key = null)
+    {
+        if ($key) {
+            if (isset($this->errors[$key])) {
+                return $this->errors[$key];
+            } else {
+                return false;
+            }
+        }
+
+        return $this->errors;
     }
 }

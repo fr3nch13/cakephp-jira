@@ -1,6 +1,6 @@
 <?php
 /**
- * MissingIssueException
+ * MissingIssueFieldException
  */
 
 namespace Fr3nch13\Jira\Exception;
@@ -12,10 +12,10 @@ use Fr3nch13\Jira\Exception\Exception as BaseException;
  *
  * Throw when a Project's Issue can't be found.
  */
-class MissingIssueException extends BaseException
+class MissingIssueFieldException extends BaseException
 {
     /**
-     * Throw a 404 when something is missing.
+     * Throw a 404 when a field is missing.
      * @var int
      */
     protected $_defaultCode = 404;
@@ -33,7 +33,7 @@ class MissingIssueException extends BaseException
      */
     public function __construct($message = '', $code = null, $previous = null)
     {
-        $this->_messageTemplate = __('Unable to find the issue: %s');
+        $this->_messageTemplate = __('Missing the issue field: %s');
 
         if (is_string($message)) {
             $message = [0 => $message];

@@ -15,7 +15,7 @@ use Fr3nch13\Jira\Exception\Exception as BaseException;
 class MissingConfigException extends BaseException
 {
     /**
-     * Thow a 500 when something is missing.
+     * Throw a 500 when config variable is missing.
      * @var int
      */
     protected $_defaultCode = 500;

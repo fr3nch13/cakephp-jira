@@ -15,7 +15,7 @@ use Fr3nch13\Jira\Exception\Exception as BaseException;
 class MissingProjectException extends BaseException
 {
     /**
-     * Thow a 404 when something is missing.
+     * Thow a 404 when the project is missing.
      * @var int
      */
     protected $_defaultCode = 404;

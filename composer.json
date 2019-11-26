@@ -60,7 +60,8 @@
         "phpdoc-fix": "php vendor/fr3nch13/phpdoc-markdown/bin/fixHtmlToMd.php",
         "test": "vendor/bin/phpunit --colors=always",
         "test-coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage",
-        "test-clover": "vendor/bin/phpunit --coverage-clover=coverage.xml"
+        "test-clover": "vendor/bin/phpunit --coverage-clover=coverage.xml",
+        "test-coverage": "vendor/bin/phpunit --coverage-text"
     },
     "config": {
         "sort-packages": true

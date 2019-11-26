@@ -121,38 +121,4 @@ class JiraHelper extends Helper
     {
         return $this->JiraProject->getOpenBugs();
     }
-
-    /**
-     * Created the link to submit a bug.
-     *
-     * @TODO Build out the forms frontend
-     * @param sting|null $name Name of the link
-     * @param array|string|null $url An alternate url, if needed.
-     * @param array $options Additional options, also passthrough to HtmlHelper::link()
-     * @return string The generated link html.
-     */
-    public function bugLink(string $name = null, $url = [], array $options = [])
-    {
-        //
-
-        return true;
-        //return $this->Html->link();
-    }
-
-    /**
-     * Created the link to submit a feature request.
-     *
-     * @TODO Build out the forms frontend
-     * @param sting|null $name Name of the link
-     * @param array|string|null $url An alternate url, if needed.
-     * @param array $options Additional options, also passthrough to HtmlHelper::link()
-     * @return string The generated link html.
-     */
-    public function frLink(string $name = null, $url = [], array $options = [])
-    {
-        //
-
-        return true;
-        //return $this->Html->link();
-    }
 }

@@ -5,6 +5,7 @@
 
 namespace Fr3nch13\Jira\Form;
 
+use Cake\Event\EventManager;
 use Fr3nch13\Jira\Exception\Exception;
 use Fr3nch13\Jira\Form\AppForm;
 use Fr3nch13\Jira\Lib\JiraProject;

@@ -18,7 +18,24 @@ $this->assign('page-subtitle', __(' '));
 $this->start('page-content');
 ?>
 <section class="page-content">
-    <div class="config form">
+    <div class="form">
+        <?php
+        $errors = $form->getErrors();
+        // display the jira errors.
+        if (isset($errors['jira']) && count($errors['jira'])) : ?>
+        <div class="box error">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?= __('Errors') ?></h3>
+            </div>
+            <div class="box-body">
+                <ul>
+                    <?php foreach ($errors['jira'] as $jiraError) : ?>
+                        <li><?= $jiraError ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+        <?php endif; ?>
         <div class="box">
             <div class="box-body">
                 <?= $this->Form->create($form) ?>

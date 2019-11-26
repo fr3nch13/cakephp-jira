@@ -1,6 +1,6 @@
 <?php
 /**
- * MissingIssueException
+ * IssueSubmissionException
  */
 
 namespace Fr3nch13\Jira\Exception;
@@ -8,17 +8,17 @@ namespace Fr3nch13\Jira\Exception;
 use Fr3nch13\Jira\Exception\Exception as BaseException;
 
 /**
- * Missing Issue Exception
+ * Issue Submission Exception
  *
- * Throw when a Project's Issue can't be found.
+ * Throw when there was an error from the server when submitting an issue.
  */
-class MissingIssueException extends BaseException
+class IssueSubmissionException extends BaseException
 {
     /**
-     * Throw a 404 when something is missing.
+     * Throw a 500 when something goes wrong.
      * @var int
      */
-    protected $_defaultCode = 404;
+    protected $_defaultCode = 500;
 
     /**
      * Constructor.
@@ -33,7 +33,7 @@ class MissingIssueException extends BaseException
      */
     public function __construct($message = '', $code = null, $previous = null)
     {
-        $this->_messageTemplate = __('Unable to find the issue: %s');
+        $this->_messageTemplate = __('Problem submitting the Issue. Error(s): %s');
 
         if (is_string($message)) {
             $message = [0 => $message];

@@ -134,28 +134,4 @@ class JiraHelperTest extends TestCase
 
         $this->assertEquals($this->IssueSearchResultBugs, $issues);
     }
-
-    /**
-     * testbugLink
-     *
-     * @return void
-     */
-    public function testbugLink()
-    {
-        $link = $this->helper->bugLink();
-
-        $this->assertEquals(true, $link);
-    }
-
-    /**
-     * testFrLink
-     *
-     * @return void
-     */
-    public function testFrLink()
-    {
-        $link = $this->helper->frLink();
-
-        $this->assertEquals(true, $link);
-    }
 }

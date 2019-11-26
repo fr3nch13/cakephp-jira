@@ -5,6 +5,7 @@
 
 namespace Fr3nch13\Jira\Form;
 
+use Cake\Event\EventManager;
 use Fr3nch13\Jira\Exception\Exception;
 use Fr3nch13\Jira\Form\AppForm;
 use Fr3nch13\Jira\Lib\JiraProject;
@@ -31,13 +32,16 @@ class TestForm extends AppForm
         $this->issueType = 'Test';
 
         $this->settings = [
-            'type' => 'Task', // Jira issue type
-            'labels' => 'test-label', // any labels that you want that issue tagged with. space seperated.
+            // a valid Jira issue type
+            'jiraType' => 'Task',
+            // any labels that you want that issue tagged with. space seperated string, or an array.
+            'jiraLabels' => 'test-label',
             // data used in this form.
             'formData' => [
                 // define the fields here for the HtmlHelper::control()
                 'fields' => [
-                    'name' => [
+                    // this is really the only required field.
+                    'summary' => [
                         'type' => 'string',
                         'required' => true
                     ]

@@ -39,13 +39,16 @@ class AppController extends BaseController
      */
     public function add()
     {
+        $errors = [];
         if ($this->getRequest()->is('post')) {
+            /** @scrutinizer ignore-call */
             if ($this->JiraForm->execute($this->getRequest()->getData())) {
                 $this->Flash->success(__('The {0} has been saved.', [$this->humanName]));
 
                 return $this->redirect(['action' => 'thankyou', '?' => ['type' => $this->humanName]]);
             } else {
-                $this->Flash->error('There was a problem saving the {0}.', [$this->humanName]);
+                $errors = $this->JiraForm->getErrors();
+                $this->Flash->error(__('There was a problem saving the {0}.', [$this->humanName]));
             }
         }
 
@@ -54,7 +57,8 @@ class AppController extends BaseController
         }
 
         $this->set([
-            'form' => $this->JiraForm
+            'form' => $this->JiraForm,
+            'errors' => $errors
         ]);
     }
 
