@@ -204,7 +204,7 @@ class JiraProject
     /**
      * Get the Project's Versions.
      *
-     * @return \JiraRestApi\Issue\Version[] A list of version objects.
+     * @return \ArrayObject|\JiraRestApi\Issue\Version[] A list of version objects.
      */
     public function getVersions()
     {
@@ -284,12 +284,12 @@ class JiraProject
     /**
      * Gets info on a particular issue within your project.
      *
-     * @param int $id The issue id. The integer part without the project key.
+     * @param int|null $id The issue id. The integer part without the project key.
      * @return \JiraRestApi\Issue\Issue|\JiraRestApi\Issue\IssueV3 the object that has the info of that issue.
      * @throws \Fr3nch13\Jira\Exception\Exception If the issue's id isn't given.
      * @throws \Fr3nch13\Jira\Exception\MissingIssueException If the project's issue can't be found.
      */
-    public function getIssue($id)
+    public function getIssue($id = null)
     {
         if (!is_int($id)) {
             $this->setError(__('Missing the Issue\'s ID.'), 'Exception');
