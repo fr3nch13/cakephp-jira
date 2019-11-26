@@ -204,7 +204,7 @@ class JiraProject
     /**
      * Get the Project's Versions.
      *
-     * @return \ArrayObject A list of version objects.
+     * @return \JiraRestApi\Issue\Version[] A list of version objects.
      */
     public function getVersions()
     {
@@ -289,9 +289,9 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\Exception If the issue's id isn't given.
      * @throws \Fr3nch13\Jira\Exception\MissingIssueException If the project's issue can't be found.
      */
-    public function getIssue($id = null)
+    public function getIssue($id)
     {
-        if (!$id) {
+        if (!is_int($id)) {
             $this->setError(__('Missing the Issue\'s ID.'), 'Exception');
             throw new Exception(__('Missing the Issue\'s ID.'));
         }
@@ -533,10 +533,10 @@ class JiraProject
         try {
             $ret = $issueService->create($issueField);
         } catch (\JiraRestApi\JiraException $e) {
-             //Sample return error with json in it.
-             //Pasting here so I can mock this return message in the unit tests.
-             //CURL HTTP Request Failed: Status Code : 400, URL:https://[hostname]/rest/api/2/issue
-             //Error Message : {"errorMessages":[],"errors":{"user_type":"Field 'user_type' cannot be set. It is not on the appropriate screen, or unknown."}}             */
+            //Sample return error with json in it.
+            //Pasting here so I can mock this return message in the unit tests.
+            //CURL HTTP Request Failed: Status Code : 400, URL:https://[hostname]/rest/api/2/issue
+            //Error Message : {"errorMessages":[],"errors":{"user_type":"Field 'user_type' cannot be set. It is not on the appropriate screen, or unknown."}}             */
             $msg = $e->getMessage();
             if (strpos($msg, '{') !== false) {
                 $msg = str_split($msg);
