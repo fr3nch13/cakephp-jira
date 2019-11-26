@@ -254,6 +254,10 @@ trait JiraTestTrait
             })
             ->andReturn($this->IssueSearchResultBugs);
 
+        $this->IssueService->shouldReceive('get')
+            ->with('TEST-1')
+            ->andReturn($this->issues[1]);
+
         $this->IssueService->shouldReceive('create')
             ->withAnyArgs()
             ->andReturn($this->IssueCreatedTest);

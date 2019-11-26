@@ -8,6 +8,7 @@ use Cake\TestSuite\TestCase;
 use Cake\View\View;
 use Fr3nch13\Jira\Test\TestCase\JiraTestTrait;
 use Fr3nch13\Jira\View\Helper\JiraHelper;
+use JiraRestApi\Issue\Issue;
 use JiraRestApi\Project\Project;
 
 /**
@@ -108,7 +109,11 @@ class JiraHelperTest extends TestCase
      */
     public function testGetIssue()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $issue = $this->helper->getIssue(1);
+
+        $this->assertInstanceOf(Issue::class, $issue);
+
+        $this->assertEquals(1, $issue->id);
     }
 
     /**

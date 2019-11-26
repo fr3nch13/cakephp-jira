@@ -100,7 +100,11 @@ class JiraProjectTest extends IntegrationTestCase
      */
     public function testGetIssue()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $issue = $this->JiraProject->getIssue(1);
+
+        $this->assertInstanceOf(Issue::class, $issue);
+
+        $this->assertEquals(1, $issue->id);
     }
 
     /**
