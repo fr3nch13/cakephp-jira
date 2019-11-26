@@ -20,15 +20,7 @@
         "lesstif/php-jira-rest-client": "1.*"
     },
     "require-dev": {
-        "cakephp/bake": "^1.1",
-        "cakephp/cakephp-codesniffer": "3.*",
-        "cakephp/debug_kit": "^3.15.0",
-        "fr3nch13/cakephp-pta": "<=1.0.2",
-        "fr3nch13/phpdoc-markdown": "<=1.0.3",
-        "mockery/mockery": "^1.2",
-        "phpdocumentor/phpdocumentor": "dev-master",
-        "phpunit/phpunit": "^5.7|^6.0",
-        "psy/psysh": "@stable"
+        "fr3nch13/cakephp-pta": "^1.0.3"
     },
     "autoload": {
         "psr-4": {
@@ -46,8 +38,8 @@
         "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
         "pre-commit": [
             "@cs-check",
-            "@phpdoc",
-            "@test"
+            "@test",
+            "@phpdoc"
         ],
         "check": [
             "@cs-check",

@@ -12,7 +12,7 @@ use Fr3nch13\Jira\Exception\Exception;
  *
  * Throw when the Project can't be found.
  */
-class MissingProjectException extends Exception
+class MissingProjectException extends \Fr3nch13\Jira\Exception\Exception
 {
     /**
      * Thow a 404 when something is missing.
@@ -34,6 +34,10 @@ class MissingProjectException extends Exception
     public function __construct($message = '', $code = null, $previous = null)
     {
         $this->_messageTemplate = __('Unable to find the project: %s');
+
+        if (is_string($message)) {
+            $message = [0 => $message];
+        }
 
         parent::__construct($message, $code, $previous);
     }

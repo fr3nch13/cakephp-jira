@@ -155,7 +155,7 @@ Currently only support Jira Core and Software.
 
 **Details:**
 * See Also:
-  * [https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.html](https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.md)
+  * [https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.html]()
 
 
 <a name="property_allowedTypes"></a>
@@ -425,4 +425,4 @@ Submits a bug.
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-26 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

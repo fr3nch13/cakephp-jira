@@ -35,6 +35,10 @@ class MissingConfigException extends Exception
     {
         $this->_messageTemplate = __('Seems that the config key `Jira.%s` is not set.');
 
+        if (is_string($message)) {
+            $message = [0 => $message];
+        }
+
         parent::__construct($message, $code, $previous);
     }
 }

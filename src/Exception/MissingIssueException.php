@@ -35,6 +35,10 @@ class MissingIssueException extends Exception
     {
         $this->_messageTemplate = __('Unable to find the issue: %s');
 
+        if (is_string($message)) {
+            $message = [0 => $message];
+        }
+
         parent::__construct($message, $code, $previous);
     }
 }

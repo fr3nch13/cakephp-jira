@@ -25,7 +25,7 @@ jobs:
 install:
     # disable xdebug for performance reasons when code coverage is not needed
     - if [[ $COVERAGE = 0 ]]; then phpenv config-rm xdebug.ini || echo "xdebug is not installed"; fi
-    - composer install --prefer-source
+    - composer install
 
 script:
     - composer dumpautoload
