@@ -57,7 +57,6 @@ class MissingConfigExceptionTest extends TestCase
         try {
             throw new MissingConfigException('host');
         } catch (MissingConfigException $e) {
-            pr($e->getMessage());
             $this->assertEquals($e->getMessage(), 'Seems that the config key `Jira.host` is not set.');
         }
     }

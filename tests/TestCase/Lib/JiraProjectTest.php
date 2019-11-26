@@ -127,37 +127,79 @@ class JiraProjectTest extends IntegrationTestCase
     }
 
     /**
+     * modifyAllowedTypes
+     *
+     * @return void
+     */
+    public function testModifyAllowedTypes()
+    {
+        $this->JiraProject->modifyAllowedTypes('Test', [
+            'type' => 'Task',
+            'labels' => 'test-label'
+        ]);
+
+        $types = $this->JiraProject->getAllowedTypes();
+
+        $result = isset($types['Test']) ? true : false;
+
+        $this->assertEquals($result, true);
+    }
+
+    /**
+     * modifyAllowedTypes
+     *
+     * @return void
+     */
+    public function testIsAllowedType()
+    {
+        $this->JiraProject->modifyAllowedTypes('Test', [
+            'type' => 'Task',
+            'labels' => 'test-label'
+        ]);
+
+        $result = isset($this->JiraProject->allowedTypes['Test']) ? true : false;
+
+        $this->assertEquals($this->JiraProject->isAllowedType('Test'), true);
+    }
+
+    /**
      * testGetFormData
      *
      * @return void
      */
     public function testGetFormData()
     {
-        $data = $this->JiraProject->getFormData();
+        $this->JiraProject->modifyAllowedTypes('Test', [
+            'type' => 'Task',
+            'labels' => 'test-label',
+            'formData' => [
+                'fields' => [
+                    'name' => [
+                        'type' => 'string',
+                        'required' => true
+                    ]
+                ]
+            ]
+        ]);
 
-        $this->assertEquals([], $data);
+        $data = $this->JiraProject->getFormData('Test');
+        $set = isset($data['fields']['name']['type']) ? true : false;
+
+        // isset
+        $this->assertEquals($set, true);
+
+        // check value
+        $this->assertEquals($data['fields']['name']['type'], 'string');
     }
 
     /**
-     * testSubmitFeatureRequest
+     * testSubmitIssue
      *
      * @return void
      */
-    public function testSubmitFeatureRequest()
+    public function testSubmitIssue()
     {
-        $data = $this->JiraProject->submitFeatureRequest([]);
-
-        $this->assertEquals(true, $data);
-    }
-
-    /**
-     * testSubmitBug
-     *
-     * @return void
-     */
-    public function testSubmitBug()
-    {
-        $data = $this->JiraProject->submitBug([]);
+        $data = $this->JiraProject->submitIssue();
 
         $this->assertEquals(true, $data);
     }

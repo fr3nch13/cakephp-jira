@@ -16,8 +16,8 @@ Used to submit a feature request to Jira.
 * No constants found
 ---
 ### Properties
-* [public $formData](../classes/Fr3nch13.Jira.Form.AppForm.md#property_formData)
 * [public $issueType](../classes/Fr3nch13.Jira.Form.AppForm.md#property_issueType)
+* [public $settings](../classes/Fr3nch13.Jira.Form.AppForm.md#property_settings)
 * [protected $JiraProject](../classes/Fr3nch13.Jira.Form.AppForm.md#property_JiraProject)
 ---
 ### Methods
@@ -37,19 +37,6 @@ Used to submit a feature request to Jira.
   * \Fr3nch13\Jira\Form\FeatureRequestForm
 ---
 ## Properties
-<a name="property_formData"></a>
-#### public $formData : array
----
-**Summary**
-
-The form fields and data.
-
-**Type:** array
-
-**Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
-
-
 <a name="property_issueType"></a>
 #### public $issueType : string|null
 ---
@@ -58,6 +45,19 @@ The form fields and data.
 The type of issue we're submitting.
 
 **Type:** string|null
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
+
+
+<a name="property_settings"></a>
+#### public $settings : array
+---
+**Summary**
+
+Settings for this form and for the JiraProject.
+
+**Type:** array
 
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
@@ -213,7 +213,7 @@ Submit the issue to Jira.
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 2](../reports/markers.md)
+* [Markers - 1](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---

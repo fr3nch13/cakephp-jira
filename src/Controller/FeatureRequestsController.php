@@ -1,7 +1,7 @@
 <?php
 
 /**
- * FeatureRequestController
+ * FeatureRequestsController
  */
 
 namespace Fr3nch13\Jira\Controller;
@@ -15,7 +15,7 @@ use Fr3nch13\Jira\Form\FeatureRequestForm as JiraForm;
  * Frontend for submitting feature requests to Jira.
  */
 
-class FeatureRequestController extends AppController
+class FeatureRequestsController extends AppController
 {
     /**
      * Initialize method
@@ -27,5 +27,6 @@ class FeatureRequestController extends AppController
         parent::initialize();
 
         $this->humanName = __('Feature Request');
+        $this->JiraForm = new JiraForm();
     }
 }

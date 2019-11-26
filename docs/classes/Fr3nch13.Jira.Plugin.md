@@ -123,7 +123,7 @@ Add plugin specific routes here.
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 2](../reports/markers.md)
+* [Markers - 1](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---

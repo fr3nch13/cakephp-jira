@@ -7,6 +7,7 @@ namespace Fr3nch13\Jira\Lib;
 
 use Cake\Core\Configure;
 use Fr3nch13\Jira\Exception\Exception;
+use Fr3nch13\Jira\Exception\MissingAllowedTypeException;
 use Fr3nch13\Jira\Exception\MissingConfigException;
 use JiraRestApi\Configuration\ArrayConfiguration;
 use JiraRestApi\Issue\IssueService;
@@ -87,12 +88,38 @@ class JiraProject
      */
     protected $allowedTypes = [
         'Bug' => [
-            'type' => 'Bug', // Must be one of the types in the $this->validTypes.
-            'label' => 'bug-submitted' // The label used to tag user submitted bugs.
+            'jiraType' => 'Bug', // Must be one of the types in the $this->validTypes.
+            'jiraLabels' => 'bug-submitted', // The label used to tag user submitted bugs.
+            // The form's field information.
+            'formData' => [
+                'fields' => [
+                    'summary' => [
+                        'type' => 'text',
+                        'required' => true,
+                    ],
+                    'details' => [
+                        'type' => 'textarea',
+                        'required' => true,
+                    ]
+                ]
+            ]
         ],
         'FeatureRequest' => [
-            'type' => 'Story', // Must be one of the types in the $this->validTypes.
-            'label' => 'feature-request' // The label used to tag feature requests.
+            'jiraType' => 'Story', // Must be one of the types in the $this->validTypes.
+            'jiraLabels' => 'feature-request', // The label used to tag feature requests.
+            // The form's field information.
+            'formData' => [
+                'fields' => [
+                    'summary' => [
+                        'type' => 'text',
+                        'required' => true,
+                    ],
+                    'details' => [
+                        'type' => 'textarea',
+                        'required' => true,
+                    ]
+                ]
+            ]
         ]
     ];
 
@@ -282,47 +309,99 @@ class JiraProject
      */
 
     /**
+     * Returns the allowed types and their settings
+     *
+     * @return array the content of $this->allowedTypes.
+     */
+    public function getAllowedTypes()
+    {
+        return $this->allowedTypes;
+    }
+
+    /**
+     * Allows you to modify the form allowdTypes to fir your situation.
+     *
+     * @param string $type The type of issue you want to add/modify.
+     * @param array $settings The settings for the type.
+     * @return void
+     */
+    public function modifyAllowedTypes($type, $settings = [])
+    {
+        if (!isset($this->allowedTypes[$type])) {
+            $this->allowedTypes[$type] = [];
+        }
+
+        $this->allowedTypes[$type] += $settings;
+    }
+
+    /**
+     * Checks to see if a type is allowed.
+     *
+     * @param string $type The type to check.
+     * @return bool if it's allowed or not.
+     */
+    public function isAllowedType($type)
+    {
+        return (isset($this->allowedTypes[$type]) ? true : false);
+    }
+
+    /**
      * Gets the array for the forms when submitting an issue to Jira.
      *
      * @param string|null $type The type of issue we're submitting.
+     * @throws MissingAllowedTypeException If that type is not configured.
+     * @throws Exception If the form data for that type is missing.
      * @return array The array of data to fill in the form with.
      */
     public function getFormData($type = null)
     {
         if (!$type) {
-            return [];
+            throw new MissingAllowedTypeException('[$type is not set]');
         }
 
-        if (isset($this->formData[$type])) {
-            return $this->formData[$type];
+        if (!$this->isAllowedType($type)) {
+            throw new MissingAllowedTypeException($type);
         }
 
-        return [
-        ];
+        $allowedTypes = $this->getAllowedTypes();
+
+        if (!isset($allowedTypes[$type]['formData'])) {
+            throw new Exception(__('No form data is set'));
+        }
+
+        return $allowedTypes[$type]['formData'];
     }
 
     /**
-     * Submits a feature request
+     * Sets the formData variable if you want to modify the default/initial values.
      *
-     * @todo Build out the feature request form in the frontend.
-     * @param array $data The array of details about the feature request.
+     * @param sting|null $type The type you want to set the data for.
+     *  - Needs to be in the allowedTypes already.
+     * @param array $data The definition of the allowed types
+     * @throws MissingAllowedTypeException If that type is not configured.
+     * @return void
+     */
+    public function setFormData($type, $data = [])
+    {
+        if (!$type) {
+            throw new MissingAllowedTypeException('[$type is not set]');
+        }
+
+        if (!$this->isAllowedType($type)) {
+            throw new MissingAllowedTypeException($type);
+        }
+
+        $this->allowedTypes[$type]['formData'] = $data;
+    }
+
+    /**
+     * Submits the Issue
+     *
+     * @todo Actually submit the form to the jira server.
+     * @param array $data The array of details about the issue.
      * @return bool If the request was successfully submitted.
      */
-    public function submitFeatureRequest(array $data = [])
-    {
-        //
-
-        return true;
-    }
-
-    /**
-     * Submits a bug.
-     *
-     * @todo Build out the bug form in the frontend.
-     * @param array $data The array of details about the bug.
-     * @return bool If the bug was successfully submitted.
-     */
-    public function submitBug(array $data = [])
+    public function submitIssue(array $data = [])
     {
         //
 

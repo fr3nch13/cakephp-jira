@@ -1,17 +1,17 @@
 <?php
 /**
- * MissingIssueExceptionTest
+ * MissingAllowedTypeExceptionTest
  */
 
 namespace Fr3nch13\Jira\Test\TestCase\Exception;
 
 use Cake\TestSuite\TestCase;
-use Fr3nch13\Jira\Exception\MissingIssueException;
+use Fr3nch13\Jira\Exception\MissingAllowedTypeException;
 
 /**
- * Missing Issue Exception Test
+ * Missing Allowed Type Exception Test
  */
-class MissingIssueExceptionTest extends TestCase
+class MissingAllowedTypeExceptionTest extends TestCase
 {
     /**
      * setUp method
@@ -41,8 +41,8 @@ class MissingIssueExceptionTest extends TestCase
     public function testExceptionCode()
     {
         try {
-            throw new MissingIssueException('TEST');
-        } catch (MissingIssueException $e) {
+            throw new MissingAllowedTypeException('TEST');
+        } catch (MissingAllowedTypeException $e) {
             $this->assertEquals($e->getCode(), 404);
         }
     }
@@ -55,9 +55,9 @@ class MissingIssueExceptionTest extends TestCase
     public function testExceptionMessage()
     {
         try {
-            throw new MissingIssueException('20');
-        } catch (MissingIssueException $e) {
-            $this->assertEquals($e->getMessage(), 'Unable to find the issue: 20');
+            throw new MissingAllowedTypeException('TEST');
+        } catch (MissingAllowedTypeException $e) {
+            $this->assertEquals($e->getMessage(), 'Unknown Allowed Type: TEST');
         }
     }
 }

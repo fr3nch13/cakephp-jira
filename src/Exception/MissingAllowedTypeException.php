@@ -1,6 +1,6 @@
 <?php
 /**
- * MissingConfigException
+ * MissingAllowedTypeException
  */
 
 namespace Fr3nch13\Jira\Exception;
@@ -8,17 +8,17 @@ namespace Fr3nch13\Jira\Exception;
 use Fr3nch13\Jira\Exception\Exception as BaseException;
 
 /**
- * Missing Config Exception
+ * Missing Allowed Type Exception
  *
- * Throw when a config variable is missing.
+ * Throw when the JiraProject can't find a defined allowed type.
  */
-class MissingConfigException extends BaseException
+class MissingAllowedTypeException extends BaseException
 {
     /**
-     * Thow a 500 when something is missing.
+     * Thow a 404 when something is missing.
      * @var int
      */
-    protected $_defaultCode = 500;
+    protected $_defaultCode = 404;
 
     /**
      * Constructor.
@@ -33,7 +33,7 @@ class MissingConfigException extends BaseException
      */
     public function __construct($message = '', $code = null, $previous = null)
     {
-        $this->_messageTemplate = __('Seems that the config key `Jira.%s` is not set.');
+        $this->_messageTemplate = __('Unknown Allowed Type: %s');
 
         if (is_string($message)) {
             $message = [0 => $message];

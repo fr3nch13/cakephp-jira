@@ -6,7 +6,7 @@
 
 namespace Fr3nch13\Jira\Controller;
 
-use Cake\Controller\Controller;
+use App\Controller\AppController as BaseController;
 
 /**
  * App Controller
@@ -18,7 +18,7 @@ use Cake\Controller\Controller;
  *
  * {@inheritdoc}
  */
-class AppController extends Controller
+class AppController extends BaseController
 {
     /**
      * Human name of this object.
@@ -43,7 +43,7 @@ class AppController extends Controller
             if ($this->JiraForm->execute($this->getRequest()->getData())) {
                 $this->Flash->success(__('The {0} has been saved.', [$this->humanName]));
 
-                return $this->redirect($this->getReferer());
+                return $this->redirect(['action' => 'thankyou', '?' => ['type' => $this->humanName]]);
             } else {
                 $this->Flash->error('There was a problem saving the {0}.', [$this->humanName]);
             }
@@ -56,5 +56,15 @@ class AppController extends Controller
         $this->set([
             'form' => $this->JiraForm
         ]);
+    }
+
+    /**
+     * The thank you page after they've submitted their report.
+     *
+     * @return void
+     */
+    public function thankyou()
+    {
+        //
     }
 }

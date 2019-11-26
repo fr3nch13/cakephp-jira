@@ -32,9 +32,12 @@ Jira Project class
 * [public getIssue()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getIssue)
 * [public getBugs()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getBugs)
 * [public getOpenBugs()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getOpenBugs)
+* [public getAllowedTypes()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getAllowedTypes)
+* [public modifyAllowedTypes()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_modifyAllowedTypes)
+* [public isAllowedType()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_isAllowedType)
 * [public getFormData()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getFormData)
-* [public submitFeatureRequest()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_submitFeatureRequest)
-* [public submitBug()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_submitBug)
+* [public setFormData()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_setFormData)
+* [public submitIssue()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_submitIssue)
 ---
 ### Details
 * File: [Lib/JiraProject.php](../files/Lib.JiraProject.md)
@@ -338,6 +341,66 @@ Gets a list of open issues that are considered bugs.
 **Returns:** \JiraRestApi\Issue\IssueSearchResult&#124;\JiraRestApi\Issue\IssueSearchResultV3 - A list of issue objects.
 
 
+<a name="method_getAllowedTypes" class="anchor"></a>
+#### public getAllowedTypes() : array
+
+```
+public getAllowedTypes() : array
+```
+
+**Summary**
+
+Returns the allowed types and their settings
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+
+**Returns:** array - the content of $this->allowedTypes.
+
+
+<a name="method_modifyAllowedTypes" class="anchor"></a>
+#### public modifyAllowedTypes() : void
+
+```
+public modifyAllowedTypes(string  $type, array  $settings = array()) : void
+```
+
+**Summary**
+
+Allows you to modify the form allowdTypes to fir your situation.
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code>string</code> | $type  | The type of issue you want to add/modify. |
+| <code>array</code> | $settings  | The settings for the type. |
+
+**Returns:** void
+
+
+<a name="method_isAllowedType" class="anchor"></a>
+#### public isAllowedType() : boolean
+
+```
+public isAllowedType(string  $type) : boolean
+```
+
+**Summary**
+
+Checks to see if a type is allowed.
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code>string</code> | $type  | The type to check. |
+
+**Returns:** boolean - if it's allowed or not.
+
+
 <a name="method_getFormData" class="anchor"></a>
 #### public getFormData() : array
 
@@ -355,59 +418,66 @@ Gets the array for the forms when submitting an issue to Jira.
 | Type | Name | Description |
 | ---- | ---- | ----------- |
 | <code>string&#124;null</code> | $type  | The type of issue we're submitting. |
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \Fr3nch13\Jira\Exception\MissingAllowedTypeException | If that type is not configured. |
+| \Fr3nch13\Jira\Exception\Exception | If the form data for that type is missing. |
 
 **Returns:** array - The array of data to fill in the form with.
 
 
-<a name="method_submitFeatureRequest" class="anchor"></a>
-#### public submitFeatureRequest() : boolean
+<a name="method_setFormData" class="anchor"></a>
+#### public setFormData() : void
 
 ```
-public submitFeatureRequest(array  $data = array()) : boolean
+public setFormData(\Fr3nch13\Jira\Lib\sting&amp;#124;null  $type, array  $data = array()) : void
 ```
 
 **Summary**
 
-Submits a feature request
+Sets the formData variable if you want to modify the default/initial values.
 
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
-| <code>array</code> | $data  | The array of details about the feature request. |
+| <code>\Fr3nch13\Jira\Lib\sting&#124;null</code> | $type  | The type you want to set the data for.
+ - Needs to be in the allowedTypes already. |
+| <code>array</code> | $data  | The definition of the allowed types |
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \Fr3nch13\Jira\Exception\MissingAllowedTypeException | If that type is not configured. |
+
+**Returns:** void
+
+
+<a name="method_submitIssue" class="anchor"></a>
+#### public submitIssue() : boolean
+
+```
+public submitIssue(array  $data = array()) : boolean
+```
+
+**Summary**
+
+Submits the Issue
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code>array</code> | $data  | The array of details about the issue. |
 
 **Returns:** boolean - If the request was successfully submitted.
 
 ##### Tags
 | Tag | Version | Description |
 | --- | ------- | ----------- |
-| todo |  | Build out the feature request form in the frontend. |
-
-<a name="method_submitBug" class="anchor"></a>
-#### public submitBug() : boolean
-
-```
-public submitBug(array  $data = array()) : boolean
-```
-
-**Summary**
-
-Submits a bug.
-
-**Details:**
-* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
-##### Parameters:
-| Type | Name | Description |
-| ---- | ---- | ----------- |
-| <code>array</code> | $data  | The array of details about the bug. |
-
-**Returns:** boolean - If the bug was successfully submitted.
-
-##### Tags
-| Tag | Version | Description |
-| --- | ------- | ----------- |
-| todo |  | Build out the bug form in the frontend. |
+| todo |  | Actually submit the form to the jira server. |
 
 
 ---
@@ -420,7 +490,7 @@ Submits a bug.
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 2](../reports/markers.md)
+* [Markers - 1](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---

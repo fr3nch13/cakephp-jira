@@ -1,20 +1,15 @@
 # [CakePHP Jira Plugin API Documentation](../home.md)
 
-# Class: \Fr3nch13\Jira\Controller\AppController
+# Class: \Fr3nch13\Jira\Controller\BugsController
 ### Namespace: [\Fr3nch13\Jira\Controller](../namespaces/Fr3nch13.Jira.Controller.md)
 ---
 **Summary:**
 
-App Controller
+Bug Controller
 
 **Description:**
 
-The base controller for the jira plugin.
-
------------------------------
-Inherited:
-
-{@inheritdoc}
+Frontend for submitting bugs to Jira.
 
 ---
 ### Constants
@@ -27,13 +22,15 @@ Inherited:
 ### Methods
 * [public add()](../classes/Fr3nch13.Jira.Controller.AppController.md#method_add)
 * [public thankyou()](../classes/Fr3nch13.Jira.Controller.AppController.md#method_thankyou)
+* [public initialize()](../classes/Fr3nch13.Jira.Controller.BugsController.md#method_initialize)
 ---
 ### Details
-* File: [Controller/AppController.php](../files/Controller.AppController.md)
+* File: [Controller/BugsController.php](../files/Controller.BugsController.md)
 * Package: Default
-* Class Hierarchy: 
+* Class Hierarchy:  
   * [\App\Controller\AppController]()
-  * \Fr3nch13\Jira\Controller\AppController
+  * [\Fr3nch13\Jira\Controller\AppController](../classes/Fr3nch13.Jira.Controller.AppController.md)
+  * \Fr3nch13\Jira\Controller\BugsController
 ---
 ## Properties
 <a name="property_humanName"></a>
@@ -46,6 +43,7 @@ Human name of this object.
 **Type:** string
 
 **Details:**
+* Inherited From: [\Fr3nch13\Jira\Controller\AppController](../classes/Fr3nch13.Jira.Controller.AppController.md)
 
 
 <a name="property_JiraForm"></a>
@@ -58,6 +56,7 @@ The form object.
 **Type:** object|null
 
 **Details:**
+* Inherited From: [\Fr3nch13\Jira\Controller\AppController](../classes/Fr3nch13.Jira.Controller.AppController.md)
 
 
 
@@ -93,6 +92,23 @@ The thank you page after they've submitted their report.
 
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\Controller\AppController](../classes/Fr3nch13.Jira.Controller.AppController.md)
+
+**Returns:** void
+
+
+<a name="method_initialize" class="anchor"></a>
+#### public initialize() : void
+
+```
+public initialize() : void
+```
+
+**Summary**
+
+Initialize method
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Controller\BugsController](../classes/Fr3nch13.Jira.Controller.BugsController.md)
 
 **Returns:** void
 

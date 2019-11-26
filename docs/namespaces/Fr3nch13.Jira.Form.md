@@ -8,6 +8,7 @@
 | [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md) | App Form |
 | [\Fr3nch13\Jira\Form\BugForm](../classes/Fr3nch13.Jira.Form.BugForm.md) | Bug Form |
 | [\Fr3nch13\Jira\Form\FeatureRequestForm](../classes/Fr3nch13.Jira.Form.FeatureRequestForm.md) | Feature Request Form |
+| [\Fr3nch13\Jira\Form\TestForm](../classes/Fr3nch13.Jira.Form.TestForm.md) | Test Form |
 
 ---
 
@@ -19,7 +20,7 @@
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 2](../reports/markers.md)
+* [Markers - 1](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---

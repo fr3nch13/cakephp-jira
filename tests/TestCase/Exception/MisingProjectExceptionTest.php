@@ -57,7 +57,6 @@ class MissingProjectExceptionTest extends TestCase
         try {
             throw new MissingProjectException('TEST');
         } catch (MissingProjectException $e) {
-            pr($e->getMessage());
             $this->assertEquals($e->getMessage(), 'Unable to find the project: TEST');
         }
     }

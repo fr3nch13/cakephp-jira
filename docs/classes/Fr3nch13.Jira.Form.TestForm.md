@@ -1,15 +1,18 @@
 # [CakePHP Jira Plugin API Documentation](../home.md)
 
-# Class: \Fr3nch13\Jira\Form\BugForm
+# Class: \Fr3nch13\Jira\Form\TestForm
 ### Namespace: [\Fr3nch13\Jira\Form](../namespaces/Fr3nch13.Jira.Form.md)
 ---
 **Summary:**
 
-Bug Form
+Test Form
 
 **Description:**
 
-Used to submit a bug to Jira.
+Used to submit a Test to Jira.
+This is mainly used for 2 reasons.
+- An example of how to add another type othen than a Bug or FeatureRequest.
+- Used by the unit tests to make sure a non-standard type is still working.
 
 ---
 ### Constants
@@ -21,7 +24,7 @@ Used to submit a bug to Jira.
 * [protected $JiraProject](../classes/Fr3nch13.Jira.Form.AppForm.md#property_JiraProject)
 ---
 ### Methods
-* [public __construct()](../classes/Fr3nch13.Jira.Form.BugForm.md#method___construct)
+* [public __construct()](../classes/Fr3nch13.Jira.Form.TestForm.md#method___construct)
 * [public setFormData()](../classes/Fr3nch13.Jira.Form.AppForm.md#method_setFormData)
 * [public getFormData()](../classes/Fr3nch13.Jira.Form.AppForm.md#method_getFormData)
 * [protected _buildSchema()](../classes/Fr3nch13.Jira.Form.AppForm.md#method__buildSchema)
@@ -29,12 +32,12 @@ Used to submit a bug to Jira.
 * [protected _execute()](../classes/Fr3nch13.Jira.Form.AppForm.md#method__execute)
 ---
 ### Details
-* File: [Form/BugForm.php](../files/Form.BugForm.md)
+* File: [Form/TestForm.php](../files/Form.TestForm.md)
 * Package: Default
 * Class Hierarchy:  
   * [\Cake\Form\Form]()
   * [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
-  * \Fr3nch13\Jira\Form\BugForm
+  * \Fr3nch13\Jira\Form\TestForm
 ---
 ## Properties
 <a name="property_issueType"></a>
@@ -91,7 +94,7 @@ public __construct(\Cake\Event\EventManager&amp;#124;null  $eventManager = null)
 Constructor
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\BugForm](../classes/Fr3nch13.Jira.Form.BugForm.md)
+* Inherited From: [\Fr3nch13\Jira\Form\TestForm](../classes/Fr3nch13.Jira.Form.TestForm.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |

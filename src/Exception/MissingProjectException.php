@@ -5,14 +5,14 @@
 
 namespace Fr3nch13\Jira\Exception;
 
-use Fr3nch13\Jira\Exception\Exception;
+use Fr3nch13\Jira\Exception\Exception as BaseException;
 
 /**
  * Missing Project Exception
  *
  * Throw when the Project can't be found.
  */
-class MissingProjectException extends \Fr3nch13\Jira\Exception\Exception
+class MissingProjectException extends BaseException
 {
     /**
      * Thow a 404 when something is missing.

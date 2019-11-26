@@ -1,12 +1,11 @@
 # [CakePHP Jira Plugin API Documentation](../home.md)
 
 # Markers
-* 2 - Lib/JiraProject.php
-### 2 - Lib/JiraProject.php
+* 1 - Lib/JiraProject.php
+### 1 - Lib/JiraProject.php
 | Type | Line | Description |
 | ---- | ---- | ----------- |
-| TODO | 311 | Build out the feature request form in the frontend. |
-| TODO | 325 | Build out the bug form in the frontend. |
+| TODO | 404 | Actually submit the form to the jira server. |
 
 ---
 
@@ -18,7 +17,7 @@
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 2](../reports/markers.md)
+* [Markers - 1](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---

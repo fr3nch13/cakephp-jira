@@ -27,16 +27,16 @@ class AppForm extends Form
     protected $JiraProject = null;
 
     /**
-     * The form fields and data.
-     * @var array
-     */
-    public $formData = [];
-
-    /**
      * The type of issue we're submitting.
      * @var string|null
      */
     public $issueType = null;
+
+    /**
+     * Settings for this form and for the JiraProject.
+     * @var array
+     */
+    public $settings = [];
 
     /**
      * Constructor
@@ -51,7 +51,11 @@ class AppForm extends Form
 
         $this->JiraProject = new JiraProject();
 
-        $this->setFormData($this->JiraProject->getFormData($this->issueType));
+        if ($this->settings) {
+            $this->JiraProject->modifyAllowedTypes($this->issueType, $this->settings);
+        }
+
+        $this->setFormData($this->getFormData($this->issueType));
     }
 
     /**
@@ -86,7 +90,7 @@ class AppForm extends Form
             throw new Exception(__('Missing the fields.'));
         }
         foreach ($data['fields'] as $k => $v) {
-            if ($v['type'] == 'string') {
+            if ($v['type'] == 'string' || $v['type'] == 'text') {
                 $validator->scalar($k);
             }
             if ($v['type'] == 'email') {
@@ -108,8 +112,6 @@ class AppForm extends Form
      */
     protected function _execute(array $data = [])
     {
-        $data = $data + $this->getFormData();
-
         return $this->JiraProject->submitIssue($data); // submitIssue method doesn't exist, the _execute method should be overwritten.
     }
 
@@ -121,7 +123,7 @@ class AppForm extends Form
      */
     public function setFormData(array $data = [])
     {
-        $this->formData = $data;
+        $this->JiraProject->setFormData($this->issueType, $data);
     }
 
     /**
@@ -131,6 +133,6 @@ class AppForm extends Form
      */
     public function getFormData()
     {
-        return $this->formData;
+        return $this->JiraProject->getFormData($this->issueType);
     }
 }

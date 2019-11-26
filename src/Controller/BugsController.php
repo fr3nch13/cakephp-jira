@@ -1,13 +1,13 @@
 <?php
 
 /**
- * BugController
+ * BugsController
  */
 
 namespace Fr3nch13\Jira\Controller;
 
 use Fr3nch13\Jira\Controller\AppController;
-use Fr3nch13\Jira\Form\BugForm;
+use Fr3nch13\Jira\Form\BugForm as JiraForm;
 
 /**
  * Bug Controller
@@ -15,7 +15,7 @@ use Fr3nch13\Jira\Form\BugForm;
  * Frontend for submitting bugs to Jira.
  */
 
-class BugController extends AppController
+class BugsController extends AppController
 {
     /**
      * Initialize method
@@ -27,16 +27,6 @@ class BugController extends AppController
         parent::initialize();
 
         $this->humanName = __('Bug');
-        $this->JiraForm = new BugForm();
-    }
-
-    /**
-     * The form
-     *
-     * {@inheritdoc}
-     */
-    public function index()
-    {
-        parent::index();
+        $this->JiraForm = new JiraForm();
     }
 }
