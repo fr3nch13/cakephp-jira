@@ -1,15 +1,15 @@
 # [CakePHP Jira Plugin API Documentation](../home.md)
 
-# Class: \Fr3nch13\Jira\Controller\FeatureRequestsController
+# Class: \Fr3nch13\Jira\Controller\TestsController
 ### Namespace: [\Fr3nch13\Jira\Controller](../namespaces/Fr3nch13.Jira.Controller.md)
 ---
 **Summary:**
 
-Feature Requests Controller
+Tests Controller
 
 **Description:**
 
-Frontend for submitting feature requests to Jira.
+Frontend for submitting bugs to Jira.
 
 ---
 ### Constants
@@ -22,15 +22,15 @@ Frontend for submitting feature requests to Jira.
 ### Methods
 * [public add()](../classes/Fr3nch13.Jira.Controller.AppController.md#method_add)
 * [public thankyou()](../classes/Fr3nch13.Jira.Controller.AppController.md#method_thankyou)
-* [public initialize()](../classes/Fr3nch13.Jira.Controller.FeatureRequestsController.md#method_initialize)
+* [public initialize()](../classes/Fr3nch13.Jira.Controller.TestsController.md#method_initialize)
 ---
 ### Details
-* File: [Controller/FeatureRequestsController.php](../files/Controller.FeatureRequestsController.md)
+* File: [Controller/TestController.php](../files/Controller.TestController.md)
 * Package: Default
 * Class Hierarchy:  
   * [\App\Controller\AppController]()
   * [\Fr3nch13\Jira\Controller\AppController](../classes/Fr3nch13.Jira.Controller.AppController.md)
-  * \Fr3nch13\Jira\Controller\FeatureRequestsController
+  * \Fr3nch13\Jira\Controller\TestsController
 ---
 ## Properties
 <a name="property_humanName"></a>
@@ -108,7 +108,7 @@ public initialize() : void
 Initialize method
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Controller\FeatureRequestsController](../classes/Fr3nch13.Jira.Controller.FeatureRequestsController.md)
+* Inherited From: [\Fr3nch13\Jira\Controller\TestsController](../classes/Fr3nch13.Jira.Controller.TestsController.md)
 
 **Returns:** void
 

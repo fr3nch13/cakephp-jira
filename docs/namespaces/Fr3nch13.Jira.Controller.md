@@ -6,8 +6,9 @@
 | Name | Summary |
 | ---- | ------- |
 | [\Fr3nch13\Jira\Controller\AppController](../classes/Fr3nch13.Jira.Controller.AppController.md) | App Controller |
-| [\Fr3nch13\Jira\Controller\BugsController](../classes/Fr3nch13.Jira.Controller.BugsController.md) | Bug Controller |
-| [\Fr3nch13\Jira\Controller\FeatureRequestsController](../classes/Fr3nch13.Jira.Controller.FeatureRequestsController.md) | Feature Request Controller |
+| [\Fr3nch13\Jira\Controller\BugsController](../classes/Fr3nch13.Jira.Controller.BugsController.md) | Bugs Controller |
+| [\Fr3nch13\Jira\Controller\FeatureRequestsController](../classes/Fr3nch13.Jira.Controller.FeatureRequestsController.md) | Feature Requests Controller |
+| [\Fr3nch13\Jira\Controller\TestsController](../classes/Fr3nch13.Jira.Controller.TestsController.md) | Tests Controller |
 
 ---
 
@@ -19,7 +20,7 @@
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 1](../reports/markers.md)
+* [Markers - 0](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---

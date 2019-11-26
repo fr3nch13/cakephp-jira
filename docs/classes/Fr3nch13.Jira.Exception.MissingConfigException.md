@@ -35,7 +35,7 @@ Throw when a config variable is missing.
 ---
 **Summary**
 
-Thow a 500 when something is missing.
+Throw a 500 when config variable is missing.
 
 **Type:** integer
 
@@ -85,7 +85,7 @@ when debug mode is off.
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 1](../reports/markers.md)
+* [Markers - 0](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---

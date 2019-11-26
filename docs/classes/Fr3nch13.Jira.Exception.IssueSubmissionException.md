@@ -1,33 +1,33 @@
 # [CakePHP Jira Plugin API Documentation](../home.md)
 
-# Class: \Fr3nch13\Jira\Exception\MissingProjectException
+# Class: \Fr3nch13\Jira\Exception\IssueSubmissionException
 ### Namespace: [\Fr3nch13\Jira\Exception](../namespaces/Fr3nch13.Jira.Exception.md)
 ---
 **Summary:**
 
-Missing Project Exception
+Issue Submission Exception
 
 **Description:**
 
-Throw when the Project can't be found.
+Throw when there was an error from the server when submitting an issue.
 
 ---
 ### Constants
 * No constants found
 ---
 ### Properties
-* [protected $_defaultCode](../classes/Fr3nch13.Jira.Exception.MissingProjectException.md#property__defaultCode)
+* [protected $_defaultCode](../classes/Fr3nch13.Jira.Exception.IssueSubmissionException.md#property__defaultCode)
 ---
 ### Methods
-* [public __construct()](../classes/Fr3nch13.Jira.Exception.MissingProjectException.md#method___construct)
+* [public __construct()](../classes/Fr3nch13.Jira.Exception.IssueSubmissionException.md#method___construct)
 ---
 ### Details
-* File: [Exception/MissingProjectException.php](../files/Exception.MissingProjectException.md)
+* File: [Exception/IssueSubmissionException.php](../files/Exception.IssueSubmissionException.md)
 * Package: Default
 * Class Hierarchy:  
   * [\Cake\Core\Exception\Exception]()
   * [\Fr3nch13\Jira\Exception\Exception](../classes/Fr3nch13.Jira.Exception.Exception.md)
-  * \Fr3nch13\Jira\Exception\MissingProjectException
+  * \Fr3nch13\Jira\Exception\IssueSubmissionException
 ---
 ## Properties
 <a name="property__defaultCode"></a>
@@ -35,7 +35,7 @@ Throw when the Project can't be found.
 ---
 **Summary**
 
-Thow a 404 when the project is missing.
+Throw a 500 when something goes wrong.
 
 **Type:** integer
 
@@ -62,7 +62,7 @@ Allows you to create exceptions that are treated as framework errors and disable
 when debug mode is off.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Exception\MissingProjectException](../classes/Fr3nch13.Jira.Exception.MissingProjectException.md)
+* Inherited From: [\Fr3nch13\Jira\Exception\IssueSubmissionException](../classes/Fr3nch13.Jira.Exception.IssueSubmissionException.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |

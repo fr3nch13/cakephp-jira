@@ -35,7 +35,7 @@ Throw when a Project's Issue can't be found.
 ---
 **Summary**
 
-Thow a 404 when something is missing.
+Throw a 404 when something is missing.
 
 **Type:** integer
 
@@ -85,7 +85,7 @@ when debug mode is off.
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 1](../reports/markers.md)
+* [Markers - 0](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---

@@ -453,7 +453,6 @@ class JiraProject
     /**
      * Submits the Issue
      *
-     * @todo Actually submit the form to the jira server.
      * @param string $type The type you want to set the data for.
      *  - Needs to be in the allowedTypes already.
      * @param array $data The array of details about the issue.

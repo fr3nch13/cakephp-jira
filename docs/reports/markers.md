@@ -1,11 +1,7 @@
 # [CakePHP Jira Plugin API Documentation](../home.md)
 
 # Markers
-* 1 - Lib/JiraProject.php
-### 1 - Lib/JiraProject.php
-| Type | Line | Description |
-| ---- | ---- | ----------- |
-| TODO | 404 | Actually submit the form to the jira server. |
+**No markers have been found in this project.
 
 ---
 
@@ -17,7 +13,7 @@
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 1](../reports/markers.md)
+* [Markers - 0](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---

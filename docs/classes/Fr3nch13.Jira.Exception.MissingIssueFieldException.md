@@ -1,33 +1,33 @@
 # [CakePHP Jira Plugin API Documentation](../home.md)
 
-# Class: \Fr3nch13\Jira\Exception\MissingProjectException
+# Class: \Fr3nch13\Jira\Exception\MissingIssueFieldException
 ### Namespace: [\Fr3nch13\Jira\Exception](../namespaces/Fr3nch13.Jira.Exception.md)
 ---
 **Summary:**
 
-Missing Project Exception
+Missing Issue Exception
 
 **Description:**
 
-Throw when the Project can't be found.
+Throw when a Project's Issue can't be found.
 
 ---
 ### Constants
 * No constants found
 ---
 ### Properties
-* [protected $_defaultCode](../classes/Fr3nch13.Jira.Exception.MissingProjectException.md#property__defaultCode)
+* [protected $_defaultCode](../classes/Fr3nch13.Jira.Exception.MissingIssueFieldException.md#property__defaultCode)
 ---
 ### Methods
-* [public __construct()](../classes/Fr3nch13.Jira.Exception.MissingProjectException.md#method___construct)
+* [public __construct()](../classes/Fr3nch13.Jira.Exception.MissingIssueFieldException.md#method___construct)
 ---
 ### Details
-* File: [Exception/MissingProjectException.php](../files/Exception.MissingProjectException.md)
+* File: [Exception/MissingIssueFieldException.php](../files/Exception.MissingIssueFieldException.md)
 * Package: Default
 * Class Hierarchy:  
   * [\Cake\Core\Exception\Exception]()
   * [\Fr3nch13\Jira\Exception\Exception](../classes/Fr3nch13.Jira.Exception.Exception.md)
-  * \Fr3nch13\Jira\Exception\MissingProjectException
+  * \Fr3nch13\Jira\Exception\MissingIssueFieldException
 ---
 ## Properties
 <a name="property__defaultCode"></a>
@@ -35,7 +35,7 @@ Throw when the Project can't be found.
 ---
 **Summary**
 
-Thow a 404 when the project is missing.
+Throw a 404 when a field is missing.
 
 **Type:** integer
 
@@ -62,7 +62,7 @@ Allows you to create exceptions that are treated as framework errors and disable
 when debug mode is off.
 
 **Details:**
-* Inherited From: [\Fr3nch13\Jira\Exception\MissingProjectException](../classes/Fr3nch13.Jira.Exception.MissingProjectException.md)
+* Inherited From: [\Fr3nch13\Jira\Exception\MissingIssueFieldException](../classes/Fr3nch13.Jira.Exception.MissingIssueFieldException.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
