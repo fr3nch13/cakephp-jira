@@ -26,9 +26,9 @@ class JiraProject
 {
     /**
      * Config Object.
-     * @var \JiraRestApi\Configuration\ArrayConfiguration|null
+     * @var \JiraRestApi\Configuration\ArrayConfiguration
      */
-    public $ConfigObj = null;
+    public $ConfigObj;
 
     /**
      * The key for the project.
@@ -38,33 +38,33 @@ class JiraProject
 
     /**
      * The project service object.
-     * @var \JiraRestApi\Project\ProjectService|null
+     * @var \JiraRestApi\Project\ProjectService
      */
-    public $ProjectService = null;
+    public $ProjectService;
 
     /**
      * The project object.
-     * @var \JiraRestApi\Project\Project|null
+     * @var \JiraRestApi\Project\Project
      */
-    protected $Project = null;
+    protected $Project;
 
     /**
      * The list of a Project's Versions.
-     * @var \ArrayObject|null
+     * @var \ArrayObject|\JiraRestApi\Issue\Version[]
      */
-    protected $Versions = null;
+    protected $Versions;
 
     /**
      * The project service object.
-     * @var \JiraRestApi\Issue\IssueService|null
+     * @var \JiraRestApi\Issue\IssueService
      */
-    public $IssueService = null;
+    public $IssueService;
 
     /**
      * The Cached list of issues.
-     * @var array|null
+     * @var array
      */
-    protected $Issues = null;
+    protected $Issues = [];
 
     /**
      * The cached list of returned issue info from the below getIssue() method.
@@ -177,6 +177,18 @@ class JiraProject
         ]);
 
         $this->projectKey = $projectKey;
+
+        // setup the objects
+        $this->ProjectService = new ProjectService($this->ConfigObj);
+        try {
+            $this->Project = $this->ProjectService->get($this->projectKey);
+        } catch (\JiraRestApi\JiraException $e) {
+            $this->setError($this->projectKey, 'MissingProjectException');
+            throw new MissingProjectException($this->projectKey);
+        }
+
+        $this->Versions = $this->ProjectService->getVersions($this->projectKey);
+        $this->IssueService = new IssueService($this->ConfigObj);
     }
 
     /**
@@ -187,18 +199,6 @@ class JiraProject
      */
     public function getInfo()
     {
-        if (!$this->Project) {
-            if (!$this->ProjectService) {
-                $this->ProjectService = new ProjectService($this->ConfigObj);
-            }
-            try {
-                $this->Project = $this->ProjectService->get($this->projectKey);
-            } catch (\JiraRestApi\JiraException $e) {
-                $this->setError($this->projectKey, 'MissingProjectException');
-                throw new MissingProjectException($this->projectKey);
-            }
-        }
-
         return $this->Project;
     }
 
@@ -209,13 +209,6 @@ class JiraProject
      */
     public function getVersions()
     {
-        if (!$this->Versions) {
-            if (!$this->ProjectService) {
-                $this->ProjectService = new ProjectService($this->ConfigObj);
-            }
-            $this->Versions = $this->ProjectService->getVersions($this->projectKey);
-        }
-
         return $this->Versions;
     }
 
@@ -239,10 +232,6 @@ class JiraProject
                 $jql->setType($type);
             }
             $jql->addAnyExpression('ORDER BY key DESC');
-
-            if (!$this->IssueService) {
-                $this->IssueService = new IssueService($this->ConfigObj);
-            }
 
             $this->Issues[$cacheKey] = $this->IssueService->search($jql->getQuery(), 0, 1000);
         }
@@ -272,10 +261,6 @@ class JiraProject
             $jql->addAnyExpression('AND resolution is EMPTY');
             $jql->addAnyExpression('ORDER BY key DESC');
 
-            if (!$this->IssueService) {
-                $this->IssueService = new IssueService($this->ConfigObj);
-            }
-
             $this->Issues[$cacheKey] = $this->IssueService->search($jql->getQuery(), 0, 1000);
         }
 
@@ -298,9 +283,6 @@ class JiraProject
         }
         $key = $this->projectKey . '-' . $id;
         if (!isset($this->issuesCache[$key])) {
-            if (!$this->IssueService) {
-                $this->IssueService = new IssueService($this->ConfigObj);
-            }
             if (!$this->issuesCache[$key] = $this->IssueService->get($key)) {
                 $this->setError($key, 'MissingIssueException');
                 throw new MissingIssueException($key);
