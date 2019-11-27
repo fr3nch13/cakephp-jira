@@ -546,11 +546,11 @@ class JiraProject
             //Error Message : {"errorMessages":[],"errors":{"user_type":"Field 'user_type' cannot be set. It is not on the appropriate screen, or unknown."}}             */
             $msg = $e->getMessage();
             if (strpos($msg, '{') !== false) {
-                $msg = str_split($msg);
+                $msgArray = str_split($msg);
                 // extract the json message.
                 $json = '';
                 $in = 0;
-                foreach ($msg as $i => $char) {
+                foreach ($msgArray as $i => $char) {
                     if ($char == '{') {
                         $in++;
                     }
