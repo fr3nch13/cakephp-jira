@@ -16,8 +16,8 @@ build:
             override:
                 - command: composer test-clover
                     coverage:
-                        file: tmp/coverage.xml
-                    format: "clover"
+                        file: 'tmp/coverage.xml'
+                    format: clover
         tests: true
     environment:
         php:
