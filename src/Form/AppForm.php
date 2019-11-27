@@ -22,13 +22,13 @@ class AppForm extends Form
     /**
      * Contains the loaded Jira Project object.
      *
-     * @var \Fr3nch13\Jira\Lib\JiraProject|null
+     * @var null|Fr3nch13\Jira\Lib\JiraProject
      */
-    protected $JiraProject = null;
+    protected $JiraProject;
 
     /**
      * The type of issue we're submitting.
-     * @var string|null
+     * @var null|string
      */
     public $issueType = null;
 
