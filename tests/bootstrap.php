@@ -13,7 +13,6 @@
 $root = dirname(__DIR__);
 chdir($root);
 require_once $root . '/vendor/fr3nch13/cakephp-pta/tests/plugin_bootstrap.php';
-
 //////
 
 putenv('JIRA_SCHEMA=https');
@@ -22,8 +21,10 @@ putenv('JIRA_USERNAME=testusername');
 putenv('JIRA_API_KEY=testapikey');
 putenv('JIRA_PROJECT_KEY=TEST');
 
+// Here to load the above env variables into the Configure object/class
 $app = new App\Application(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'config');
 $app->addPlugin('Fr3nch13/Jira');
 $plugin = new Fr3nch13\Jira\Plugin();
 $plugin->bootstrap($app);
+
 Cake\Core\Plugin::getCollection()->add(new Fr3nch13\Jira\Plugin());

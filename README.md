@@ -1,9 +1,12 @@
 # CakePHP Jira Plugin
 
 [![Build Status](https://travis-ci.com/fr3nch13/cakephp-jira.svg?branch=master)](https://travis-ci.com/fr3nch13/cakephp-jira)
-[![Coverage Status](https://img.shields.io/codecov/c/github/fr3nch13/cakephp-jira.svg?style=flat-square)](https://codecov.io/github/fr3nch13/cakephp-jira)
 [![Total Downloads](https://img.shields.io/packagist/dt/fr3nch13/cakephp-jira.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-jira)
 [![Latest Stable Version](https://img.shields.io/packagist/v/fr3nch13/cakephp-jira.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-jira)
+
+[![Coverage Status](https://img.shields.io/codecov/c/github/fr3nch13/cakephp-jira.svg?style=flat-square)](https://codecov.io/github/fr3nch13/cakephp-jira)
+[![Code Coverage](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/?branch=master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 This is a CakePHP 3.x plugin to interact with your Jira Server.
 

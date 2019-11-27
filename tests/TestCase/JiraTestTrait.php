@@ -31,7 +31,7 @@ trait JiraTestTrait
 
     /**
      * The project object.
-     * @var \JiraRestApi\Project\Project|null
+     * @var \JiraRestApi\Project\Project
      */
     public $Project = null;
 
@@ -78,6 +78,12 @@ trait JiraTestTrait
     public $IssueSearchResultFeatureRequests = null;
 
     /**
+     * The created Issue when testing a submission.
+     * @var \JiraRestApi\Issue\Issue|null
+     */
+    public $IssueCreatedTest = null;
+
+    /**
      * The issue service object.
      * @var \JiraRestApi\Issue\IssueService|null
      */
@@ -98,21 +104,22 @@ trait JiraTestTrait
     {
         $this->ProjectService = Mockery::mock('overload:JiraRestApi\Project\ProjectService');
         $this->IssueService = Mockery::mock('overload:JiraRestApi\Issue\IssueService');
-        $this->JiraProject = new JiraProject();
+
+        $projectKey = 'TEST';
 
         $this->Project = new Project();
         $this->Project->setId(1)
-            ->setKey($this->JiraProject->projectKey)
+            ->setKey($projectKey)
             ->setName('Test')
             ->setAvatarUrls([])
             ->setProjectCategory(['software'])
             ->setDescription('Description')
             ->setLead([
-                'key' => $this->JiraProject->ConfigObj->getJiraUser(),
-                'name' => $this->JiraProject->ConfigObj->getJiraUser(),
-                'displayName' => 'Display Name'
+                'key' => 'testusername',
+                'name' => 'Test User',
+                'displayName' => 'Test User'
             ])
-            ->setUrl($this->JiraProject->ConfigObj->getJiraHost());
+            ->setUrl('https://jira.example.com');
 
         for ($i = 0; $i < 3; $i++) {
             $this->versions[$i] = new Version($i . '.0.0.0');
@@ -124,52 +131,55 @@ trait JiraTestTrait
                 ->setUserReleaseDate(null);
         }
 
+        // create some generic issues.
         for ($i = 0; $i < 5; $i++) {
             $this->issues[$i] = new Issue();
             $this->issues[$i]->id = $i;
-            $this->issues[$i]->key = $this->JiraProject->projectKey . '-' . $i;
+            $this->issues[$i]->key = $projectKey . '-' . $i;
             $this->issues[$i]->fields = new IssueField();
-            $this->issues[$i]->fields->setProjectId($this->JiraProject->projectKey)
-                ->setProjectKey($this->JiraProject->projectKey)
-                ->setSummary(__('Summary for {0}-{1}', [$this->JiraProject->projectKey, $i]))
+            $this->issues[$i]->fields->setProjectId($projectKey)
+                ->setProjectKey($projectKey)
+                ->setSummary(__('Summary for {0}-{1}', [$projectKey, $i]))
                 ->setReporterName('Customer')
                 ->setAssigneeName('Brian')
                 ->setAssigneeAccountId(1)
                 ->setPriorityName('Medium')
-                ->setDescription(__('Description for {0}-{1}', [$this->JiraProject->projectKey, $i]))
+                ->setDescription(__('Description for {0}-{1}', [$projectKey, $i]))
                 ->setIssueType('Task')
                 ->addLabel('testing');
         }
+
         // add a bug issue
         $i = 5;
         $this->issues[$i] = new Issue();
         $this->issues[$i]->id = $i;
-        $this->issues[$i]->key = $this->JiraProject->projectKey . '-' . $i;
+        $this->issues[$i]->key = $projectKey . '-' . $i;
         $this->issues[$i]->fields = new IssueField();
-        $this->issues[$i]->fields->setProjectId($this->JiraProject->projectKey)
-            ->setProjectKey($this->JiraProject->projectKey)
-            ->setSummary(__('Summary for {0}-{1}', [$this->JiraProject->projectKey, $i]))
+        $this->issues[$i]->fields->setProjectId($projectKey)
+            ->setProjectKey($projectKey)
+            ->setSummary(__('Summary for {0}-{1}', [$projectKey, $i]))
             ->setReporterName('Customer')
             ->setAssigneeName('Brian')
             ->setAssigneeAccountId(1)
             ->setPriorityName('High')
-            ->setDescription(__('Description for {0}-{1}', [$this->JiraProject->projectKey, $i]))
+            ->setDescription(__('Description for {0}-{1}', [$projectKey, $i]))
             ->setIssueType('Bug')
             ->addLabel('customer-reported');
+
         // add a feature request
         $i = 6;
         $this->issues[$i] = new Issue();
         $this->issues[$i]->id = $i;
-        $this->issues[$i]->key = $this->JiraProject->projectKey . '-' . $i;
+        $this->issues[$i]->key = $projectKey . '-' . $i;
         $this->issues[$i]->fields = new IssueField();
-        $this->issues[$i]->fields->setProjectId($this->JiraProject->projectKey)
-            ->setProjectKey($this->JiraProject->projectKey)
-            ->setSummary(__('Summary for {0}-{1}', [$this->JiraProject->projectKey, $i]))
+        $this->issues[$i]->fields->setProjectId($projectKey)
+            ->setProjectKey($projectKey)
+            ->setSummary(__('Summary for {0}-{1}', [$projectKey, $i]))
             ->setReporterName('Customer')
             ->setAssigneeName('Brian')
             ->setAssigneeAccountId(1)
             ->setPriorityName('Medium')
-            ->setDescription(__('Description for {0}-{1}', [$this->JiraProject->projectKey, $i]))
+            ->setDescription(__('Description for {0}-{1}', [$projectKey, $i]))
             ->setIssueType('Task')
             ->addLabel('feature-request');
 
@@ -197,15 +207,21 @@ trait JiraTestTrait
         $this->IssueSearchResultFeatureRequests->setTotal(1);
         $this->IssueSearchResultFeatureRequests->setIssues([$this->issues[6]]);
 
+        // create the issue that gets created after a 'Test' issue is submitted.
+        $this->IssueCreatedTest = new Issue();
+        $this->IssueCreatedTest->self = 'https://jira.example.com/rest/api/2/issue/7';
+        $this->IssueCreatedTest->id = '7';
+        $this->IssueCreatedTest->key = 'TEST-7';
+
         $this->ProjectService->shouldReceive('get')
-            ->with($this->JiraProject->projectKey)
+            ->with($projectKey)
             ->andReturn($this->Project);
 
         $this->ProjectService->shouldReceive('getVersions')
-            ->with($this->JiraProject->projectKey)
+            ->with($projectKey)
             ->andReturn($this->versions);
 
-        $projectKey = $this->JiraProject->projectKey;
+        $projectKey = $projectKey;
         $this->IssueService->shouldReceive('search')
             ->withArgs(function ($query, $start, $max) use ($projectKey) {
                 if ($query == '"project" = "' . $projectKey . '" ORDER BY key DESC') {
@@ -239,7 +255,16 @@ trait JiraTestTrait
             })
             ->andReturn($this->IssueSearchResultBugs);
 
+        $this->IssueService->shouldReceive('get')
+            ->with('TEST-1')
+            ->andReturn($this->issues[1]);
+
+        $this->IssueService->shouldReceive('create')
+            ->withAnyArgs()
+            ->andReturn($this->IssueCreatedTest);
+
         $this->Issue = new Issue();
+        $this->JiraProject = new JiraProject();
     }
 
     /**

@@ -22,9 +22,11 @@ Jira Project class
 * [protected $issuesCache](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_issuesCache)
 * [protected $validTypes](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_validTypes)
 * [protected $allowedTypes](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_allowedTypes)
+* [protected $errors](../classes/Fr3nch13.Jira.Lib.JiraProject.md#property_errors)
 ---
 ### Methods
 * [public __construct()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method___construct)
+* [public configure()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_configure)
 * [public getInfo()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getInfo)
 * [public getVersions()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getVersions)
 * [public getIssues()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getIssues)
@@ -32,9 +34,15 @@ Jira Project class
 * [public getIssue()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getIssue)
 * [public getBugs()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getBugs)
 * [public getOpenBugs()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getOpenBugs)
+* [public getAllowedTypes()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getAllowedTypes)
+* [public modifyAllowedTypes()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_modifyAllowedTypes)
+* [public isAllowedType()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_isAllowedType)
 * [public getFormData()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getFormData)
-* [public submitFeatureRequest()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_submitFeatureRequest)
-* [public submitBug()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_submitBug)
+* [public setFormData()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_setFormData)
+* [public submitIssue()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_submitIssue)
+* [public buildSubmittedIssue()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_buildSubmittedIssue)
+* [public setError()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_setError)
+* [public getErrors()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getErrors)
 ---
 ### Details
 * File: [Lib/JiraProject.php](../files/Lib.JiraProject.md)
@@ -44,13 +52,13 @@ Jira Project class
 ---
 ## Properties
 <a name="property_ConfigObj"></a>
-#### public $ConfigObj : \JiraRestApi\Configuration\ArrayConfiguration|null
+#### public $ConfigObj : \JiraRestApi\Configuration\ArrayConfiguration
 ---
 **Summary**
 
 Config Object.
 
-**Type:** \JiraRestApi\Configuration\ArrayConfiguration|null
+**Type:** \JiraRestApi\Configuration\ArrayConfiguration
 
 **Details:**
 
@@ -68,61 +76,61 @@ The key for the project.
 
 
 <a name="property_ProjectService"></a>
-#### public $ProjectService : \JiraRestApi\Project\ProjectService|null
+#### public $ProjectService : \JiraRestApi\Project\ProjectService
 ---
 **Summary**
 
 The project service object.
 
-**Type:** \JiraRestApi\Project\ProjectService|null
+**Type:** \JiraRestApi\Project\ProjectService
 
 **Details:**
 
 
 <a name="property_IssueService"></a>
-#### public $IssueService : \JiraRestApi\Issue\IssueService|null
+#### public $IssueService : \JiraRestApi\Issue\IssueService
 ---
 **Summary**
 
 The project service object.
 
-**Type:** \JiraRestApi\Issue\IssueService|null
+**Type:** \JiraRestApi\Issue\IssueService
 
 **Details:**
 
 
 <a name="property_Project"></a>
-#### protected $Project : \JiraRestApi\Project\Project|null
+#### protected $Project : \JiraRestApi\Project\Project
 ---
 **Summary**
 
 The project object.
 
-**Type:** \JiraRestApi\Project\Project|null
+**Type:** \JiraRestApi\Project\Project
 
 **Details:**
 
 
 <a name="property_Versions"></a>
-#### protected $Versions : \ArrayObject|null
+#### protected $Versions : \ArrayObject|array&lt;mixed,\JiraRestApi\Issue\Version&gt;
 ---
 **Summary**
 
 The list of a Project's Versions.
 
-**Type:** \ArrayObject|null
+**Type:** \ArrayObject|array&lt;mixed,\JiraRestApi\Issue\Version&gt;
 
 **Details:**
 
 
 <a name="property_Issues"></a>
-#### protected $Issues : array|null
+#### protected $Issues : array
 ---
 **Summary**
 
 The Cached list of issues.
 
-**Type:** array|null
+**Type:** array
 
 **Details:**
 
@@ -155,7 +163,7 @@ Currently only support Jira Core and Software.
 
 **Details:**
 * See Also:
-  * [https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.html](https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.md)
+  * [https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.html]()
 
 
 <a name="property_allowedTypes"></a>
@@ -164,6 +172,22 @@ Currently only support Jira Core and Software.
 **Summary**
 
 Types of issues allowed to be submitted.
+
+**Type:** array
+
+**Details:**
+
+
+<a name="property_errors"></a>
+#### protected $errors : array
+---
+**Summary**
+
+This is here for the Form object (or any other object) to use.
+
+***Description***
+
+It tacks all errors, even if an exception is thrown.
 
 **Type:** array
 
@@ -187,6 +211,31 @@ Constructor
 **Description**
 
 Reads the configuration, and crdate a config object to be passed to the other objects.
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \Fr3nch13\Jira\Exception\MissingProjectException | When the project can't be found. |
+
+**Returns:** void
+
+
+<a name="method_configure" class="anchor"></a>
+#### public configure() : void
+
+```
+public configure() : void
+```
+
+**Summary**
+
+Configures the object.
+
+**Description**
+
+Broken out of construct.
 
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
@@ -220,10 +269,10 @@ Get the Project's Info.
 
 
 <a name="method_getVersions" class="anchor"></a>
-#### public getVersions() : \ArrayObject
+#### public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt;
 
 ```
-public getVersions() : \ArrayObject
+public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt;
 ```
 
 **Summary**
@@ -233,7 +282,7 @@ Get the Project's Versions.
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 
-**Returns:** \ArrayObject - A list of version objects.
+**Returns:** \ArrayObject&#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt; - A list of version objects.
 
 
 <a name="method_getIssues" class="anchor"></a>
@@ -282,7 +331,7 @@ Get the Project's Open Issues.
 #### public getIssue() : \JiraRestApi\Issue\Issue&amp;#124;\JiraRestApi\Issue\IssueV3
 
 ```
-public getIssue(integer  $id = null) : \JiraRestApi\Issue\Issue&amp;#124;\JiraRestApi\Issue\IssueV3
+public getIssue(integer&amp;#124;null  $id = null) : \JiraRestApi\Issue\Issue&amp;#124;\JiraRestApi\Issue\IssueV3
 ```
 
 **Summary**
@@ -294,7 +343,7 @@ Gets info on a particular issue within your project.
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
-| <code>integer</code> | $id  | The issue id. The integer part without the project key. |
+| <code>integer&#124;null</code> | $id  | The issue id. The integer part without the project key. |
 ##### Throws:
 | Type | Description |
 | ---- | ----------- |
@@ -338,6 +387,78 @@ Gets a list of open issues that are considered bugs.
 **Returns:** \JiraRestApi\Issue\IssueSearchResult&#124;\JiraRestApi\Issue\IssueSearchResultV3 - A list of issue objects.
 
 
+<a name="method_getAllowedTypes" class="anchor"></a>
+#### public getAllowedTypes() : array
+
+```
+public getAllowedTypes(string&amp;#124;null  $type = null) : array
+```
+
+**Summary**
+
+Returns the allowed types and their settings
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code>string&#124;null</code> | $type  | The type of issue you want to get. |
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \Fr3nch13\Jira\Exception\MissingAllowedTypeException | If a type is given, and that type is not configured. |
+
+**Returns:** array - the content of $this->allowedTypes.
+
+
+<a name="method_modifyAllowedTypes" class="anchor"></a>
+#### public modifyAllowedTypes() : void
+
+```
+public modifyAllowedTypes(string  $type, array  $settings = array()) : void
+```
+
+**Summary**
+
+Allows you to modify the form allowdTypes to fir your situation.
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code>string</code> | $type  | The type of issue you want to add/modify. |
+| <code>array</code> | $settings  | The settings for the type. |
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \Fr3nch13\Jira\Exception\MissingIssueFieldException | If we're adding a new issue type, and the summary field isn't defined. |
+
+**Returns:** void
+
+
+<a name="method_isAllowedType" class="anchor"></a>
+#### public isAllowedType() : boolean
+
+```
+public isAllowedType(string  $type) : boolean
+```
+
+**Summary**
+
+Checks to see if a type is allowed.
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code>string</code> | $type  | The type to check. |
+
+**Returns:** boolean - if it's allowed or not.
+
+
 <a name="method_getFormData" class="anchor"></a>
 #### public getFormData() : array
 
@@ -355,59 +476,143 @@ Gets the array for the forms when submitting an issue to Jira.
 | Type | Name | Description |
 | ---- | ---- | ----------- |
 | <code>string&#124;null</code> | $type  | The type of issue we're submitting. |
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \Fr3nch13\Jira\Exception\MissingAllowedTypeException | If that type is not configured. |
+| \Fr3nch13\Jira\Exception\Exception | If the form data for that type is missing. |
 
 **Returns:** array - The array of data to fill in the form with.
 
 
-<a name="method_submitFeatureRequest" class="anchor"></a>
-#### public submitFeatureRequest() : boolean
+<a name="method_setFormData" class="anchor"></a>
+#### public setFormData() : void
 
 ```
-public submitFeatureRequest(array  $data = array()) : boolean
+public setFormData(string  $type, array  $data = array()) : void
 ```
 
 **Summary**
 
-Submits a feature request
+Sets the formData variable if you want to modify the default/initial values.
 
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
-| <code>array</code> | $data  | The array of details about the feature request. |
+| <code>string</code> | $type  | The type you want to set the data for.
+ - Needs to be in the allowedTypes already. |
+| <code>array</code> | $data  | The definition of the allowed types |
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \Fr3nch13\Jira\Exception\MissingAllowedTypeException | If that type is not configured. |
 
-**Returns:** boolean - If the request was successfully submitted.
+**Returns:** void
 
-##### Tags
-| Tag | Version | Description |
-| --- | ------- | ----------- |
-| todo |  | Build out the feature request form in the frontend. |
 
-<a name="method_submitBug" class="anchor"></a>
-#### public submitBug() : boolean
+<a name="method_submitIssue" class="anchor"></a>
+#### public submitIssue() : integer&amp;#124;boolean
 
 ```
-public submitBug(array  $data = array()) : boolean
+public submitIssue(string  $type, array  $data = array()) : integer&amp;#124;boolean
 ```
 
 **Summary**
 
-Submits a bug.
+Submits the Issue
 
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
-| <code>array</code> | $data  | The array of details about the bug. |
+| <code>string</code> | $type  | The type you want to set the data for.
+ - Needs to be in the allowedTypes already. |
+| <code>array</code> | $data  | The array of details about the issue. |
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \Fr3nch13\Jira\Exception\IssueSubmissionException | If submitting the issue fails. |
+| \Fr3nch13\Jira\Exception\MissingAllowedTypeException | If that issue type is not configured. |
+| \Fr3nch13\Jira\Exception\MissingIssueFieldException | If we're adding a new issue, and required fields aren't defined. |
 
-**Returns:** boolean - If the bug was successfully submitted.
+**Returns:** integer&#124;boolean - If the request was successfully submitted.
 
-##### Tags
-| Tag | Version | Description |
-| --- | ------- | ----------- |
-| todo |  | Build out the bug form in the frontend. |
+
+<a name="method_buildSubmittedIssue" class="anchor"></a>
+#### public buildSubmittedIssue() : \JiraRestApi\Issue\IssueField
+
+```
+public buildSubmittedIssue(string  $type, array  $data = array()) : \JiraRestApi\Issue\IssueField
+```
+
+**Summary**
+
+Creates the issue to send to the server.
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code>string</code> | $type  | The type of isse we're creating. |
+| <code>array</code> | $data  | The data from the submitted form. |
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \Fr3nch13\Jira\Exception\MissingProjectException | If submitting the issue fails. |
+
+**Returns:** \JiraRestApi\Issue\IssueField
+
+
+<a name="method_setError" class="anchor"></a>
+#### public setError() : boolean
+
+```
+public setError(string  $msg = &#039;&#039;, string  $key = &#039;&#039;) : boolean
+```
+
+**Summary**
+
+Sets an error
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code>string</code> | $msg  | The error message. |
+| <code>string</code> | $key  | The key to use in the this->errors array. |
+
+**Returns:** boolean - If saved or not.
+
+
+<a name="method_getErrors" class="anchor"></a>
+#### public getErrors() : array&amp;#124;string&amp;#124;false
+
+```
+public getErrors(string&amp;#124;null  $key = null) : array&amp;#124;string&amp;#124;false
+```
+
+**Summary**
+
+Gets the accumulated error messages.
+
+**Description**
+
+If a key is given, return that specific message. If that key doesn't exist, return false.
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code>string&#124;null</code> | $key  | The key to the specific message to get. |
+
+**Returns:** array&#124;string&#124;false
+
 
 
 ---
@@ -420,9 +625,9 @@ Submits a bug.
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 2](../reports/markers.md)
+* [Markers - 0](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-27 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

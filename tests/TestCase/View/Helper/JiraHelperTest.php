@@ -8,6 +8,7 @@ use Cake\TestSuite\TestCase;
 use Cake\View\View;
 use Fr3nch13\Jira\Test\TestCase\JiraTestTrait;
 use Fr3nch13\Jira\View\Helper\JiraHelper;
+use JiraRestApi\Issue\Issue;
 use JiraRestApi\Project\Project;
 
 /**
@@ -108,7 +109,11 @@ class JiraHelperTest extends TestCase
      */
     public function testGetIssue()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $issue = $this->helper->getIssue(1);
+
+        $this->assertInstanceOf(Issue::class, $issue);
+
+        $this->assertEquals(1, $issue->id);
     }
 
     /**
@@ -133,29 +138,5 @@ class JiraHelperTest extends TestCase
         $issues = $this->helper->getOpenBugs();
 
         $this->assertEquals($this->IssueSearchResultBugs, $issues);
-    }
-
-    /**
-     * testbugLink
-     *
-     * @return void
-     */
-    public function testbugLink()
-    {
-        $link = $this->helper->bugLink();
-
-        $this->assertEquals(true, $link);
-    }
-
-    /**
-     * testFrLink
-     *
-     * @return void
-     */
-    public function testFrLink()
-    {
-        $link = $this->helper->frLink();
-
-        $this->assertEquals(true, $link);
     }
 }

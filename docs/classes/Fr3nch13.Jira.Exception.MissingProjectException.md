@@ -35,7 +35,7 @@ Throw when the Project can't be found.
 ---
 **Summary**
 
-Thow a 404 when something is missing.
+Thow a 404 when the project is missing.
 
 **Type:** integer
 
@@ -85,9 +85,9 @@ when debug mode is off.
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 2](../reports/markers.md)
+* [Markers - 0](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-27 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

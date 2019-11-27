@@ -30,8 +30,6 @@ Helper to write out stuff about your jira project.
 * [public getIssue()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_getIssue)
 * [public getBugs()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_getBugs)
 * [public getOpenBugs()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_getOpenBugs)
-* [public bugLink()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_bugLink)
-* [public frLink()](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md#method_frLink)
 ---
 ### Details
 * File: [View/Helper/JiraHelper.php](../files/View.Helper.JiraHelper.md)
@@ -70,13 +68,13 @@ List of loaded helpers.
 
 
 <a name="property_JiraProject"></a>
-#### protected $JiraProject : \Fr3nch13\Jira\Lib\JiraProject|null
+#### protected $JiraProject : \Fr3nch13\Jira\Lib\JiraProject
 ---
 **Summary**
 
 Contains the loaded Jira Project object.
 
-**Type:** <a href="../classes/Fr3nch13.Jira.Lib.JiraProject.html">\Fr3nch13\Jira\Lib\JiraProject</a>|null
+**Type:** <a href="../classes/Fr3nch13.Jira.Lib.JiraProject.html">\Fr3nch13\Jira\Lib\JiraProject</a>
 
 **Details:**
 
@@ -128,10 +126,10 @@ Get the information about the Jira Project
 
 
 <a name="method_getVersions" class="anchor"></a>
-#### public getVersions() : \ArrayObject
+#### public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt;
 
 ```
-public getVersions() : \ArrayObject
+public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt;
 ```
 
 **Summary**
@@ -141,7 +139,7 @@ Gets a list of all versions within your project.
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 
-**Returns:** \ArrayObject - A list of version objects.
+**Returns:** \ArrayObject&#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt; - A list of version objects.
 
 
 <a name="method_getIssues" class="anchor"></a>
@@ -237,60 +235,6 @@ Gets a list of all open issues that are bugs within your project.
 **Returns:** \JiraRestApi\Issue\IssueSearchResult&#124;\JiraRestApi\Issue\IssueSearchResultV3 - A list of issue objects.
 
 
-<a name="method_bugLink" class="anchor"></a>
-#### public bugLink() : string
-
-```
-public bugLink(\Fr3nch13\Jira\View\Helper\sting&amp;#124;null  $name = null, array&amp;#124;string&amp;#124;null  $url = array(), array  $options = array()) : string
-```
-
-**Summary**
-
-Created the link to submit a bug.
-
-**Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
-##### Parameters:
-| Type | Name | Description |
-| ---- | ---- | ----------- |
-| <code>\Fr3nch13\Jira\View\Helper\sting&#124;null</code> | $name  | Name of the link |
-| <code>array&#124;string&#124;null</code> | $url  | An alternate url, if needed. |
-| <code>array</code> | $options  | Additional options, also passthrough to HtmlHelper::link() |
-
-**Returns:** string - The generated link html.
-
-##### Tags
-| Tag | Version | Description |
-| --- | ------- | ----------- |
-| TODO |  | Build out the forms frontend |
-
-<a name="method_frLink" class="anchor"></a>
-#### public frLink() : string
-
-```
-public frLink(\Fr3nch13\Jira\View\Helper\sting&amp;#124;null  $name = null, array&amp;#124;string&amp;#124;null  $url = array(), array  $options = array()) : string
-```
-
-**Summary**
-
-Created the link to submit a feature request.
-
-**Details:**
-* Inherited From: [\Fr3nch13\Jira\View\Helper\JiraHelper](../classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
-##### Parameters:
-| Type | Name | Description |
-| ---- | ---- | ----------- |
-| <code>\Fr3nch13\Jira\View\Helper\sting&#124;null</code> | $name  | Name of the link |
-| <code>array&#124;string&#124;null</code> | $url  | An alternate url, if needed. |
-| <code>array</code> | $options  | Additional options, also passthrough to HtmlHelper::link() |
-
-**Returns:** string - The generated link html.
-
-##### Tags
-| Tag | Version | Description |
-| --- | ------- | ----------- |
-| TODO |  | Build out the forms frontend |
-
 
 ---
 
@@ -302,9 +246,9 @@ Created the link to submit a feature request.
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 2](../reports/markers.md)
+* [Markers - 0](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-27 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

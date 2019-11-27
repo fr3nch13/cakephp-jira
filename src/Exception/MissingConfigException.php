@@ -5,17 +5,17 @@
 
 namespace Fr3nch13\Jira\Exception;
 
-use Fr3nch13\Jira\Exception\Exception;
+use Fr3nch13\Jira\Exception\Exception as BaseException;
 
 /**
  * Missing Config Exception
  *
  * Throw when a config variable is missing.
  */
-class MissingConfigException extends Exception
+class MissingConfigException extends BaseException
 {
     /**
-     * Thow a 500 when something is missing.
+     * Throw a 500 when config variable is missing.
      * @var int
      */
     protected $_defaultCode = 500;
@@ -34,6 +34,10 @@ class MissingConfigException extends Exception
     public function __construct($message = '', $code = null, $previous = null)
     {
         $this->_messageTemplate = __('Seems that the config key `Jira.%s` is not set.');
+
+        if (is_string($message)) {
+            $message = [0 => $message];
+        }
 
         parent::__construct($message, $code, $previous);
     }

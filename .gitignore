@@ -2,4 +2,4 @@
 /tmp/*/
 !*.gitkeep
 docs/phpdoc-cache-*
-/coverage.xml
+/tmp/coverage.xml

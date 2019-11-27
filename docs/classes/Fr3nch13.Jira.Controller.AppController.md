@@ -26,12 +26,13 @@ Inherited:
 ---
 ### Methods
 * [public add()](../classes/Fr3nch13.Jira.Controller.AppController.md#method_add)
+* [public thankyou()](../classes/Fr3nch13.Jira.Controller.AppController.md#method_thankyou)
 ---
 ### Details
 * File: [Controller/AppController.php](../files/Controller.AppController.md)
 * Package: Default
 * Class Hierarchy: 
-  * [\Cake\Controller\Controller]()
+  * [\App\Controller\AppController]()
   * \Fr3nch13\Jira\Controller\AppController
 ---
 ## Properties
@@ -79,6 +80,23 @@ The html form.
 **Returns:** void&#124;\Cake\Http\Response&#124;null - Redirects on success.
 
 
+<a name="method_thankyou" class="anchor"></a>
+#### public thankyou() : void
+
+```
+public thankyou() : void
+```
+
+**Summary**
+
+The thank you page after they've submitted their report.
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Controller\AppController](../classes/Fr3nch13.Jira.Controller.AppController.md)
+
+**Returns:** void
+
+
 
 ---
 
@@ -90,9 +108,9 @@ The html form.
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 2](../reports/markers.md)
+* [Markers - 0](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-27 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

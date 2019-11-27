@@ -5,17 +5,17 @@
 
 namespace Fr3nch13\Jira\Exception;
 
-use Fr3nch13\Jira\Exception\Exception;
+use Fr3nch13\Jira\Exception\Exception as BaseException;
 
 /**
  * Missing Issue Exception
  *
  * Throw when a Project's Issue can't be found.
  */
-class MissingIssueException extends Exception
+class MissingIssueException extends BaseException
 {
     /**
-     * Thow a 404 when something is missing.
+     * Throw a 404 when something is missing.
      * @var int
      */
     protected $_defaultCode = 404;
@@ -34,6 +34,10 @@ class MissingIssueException extends Exception
     public function __construct($message = '', $code = null, $previous = null)
     {
         $this->_messageTemplate = __('Unable to find the issue: %s');
+
+        if (is_string($message)) {
+            $message = [0 => $message];
+        }
 
         parent::__construct($message, $code, $previous);
     }

@@ -22,21 +22,21 @@ class AppForm extends Form
     /**
      * Contains the loaded Jira Project object.
      *
-     * @var \Fr3nch13\Jira\Lib\JiraProject|null
+     * @var \Fr3nch13\Jira\Lib\JiraProject
      */
-    protected $JiraProject = null;
-
-    /**
-     * The form fields and data.
-     * @var array
-     */
-    public $formData = [];
+    protected $JiraProject;
 
     /**
      * The type of issue we're submitting.
-     * @var string|null
+     * @var null|string
      */
     public $issueType = null;
+
+    /**
+     * Settings for this form and for the JiraProject.
+     * @var array
+     */
+    public $settings = [];
 
     /**
      * Constructor
@@ -51,7 +51,13 @@ class AppForm extends Form
 
         $this->JiraProject = new JiraProject();
 
-        $this->setFormData($this->JiraProject->getFormData($this->issueType));
+        if (!empty($this->settings)) {
+            $this->JiraProject->modifyAllowedTypes($this->issueType, $this->settings);
+        }
+
+        /** @scrutinizer ignore-call */
+        $formData = $this->getFormData($this->issueType);
+        $this->setFormData($formData);
     }
 
     /**
@@ -67,7 +73,7 @@ class AppForm extends Form
             throw new Exception(__('Missing the fields.'));
         }
         foreach ($data['fields'] as $k => $v) {
-            $schema->addField($k, $v['type']);
+            $schema->addField($k, $v);
         }
 
         return $schema;
@@ -86,7 +92,7 @@ class AppForm extends Form
             throw new Exception(__('Missing the fields.'));
         }
         foreach ($data['fields'] as $k => $v) {
-            if ($v['type'] == 'string') {
+            if ($v['type'] == 'string' || $v['type'] == 'text') {
                 $validator->scalar($k);
             }
             if ($v['type'] == 'email') {
@@ -104,13 +110,25 @@ class AppForm extends Form
      * Submit the issue to Jira.
      *
      * @param array $data The array of post data from the form template.
-     * @return bool True is the issue was submitted or false if there was an problem.
+     * @return int|bool True is the issue was submitted or false if there was an problem.
      */
     protected function _execute(array $data = [])
     {
-        $data = $data + $this->getFormData();
+        try {
+            /** @scrutinizer ignore-call */
+            $result = $this->JiraProject->submitIssue($this->issueType, $data);
+        } catch (Exception $e) {
+            /** @scrutinizer ignore-call */
+            $errors = $this->JiraProject->getErrors();
+            foreach ($errors as $k => $v) {
+                // track the errors specific to jira/the JiraProject object.
+                $this->setErrors(["jira" => [$k => $v]]);
+            }
 
-        return $this->JiraProject->submitIssue($data); // submitIssue method doesn't exist, the _execute method should be overwritten.
+            return false;
+        }
+
+        return $result;
     }
 
     /**
@@ -121,7 +139,7 @@ class AppForm extends Form
      */
     public function setFormData(array $data = [])
     {
-        $this->formData = $data;
+        $this->JiraProject->setFormData($this->issueType, $data);
     }
 
     /**
@@ -131,6 +149,6 @@ class AppForm extends Form
      */
     public function getFormData()
     {
-        return $this->formData;
+        return $this->JiraProject->getFormData($this->issueType);
     }
 }

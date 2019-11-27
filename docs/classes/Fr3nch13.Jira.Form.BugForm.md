@@ -16,8 +16,8 @@ Used to submit a bug to Jira.
 * No constants found
 ---
 ### Properties
-* [public $formData](../classes/Fr3nch13.Jira.Form.AppForm.md#property_formData)
 * [public $issueType](../classes/Fr3nch13.Jira.Form.AppForm.md#property_issueType)
+* [public $settings](../classes/Fr3nch13.Jira.Form.AppForm.md#property_settings)
 * [protected $JiraProject](../classes/Fr3nch13.Jira.Form.AppForm.md#property_JiraProject)
 ---
 ### Methods
@@ -37,12 +37,25 @@ Used to submit a bug to Jira.
   * \Fr3nch13\Jira\Form\BugForm
 ---
 ## Properties
-<a name="property_formData"></a>
-#### public $formData : array
+<a name="property_issueType"></a>
+#### public $issueType : null|string
 ---
 **Summary**
 
-The form fields and data.
+The type of issue we're submitting.
+
+**Type:** null|string
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
+
+
+<a name="property_settings"></a>
+#### public $settings : array
+---
+**Summary**
+
+Settings for this form and for the JiraProject.
 
 **Type:** array
 
@@ -50,27 +63,14 @@ The form fields and data.
 * Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
 
 
-<a name="property_issueType"></a>
-#### public $issueType : string|null
----
-**Summary**
-
-The type of issue we're submitting.
-
-**Type:** string|null
-
-**Details:**
-* Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
-
-
 <a name="property_JiraProject"></a>
-#### protected $JiraProject : \Fr3nch13\Jira\Lib\JiraProject|null
+#### protected $JiraProject : \Fr3nch13\Jira\Lib\JiraProject
 ---
 **Summary**
 
 Contains the loaded Jira Project object.
 
-**Type:** <a href="../classes/Fr3nch13.Jira.Lib.JiraProject.html">\Fr3nch13\Jira\Lib\JiraProject</a>|null
+**Type:** <a href="../classes/Fr3nch13.Jira.Lib.JiraProject.html">\Fr3nch13\Jira\Lib\JiraProject</a>
 
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\Form\AppForm](../classes/Fr3nch13.Jira.Form.AppForm.md)
@@ -182,10 +182,10 @@ Defines the validations
 
 
 <a name="method__execute" class="anchor"></a>
-#### protected _execute() : boolean
+#### protected _execute() : integer&amp;#124;boolean
 
 ```
-protected _execute(array  $data = array()) : boolean
+protected _execute(array  $data = array()) : integer&amp;#124;boolean
 ```
 
 **Summary**
@@ -199,7 +199,7 @@ Submit the issue to Jira.
 | ---- | ---- | ----------- |
 | <code>array</code> | $data  | The array of post data from the form template. |
 
-**Returns:** boolean - True is the issue was submitted or false if there was an problem.
+**Returns:** integer&#124;boolean - True is the issue was submitted or false if there was an problem.
 
 
 
@@ -213,9 +213,9 @@ Submit the issue to Jira.
 
 ### Reports
 * [Errors - 0](../reports/errors.md)
-* [Markers - 2](../reports/markers.md)
+* [Markers - 0](../reports/markers.md)
 * [Deprecated - 0](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-22 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-27 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
