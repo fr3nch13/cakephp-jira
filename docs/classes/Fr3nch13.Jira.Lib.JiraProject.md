@@ -50,13 +50,13 @@ Jira Project class
 ---
 ## Properties
 <a name="property_ConfigObj"></a>
-#### public $ConfigObj : \JiraRestApi\Configuration\ArrayConfiguration|null
+#### public $ConfigObj : \JiraRestApi\Configuration\ArrayConfiguration
 ---
 **Summary**
 
 Config Object.
 
-**Type:** \JiraRestApi\Configuration\ArrayConfiguration|null
+**Type:** \JiraRestApi\Configuration\ArrayConfiguration
 
 **Details:**
 
@@ -74,61 +74,61 @@ The key for the project.
 
 
 <a name="property_ProjectService"></a>
-#### public $ProjectService : \JiraRestApi\Project\ProjectService|null
+#### public $ProjectService : \JiraRestApi\Project\ProjectService
 ---
 **Summary**
 
 The project service object.
 
-**Type:** \JiraRestApi\Project\ProjectService|null
+**Type:** \JiraRestApi\Project\ProjectService
 
 **Details:**
 
 
 <a name="property_IssueService"></a>
-#### public $IssueService : \JiraRestApi\Issue\IssueService|null
+#### public $IssueService : \JiraRestApi\Issue\IssueService
 ---
 **Summary**
 
 The project service object.
 
-**Type:** \JiraRestApi\Issue\IssueService|null
+**Type:** \JiraRestApi\Issue\IssueService
 
 **Details:**
 
 
 <a name="property_Project"></a>
-#### protected $Project : \JiraRestApi\Project\Project|null
+#### protected $Project : \JiraRestApi\Project\Project
 ---
 **Summary**
 
 The project object.
 
-**Type:** \JiraRestApi\Project\Project|null
+**Type:** \JiraRestApi\Project\Project
 
 **Details:**
 
 
 <a name="property_Versions"></a>
-#### protected $Versions : \ArrayObject|null
+#### protected $Versions : \ArrayObject|array&lt;mixed,\JiraRestApi\Issue\Version&gt;
 ---
 **Summary**
 
 The list of a Project's Versions.
 
-**Type:** \ArrayObject|null
+**Type:** \ArrayObject|array&lt;mixed,\JiraRestApi\Issue\Version&gt;
 
 **Details:**
 
 
 <a name="property_Issues"></a>
-#### protected $Issues : array|null
+#### protected $Issues : array
 ---
 **Summary**
 
 The Cached list of issues.
 
-**Type:** array|null
+**Type:** array
 
 **Details:**
 
