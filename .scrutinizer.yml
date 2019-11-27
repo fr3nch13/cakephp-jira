@@ -17,7 +17,7 @@ build:
                 - command: composer test-clover
                     coverage:
                         file: tmp/coverage.xml
-                    format: clover
+                    format: "clover"
         tests: true
     environment:
         php:
