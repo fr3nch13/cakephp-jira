@@ -11,13 +11,13 @@ build:
                     -
                         command: phpcs-run
                         use_website_config: true
-    coverage:
-        tests:
-            override:
-                - command: composer test-clover
-                    coverage:
-                        file: 'tmp/coverage.xml'
-                    format: clover
+        coverage:
+            tests:
+                override:
+                    - command: composer test-clover
+                        coverage:
+                            file: tmp/coverage.xml
+                        format: clover
         tests: true
     environment:
         php:
