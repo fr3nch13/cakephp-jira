@@ -141,56 +141,24 @@ If you're not using `dotenv`, then put this in your `config/app.php` file:
 
 The primary entry point is the Jira Helper.
 
-Some of the helper methods you can use in your templates. I say this incase I add more, forget to update this readme.
+To view the API for the JiraHelper see [The JiraHelper API](blob/master/docs/classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
 
-### getInfo()
-Gets information about the Jira Project.
+I have also added the ability to send send Issues to your Jira server.
 
+The 2 default/preconfigured Issues are Bugs and Feature Requests, but you can configure your own as well.
+
+To create your own Issue setup, see these as examples:
+- [`Fr3nch\Jira\Controller\TestsController`](blob/master/src/Controller/TestsController.php)
+- [`Fr3nch\Jira\Form\TestForm`](blob/master/src/Form/TestForm.php) <-- How you define another Issue type. see the `__construct()` method.
+- [`Template/Tests/add.ctp`](blob/master/src/Template/Tests/add.ctp)
+- [`Template/Tests/thankyou.ctp`](blob/master/src/Template/Tests/thankyou.ctp)
+
+In my particular instance, I have the links as part of a dropdown menu in my apps' header. My apps use the AdmilLte/bootstrap template/frontend, so if you want, you can include the element existing here like so:
 ```php
-$projectInfo = $this->Jira->getInfo();
+<?php if (Plugin::isLoaded('Fr3nch13/Jira')) : ?>
+<?= $this->element('Fr3nch13/Jira.nav-links') ?>
+<?php endif; //Plugin::isLoaded('Fr3nch13/Jira') ?>
 ```
+In case you want to see how I'm creating the link to the pages, see the [`src/Template/Element/nav-links.ctp`](blob/master/src/Template/Element/nav-links.ctp) file.
 
-### getVersions()
-If you're using Versions in your Project, this returns the list of all versions.
-
-```php
-$projectVersions = $this->Jira->getVersions();
-```
-
-### getIssues()
-Retrieves all of your Issues related to your Project, ordered by their key ex: `PROJECT-81`
-
-```php
-$projectIssues = $this->Jira->getIssues();
-```
-
-### getOpenIssues()
-Retrieves all of your Issues related to your Project, that aren't marked as `Done`, ordered by their key ex: `PROJECT-81`
-
-```php
-$projectOpenIssues = $this->Jira->getOpenIssues();
-```
-
-### getIssue($id)
-Gets a specific Issue from your Project, by it's ID. ex issue id: `PROJECT-81`, just give the `81` part.M
-
-```php
-$projectIssue = $this->Jira->getIssue('81');
-```
-
-### getBugs()
-Retrieves all of your Issues, that are Bugs, related to your Project, ordered by their key ex: `PROJECT-81`
-
-```php
-$projectBugs = $this->Jira->getBugs();
-```
-
-### getOpenBugs()
-Retrieves all of your Issues, that are Bugs, related to your Project, that aren't marked as `Done`, ordered by their key ex: `PROJECT-81`
-
-```php
-$projectOpenBugs = $this->Jira->getOpenBugs();
-```
-
-## TODO:
-- Add the ability to users of the app to submit an issue as either a feature request, or a bug report.
+If you want to overwrite the plugin templates, do so like you're supposed according to the [CakePHP Documentation](https://book.cakephp.org/3/en/plugins.html#overriding-plugin-templates-from-inside-your-application).

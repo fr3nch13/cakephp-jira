@@ -6,4 +6,4 @@
 
 $this->extend('/App/add');
 
-$this->set('title', __('Feature Request'));
+$this->set('title', __('Test'));
