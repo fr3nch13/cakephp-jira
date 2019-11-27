@@ -46,7 +46,7 @@ class AppControllerTest extends TestCase
 
     public function testAdd()
     {
-        //$this->markTestIncomplete('Not implemented yet.');
+        $this->markTestIncomplete('Not implemented yet.');
         $this->get('/add');
 
         $this->assertResponseOk();

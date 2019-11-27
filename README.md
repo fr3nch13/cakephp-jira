@@ -5,8 +5,8 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/fr3nch13/cakephp-jira.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-jira)
 [![Coverage Status](https://img.shields.io/codecov/c/github/fr3nch13/cakephp-jira.svg?style=flat-square)](https://codecov.io/github/fr3nch13/cakephp-jira)
 
-[![Build Status](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/build.png?b=1.x-dev)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/build-status/1.x-dev)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/quality-score.png?b=1.x-dev)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/?branch=1.x-dev)
+[![Build Status](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/build.png?b=master)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/?branch=master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
