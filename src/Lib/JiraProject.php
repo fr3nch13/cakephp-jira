@@ -205,7 +205,7 @@ class JiraProject
     /**
      * Get the Project's Versions.
      *
-     * @return \ArrayObject|\JiraRestApi\Issue\Version[] A list of version objects.
+     * @return \ArrayObject|JiraRestApi\Issue\Version[] A list of version objects.
      */
     public function getVersions()
     {

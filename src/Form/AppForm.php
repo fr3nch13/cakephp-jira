@@ -55,6 +55,7 @@ class AppForm extends Form
             $this->JiraProject->modifyAllowedTypes($this->issueType, $this->settings);
         }
 
+        /** @scrutinizer ignore-call */
         $formData = $this->getFormData($this->issueType);
         $this->setFormData($formData);
     }
@@ -109,7 +110,7 @@ class AppForm extends Form
      * Submit the issue to Jira.
      *
      * @param array $data The array of post data from the form template.
-     * @return bool True is the issue was submitted or false if there was an problem.
+     * @return int|bool True is the issue was submitted or false if there was an problem.
      */
     protected function _execute(array $data = [])
     {
@@ -117,6 +118,7 @@ class AppForm extends Form
             /** @scrutinizer ignore-call */
             $result = $this->JiraProject->submitIssue($this->issueType, $data);
         } catch (Exception $e) {
+            /** @scrutinizer ignore-call */
             $errors = $this->JiraProject->getErrors();
             foreach ($errors as $k => $v) {
                 // track the errors specific to jira/the JiraProject object.

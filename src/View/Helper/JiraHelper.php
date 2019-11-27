@@ -57,7 +57,9 @@ class JiraHelper extends Helper
      */
     public function getInfo()
     {
-        return $this->JiraProject->getInfo();
+        $info = $this->JiraProject->getInfo();
+
+        return $info;
     }
 
     /**

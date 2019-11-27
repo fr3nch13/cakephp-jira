@@ -41,7 +41,7 @@ class AppController extends BaseController
     {
         $errors = [];
         if ($this->getRequest()->is('post')) {
-            if ($this->JiraForm->execute($this->getRequest()->getData())) {
+            if ($issueId = $this->JiraForm->execute($this->getRequest()->getData())) {
                 $this->Flash->success(__('The {0} has been saved.', [$this->humanName]));
 
                 return $this->redirect(['action' => 'thankyou', '?' => ['type' => $this->humanName]]);
