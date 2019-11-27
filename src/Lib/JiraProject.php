@@ -473,6 +473,71 @@ class JiraProject
             throw new MissingIssueFieldException('summary');
         }
 
+        $issueField = $this->buildSubmittedIssue($type, $data);
+
+        $issueService = new IssueService($this->ConfigObj);
+
+        try {
+            $ret = $issueService->create($issueField);
+        } catch (\JiraRestApi\JiraException $e) {
+            //Sample return error with json in it.
+            //Pasting here so I can mock this return message in the unit tests.
+            //CURL HTTP Request Failed: Status Code : 400, URL:https://[hostname]/rest/api/2/issue
+            //Error Message : {"errorMessages":[],"errors":{"user_type":"Field 'user_type' cannot be set. It is not on the appropriate screen, or unknown."}}             */
+            $msg = $e->getMessage();
+            if (strpos($msg, '{') !== false) {
+                $msgArray = str_split($msg);
+                // extract the json message.
+                $json = '';
+                $in = 0;
+                foreach ($msgArray as $i => $char) {
+                    if ($char == '{') {
+                        $in++;
+                    }
+                    if ($in) {
+                        $json .= $msg[$i];
+                    }
+                    if ($char == '}') {
+                        $in--;
+                    }
+                }
+                if ($json) {
+                    $json = json_decode($json, true);
+                }
+                if ($json) {
+                    $newMsg = [];
+                    if (isset($json['errorMessages'])) {
+                        foreach ($json['errorMessages'] as $jsonMsg) {
+                            $newMsg[] = $jsonMsg;
+                        }
+                        foreach ($json['errors'] as $jsonMsg) {
+                            $newMsg[] = $jsonMsg;
+                        }
+                        $msg = implode("\n", $newMsg);
+                    }
+                }
+            }
+            $this->setError($msg, 'IssueSubmissionException');
+            throw new IssueSubmissionException($msg);
+        }
+
+        if ($ret instanceof \JiraRestApi\Issue\Issue && $ret->id) {
+            return (int)$ret->id;
+        }
+
+        return true;
+    }
+
+    /**
+     * Creates the issue to send to the server.
+     *
+     * @param string $type The type of isse we're creating.
+     * @param array $data The data from the submitted form.
+     * @throws \Fr3nch13\Jira\Exception\MissingProjectException If submitting the issue fails.
+     * @return \JiraRestApi\Issue\IssueField
+     */
+    public function buildSubmittedIssue($type, $data = [])
+    {
         $typeInfo = $this->getAllowedTypes($type);
 
         // make sure we can get the project info first.
@@ -529,57 +594,7 @@ class JiraProject
             }
         }
 
-        $issueService = new IssueService($this->ConfigObj);
-
-        try {
-            $ret = $issueService->create($issueField);
-        } catch (\JiraRestApi\JiraException $e) {
-            //Sample return error with json in it.
-            //Pasting here so I can mock this return message in the unit tests.
-            //CURL HTTP Request Failed: Status Code : 400, URL:https://[hostname]/rest/api/2/issue
-            //Error Message : {"errorMessages":[],"errors":{"user_type":"Field 'user_type' cannot be set. It is not on the appropriate screen, or unknown."}}             */
-            $msg = $e->getMessage();
-            if (strpos($msg, '{') !== false) {
-                $msgArray = str_split($msg);
-                // extract the json message.
-                $json = '';
-                $in = 0;
-                foreach ($msgArray as $i => $char) {
-                    if ($char == '{') {
-                        $in++;
-                    }
-                    if ($in) {
-                        $json .= $msg[$i];
-                    }
-                    if ($char == '}') {
-                        $in--;
-                    }
-                }
-                if ($json) {
-                    $json = json_decode($json, true);
-                }
-                if ($json) {
-                    $newMsg = [];
-                    if (isset($json['errorMessages'])) {
-                        foreach ($json['errorMessages'] as $jsonMsg) {
-                            $newMsg[] = $jsonMsg;
-                        }
-                        foreach ($json['errors'] as $jsonMsg) {
-                            $newMsg[] = $jsonMsg;
-                        }
-                        $msg = implode("\n", $newMsg);
-                    }
-                }
-            }
-            $this->setError($msg, 'IssueSubmissionException');
-            throw new IssueSubmissionException($msg);
-        }
-
-        if ($ret instanceof \JiraRestApi\Issue\Issue && $ret->id) {
-            return (int)$ret->id;
-        }
-
-        return true;
+        return $issueField;
     }
 
     /**

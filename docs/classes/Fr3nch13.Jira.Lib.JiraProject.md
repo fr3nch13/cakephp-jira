@@ -40,6 +40,7 @@ Jira Project class
 * [public getFormData()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getFormData)
 * [public setFormData()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_setFormData)
 * [public submitIssue()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_submitIssue)
+* [public buildSubmittedIssue()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_buildSubmittedIssue)
 * [public setError()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_setError)
 * [public getErrors()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getErrors)
 ---
@@ -538,6 +539,32 @@ Submits the Issue
 | \Fr3nch13\Jira\Exception\MissingIssueFieldException | If we're adding a new issue, and required fields aren't defined. |
 
 **Returns:** integer&#124;boolean - If the request was successfully submitted.
+
+
+<a name="method_buildSubmittedIssue" class="anchor"></a>
+#### public buildSubmittedIssue() : \JiraRestApi\Issue\IssueField
+
+```
+public buildSubmittedIssue(string  $type, array  $data = array()) : \JiraRestApi\Issue\IssueField
+```
+
+**Summary**
+
+Creates the issue to send to the server.
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code>string</code> | $type  | The type of isse we're creating. |
+| <code>array</code> | $data  | The data from the submitted form. |
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \Fr3nch13\Jira\Exception\MissingProjectException | If submitting the issue fails. |
+
+**Returns:** \JiraRestApi\Issue\IssueField
 
 
 <a name="method_setError" class="anchor"></a>
