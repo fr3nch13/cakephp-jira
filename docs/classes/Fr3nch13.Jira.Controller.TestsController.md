@@ -25,7 +25,7 @@ Frontend for submitting bugs to Jira.
 * [public initialize()](../classes/Fr3nch13.Jira.Controller.TestsController.md#method_initialize)
 ---
 ### Details
-* File: [Controller/TestController.php](../files/Controller.TestController.md)
+* File: [Controller/TestsController.php](../files/Controller.TestsController.md)
 * Package: Default
 * Class Hierarchy:  
   * [\App\Controller\AppController]()
@@ -129,4 +129,4 @@ Initialize method
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-26 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-27 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

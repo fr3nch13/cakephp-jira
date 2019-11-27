@@ -242,10 +242,10 @@ Get the Project's Info.
 
 
 <a name="method_getVersions" class="anchor"></a>
-#### public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt;
+#### public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\Fr3nch13\Jira\Lib\JiraRestApi\Issue\Version&gt;
 
 ```
-public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt;
+public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\Fr3nch13\Jira\Lib\JiraRestApi\Issue\Version&gt;
 ```
 
 **Summary**
@@ -255,7 +255,7 @@ Get the Project's Versions.
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 
-**Returns:** \ArrayObject&#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt; - A list of version objects.
+**Returns:** \ArrayObject&#124;array&lt;mixed,\Fr3nch13\Jira\Lib\JiraRestApi\Issue\Version&gt; - A list of version objects.
 
 
 <a name="method_getIssues" class="anchor"></a>
@@ -486,10 +486,10 @@ Sets the formData variable if you want to modify the default/initial values.
 
 
 <a name="method_submitIssue" class="anchor"></a>
-#### public submitIssue() : boolean
+#### public submitIssue() : integer&amp;#124;boolean
 
 ```
-public submitIssue(string  $type, array  $data = array()) : boolean
+public submitIssue(string  $type, array  $data = array()) : integer&amp;#124;boolean
 ```
 
 **Summary**
@@ -511,7 +511,7 @@ Submits the Issue
 | \Fr3nch13\Jira\Exception\MissingAllowedTypeException | If that issue type is not configured. |
 | \Fr3nch13\Jira\Exception\MissingIssueFieldException | If we're adding a new issue, and required fields aren't defined. |
 
-**Returns:** boolean - If the request was successfully submitted.
+**Returns:** integer&#124;boolean - If the request was successfully submitted.
 
 
 <a name="method_setError" class="anchor"></a>
@@ -577,4 +577,4 @@ If a key is given, return that specific message. If that key doesn't exist, retu
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-26 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-27 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

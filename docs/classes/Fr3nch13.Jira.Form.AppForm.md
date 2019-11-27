@@ -178,10 +178,10 @@ Defines the validations
 
 
 <a name="method__execute" class="anchor"></a>
-#### protected _execute() : boolean
+#### protected _execute() : integer&amp;#124;boolean
 
 ```
-protected _execute(array  $data = array()) : boolean
+protected _execute(array  $data = array()) : integer&amp;#124;boolean
 ```
 
 **Summary**
@@ -195,7 +195,7 @@ Submit the issue to Jira.
 | ---- | ---- | ----------- |
 | <code>array</code> | $data  | The array of post data from the form template. |
 
-**Returns:** boolean - True is the issue was submitted or false if there was an problem.
+**Returns:** integer&#124;boolean - True is the issue was submitted or false if there was an problem.
 
 
 
@@ -214,4 +214,4 @@ Submit the issue to Jira.
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-26 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-11-27 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
