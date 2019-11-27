@@ -554,12 +554,6 @@ class JiraProject
         $issueField->setProjectKey($this->projectKey)
             ->setIssueType($typeInfo['jiraType']);
 
-        /*
-         * Yes, I know I'm not validating the input here.
-         * I'm relying on the underlying IssueField to validate the data.
-         */
-
-        // I know i'm checking above, so this really isn't needed, but keeping here for consistancy/readability.
         if (isset($data['summary'])) {
             $issueField->setSummary($data['summary']);
         }
