@@ -205,7 +205,7 @@ class JiraProject
     /**
      * Get the Project's Versions.
      *
-     * @return \ArrayObject|JiraRestApi\Issue\Version[] A list of version objects.
+     * @return \ArrayObject|\JiraRestApi\Issue\Version[] A list of version objects.
      */
     public function getVersions()
     {
@@ -318,7 +318,7 @@ class JiraProject
      * Returns the allowed types and their settings
      *
      * @param string|null $type The type of issue you want to get.
-     * @throws MissingAllowedTypeException If a type is given, and that type is not configured.
+     * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If a type is given, and that type is not configured.
      * @return array the content of $this->allowedTypes.
      */
     public function getAllowedTypes($type = null)
@@ -340,7 +340,7 @@ class JiraProject
      *
      * @param string $type The type of issue you want to add/modify.
      * @param array $settings The settings for the type.
-     * @throws MissingIssueFieldException If we're adding a new issue type, and the summary field isn't defined.
+     * @throws \Fr3nch13\Jira\Exception\MissingIssueFieldException If we're adding a new issue type, and the summary field isn't defined.
      * @return void
      */
     public function modifyAllowedTypes($type, $settings = [])
@@ -383,8 +383,8 @@ class JiraProject
      * Gets the array for the forms when submitting an issue to Jira.
      *
      * @param string|null $type The type of issue we're submitting.
-     * @throws MissingAllowedTypeException If that type is not configured.
-     * @throws Exception If the form data for that type is missing.
+     * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that type is not configured.
+     * @throws \Fr3nch13\Jira\Exception\Exception If the form data for that type is missing.
      * @return array The array of data to fill in the form with.
      */
     public function getFormData($type = null)
@@ -415,7 +415,7 @@ class JiraProject
      * @param string $type The type you want to set the data for.
      *  - Needs to be in the allowedTypes already.
      * @param array $data The definition of the allowed types
-     * @throws MissingAllowedTypeException If that type is not configured.
+     * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that type is not configured.
      * @return void
      */
     public function setFormData($type, $data = [])
@@ -439,9 +439,9 @@ class JiraProject
      * @param string $type The type you want to set the data for.
      *  - Needs to be in the allowedTypes already.
      * @param array $data The array of details about the issue.
-     * @throws IssueSubmissionException If submitting the issue fails.
-     * @throws MissingAllowedTypeException If that issue type is not configured.
-     * @throws MissingIssueFieldException If we're adding a new issue, and required fields aren't defined.
+     * @throws \Fr3nch13\Jira\Exception\IssueSubmissionException If submitting the issue fails.
+     * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that issue type is not configured.
+     * @throws \Fr3nch13\Jira\Exception\MissingIssueFieldException If we're adding a new issue, and required fields aren't defined.
      * @return int|bool If the request was successfully submitted.
      */
     public function submitIssue($type, array $data = [])

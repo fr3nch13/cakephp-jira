@@ -242,10 +242,10 @@ Get the Project's Info.
 
 
 <a name="method_getVersions" class="anchor"></a>
-#### public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\Fr3nch13\Jira\Lib\JiraRestApi\Issue\Version&gt;
+#### public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt;
 
 ```
-public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\Fr3nch13\Jira\Lib\JiraRestApi\Issue\Version&gt;
+public getVersions() : \ArrayObject&amp;#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt;
 ```
 
 **Summary**
@@ -255,7 +255,7 @@ Get the Project's Versions.
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
 
-**Returns:** \ArrayObject&#124;array&lt;mixed,\Fr3nch13\Jira\Lib\JiraRestApi\Issue\Version&gt; - A list of version objects.
+**Returns:** \ArrayObject&#124;array&lt;mixed,\JiraRestApi\Issue\Version&gt; - A list of version objects.
 
 
 <a name="method_getIssues" class="anchor"></a>
