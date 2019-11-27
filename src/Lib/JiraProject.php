@@ -140,10 +140,34 @@ class JiraProject
      *
      * Reads the configuration, and crdate a config object to be passed to the other objects.
      *
+     * @throws \Fr3nch13\Jira\Exception\MissingProjectException When the project can't be found.
      * @return void
-     * @throws \Fr3nch13\Jira\Exception\MissingConfigException When a config setting isn't set.
      */
     public function __construct()
+    {
+        $this->configure();
+
+        // setup the objects
+        $this->ProjectService = new ProjectService($this->ConfigObj);
+        try {
+            $this->Project = $this->ProjectService->get($this->projectKey);
+        } catch (\JiraRestApi\JiraException $e) {
+            $this->setError($this->projectKey, 'MissingProjectException');
+            throw new MissingProjectException($this->projectKey);
+        }
+
+        $this->Versions = $this->ProjectService->getVersions($this->projectKey);
+        $this->IssueService = new IssueService($this->ConfigObj);
+    }
+
+    /**
+     * Configures the object.
+     * Broken out of construct.
+     *
+     * @throws \Fr3nch13\Jira\Exception\MissingConfigException When a config setting isn't set.
+     * @return void
+     */
+    public function configure()
     {
         $schema = Configure::read('Jira.schema');
         if (!$schema) {
@@ -177,18 +201,6 @@ class JiraProject
         ]);
 
         $this->projectKey = $projectKey;
-
-        // setup the objects
-        $this->ProjectService = new ProjectService($this->ConfigObj);
-        try {
-            $this->Project = $this->ProjectService->get($this->projectKey);
-        } catch (\JiraRestApi\JiraException $e) {
-            $this->setError($this->projectKey, 'MissingProjectException');
-            throw new MissingProjectException($this->projectKey);
-        }
-
-        $this->Versions = $this->ProjectService->getVersions($this->projectKey);
-        $this->IssueService = new IssueService($this->ConfigObj);
     }
 
     /**

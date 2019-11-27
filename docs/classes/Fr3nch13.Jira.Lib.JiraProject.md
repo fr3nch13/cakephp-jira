@@ -26,6 +26,7 @@ Jira Project class
 ---
 ### Methods
 * [public __construct()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method___construct)
+* [public configure()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_configure)
 * [public getInfo()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getInfo)
 * [public getVersions()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getVersions)
 * [public getIssues()](../classes/Fr3nch13.Jira.Lib.JiraProject.md#method_getIssues)
@@ -209,6 +210,31 @@ Constructor
 **Description**
 
 Reads the configuration, and crdate a config object to be passed to the other objects.
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \Fr3nch13\Jira\Exception\MissingProjectException | When the project can't be found. |
+
+**Returns:** void
+
+
+<a name="method_configure" class="anchor"></a>
+#### public configure() : void
+
+```
+public configure() : void
+```
+
+**Summary**
+
+Configures the object.
+
+**Description**
+
+Broken out of construct.
 
 **Details:**
 * Inherited From: [\Fr3nch13\Jira\Lib\JiraProject](../classes/Fr3nch13.Jira.Lib.JiraProject.md)
