@@ -39,6 +39,7 @@
         "pre-commit": [
             "@cs-check",
             "@test",
+            "@test-clover",
             "@phpdoc"
         ],
         "check": [
@@ -60,7 +61,7 @@
         "phpdoc-fix": "php vendor/fr3nch13/phpdoc-markdown/bin/fixHtmlToMd.php",
         "test": "vendor/bin/phpunit --colors=always",
         "test-coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-text",
-        "test-clover": "vendor/bin/phpunit --coverage-clover=coverage.xml"
+        "test-clover": "vendor/bin/phpunit --coverage-clover=tmp/coverage.xml"
     },
     "config": {
         "sort-packages": true
