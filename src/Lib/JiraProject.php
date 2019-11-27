@@ -460,7 +460,7 @@ class JiraProject
      * @throws IssueSubmissionException If submitting the issue fails.
      * @throws MissingAllowedTypeException If that issue type is not configured.
      * @throws MissingIssueFieldException If we're adding a new issue, and required fields aren't defined.
-     * @return bool If the request was successfully submitted.
+     * @return int|bool If the request was successfully submitted.
      */
     public function submitIssue($type, array $data = [])
     {
@@ -582,7 +582,7 @@ class JiraProject
         }
 
         if ($ret instanceof \JiraRestApi\Issue\Issue && $ret->id) {
-            return $ret->id;
+            return (int)$ret->id;
         }
 
         return true;
