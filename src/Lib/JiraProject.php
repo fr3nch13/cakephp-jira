@@ -10,6 +10,7 @@ use Fr3nch13\Jira\Exception\Exception;
 use Fr3nch13\Jira\Exception\IssueSubmissionException;
 use Fr3nch13\Jira\Exception\MissingAllowedTypeException;
 use Fr3nch13\Jira\Exception\MissingConfigException;
+use Fr3nch13\Jira\Exception\MissingIssueException;
 use Fr3nch13\Jira\Exception\MissingIssueFieldException;
 use Fr3nch13\Jira\Exception\MissingProjectException;
 use JiraRestApi\Configuration\ArrayConfiguration;
@@ -481,7 +482,14 @@ class JiraProject
         $typeInfo = $this->getAllowedTypes($type);
 
         // make sure we can get the project info first.
-        $project = $this->getInfo();
+        // getInfo will throw an exception if it can't find the project.
+        // putting a try/catch around it so scrutinizer stops complaining.
+        try {
+            $project = $this->getInfo();
+        } catch (MissingProjectException $e) {
+            $this->setError($this->projectKey, 'MissingProjectException');
+            throw $e;
+        }
 
         $issueField = new IssueField();
         $issueField->setProjectKey($this->projectKey)
