@@ -19,7 +19,6 @@ build:
                         coverage:
                             file: tmp/coverage.xml
                             format: clover
-        tests: true
     environment:
         php:
             version: "7.2"
