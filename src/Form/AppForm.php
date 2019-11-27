@@ -51,11 +51,12 @@ class AppForm extends Form
 
         $this->JiraProject = new JiraProject();
 
-        if ($this->settings) {
+        if (!empty($this->settings)) {
             $this->JiraProject->modifyAllowedTypes($this->issueType, $this->settings);
         }
 
-        $this->setFormData($this->getFormData($this->issueType));
+        $formData = $this->getFormData($this->issueType);
+        $this->setFormData($formData);
     }
 
     /**
@@ -113,6 +114,7 @@ class AppForm extends Form
     protected function _execute(array $data = [])
     {
         try {
+            /** @scrutinizer ignore-call */
             $result = $this->JiraProject->submitIssue($this->issueType, $data);
         } catch (Exception $e) {
             $errors = $this->JiraProject->getErrors();

@@ -41,7 +41,6 @@ class AppController extends BaseController
     {
         $errors = [];
         if ($this->getRequest()->is('post')) {
-            /** @scrutinizer ignore-call */
             if ($this->JiraForm->execute($this->getRequest()->getData())) {
                 $this->Flash->success(__('The {0} has been saved.', [$this->humanName]));
 
