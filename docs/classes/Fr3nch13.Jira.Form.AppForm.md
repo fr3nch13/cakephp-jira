@@ -37,13 +37,13 @@ Used to submit an issue to Jira.
 ---
 ## Properties
 <a name="property_issueType"></a>
-#### public $issueType : string|null
+#### public $issueType : null|string
 ---
 **Summary**
 
 The type of issue we're submitting.
 
-**Type:** string|null
+**Type:** null|string
 
 **Details:**
 
@@ -61,13 +61,13 @@ Settings for this form and for the JiraProject.
 
 
 <a name="property_JiraProject"></a>
-#### protected $JiraProject : \Fr3nch13\Jira\Lib\JiraProject|null
+#### protected $JiraProject : null|\Fr3nch13\Jira\Form\Fr3nch13\Jira\Lib\JiraProject
 ---
 **Summary**
 
 Contains the loaded Jira Project object.
 
-**Type:** <a href="../classes/Fr3nch13.Jira.Lib.JiraProject.html">\Fr3nch13\Jira\Lib\JiraProject</a>|null
+**Type:** null|\Fr3nch13\Jira\Form\Fr3nch13\Jira\Lib\JiraProject
 
 **Details:**
 

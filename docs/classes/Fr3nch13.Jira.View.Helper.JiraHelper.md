@@ -68,13 +68,13 @@ List of loaded helpers.
 
 
 <a name="property_JiraProject"></a>
-#### protected $JiraProject : \Fr3nch13\Jira\Lib\JiraProject|null
+#### protected $JiraProject : \Fr3nch13\Jira\View\Helper\Fr3nch13\Jira\Lib\JiraProject
 ---
 **Summary**
 
 Contains the loaded Jira Project object.
 
-**Type:** <a href="../classes/Fr3nch13.Jira.Lib.JiraProject.html">\Fr3nch13\Jira\Lib\JiraProject</a>|null
+**Type:** \Fr3nch13\Jira\View\Helper\Fr3nch13\Jira\Lib\JiraProject
 
 **Details:**
 

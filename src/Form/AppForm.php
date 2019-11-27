@@ -22,7 +22,7 @@ class AppForm extends Form
     /**
      * Contains the loaded Jira Project object.
      *
-     * @var null|Fr3nch13\Jira\Lib\JiraProject
+     * @var Fr3nch13\Jira\Lib\JiraProject
      */
     protected $JiraProject;
 
