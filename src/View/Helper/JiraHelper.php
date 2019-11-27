@@ -31,7 +31,7 @@ class JiraHelper extends Helper
     /**
      * Contains the loaded Jira Project object.
      *
-     * @var \Fr3nch13\Jira\Lib\JiraProject|null
+     * @var null|Fr3nch13\Jira\Lib\JiraProject
      */
     protected $JiraProject = null;
 
