@@ -9,10 +9,8 @@ use Fr3nch13\Jira\Lib\JiraProject;
 use JiraRestApi\Issue\Issue;
 use JiraRestApi\Issue\IssueField;
 use JiraRestApi\Issue\IssueSearchResult;
-use JiraRestApi\Issue\IssueService;
 use JiraRestApi\Issue\Version;
 use JiraRestApi\Project\Project;
-use JiraRestApi\Project\ProjectService;
 use Mockery;
 
 /**
@@ -97,13 +95,19 @@ trait JiraTestTrait
 
     /**
      * setUpJira method
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      *
      * @return void
      */
     public function setUpJira()
     {
-        $this->ProjectService = Mockery::mock('overload:JiraRestApi\Project\ProjectService');
-        $this->IssueService = Mockery::mock('overload:JiraRestApi\Issue\IssueService');
+        if ($this->ProjectService === null) {
+            $this->ProjectService = Mockery::mock('overload:JiraRestApi\Project\ProjectService');
+        }
+        if ($this->IssueService === null) {
+            $this->IssueService = Mockery::mock('overload:JiraRestApi\Issue\IssueService');
+        }
 
         $projectKey = 'TEST';
 
@@ -279,9 +283,11 @@ trait JiraTestTrait
         $this->Project = null;
         $this->issues = null;
         $this->Issue = null;
-        $this->Issue = null;
-        $this->Issue = null;
+        $this->IssueCreatedTest = null;
         $this->IssueSearchResult = null;
+        $this->IssueSearchResultBugs = null;
+        $this->IssueSearchResultFeatureRequests = null;
+        $this->IssueSearchResultOpen = null;
         $this->IssueService = null;
         $this->versions = null;
     }

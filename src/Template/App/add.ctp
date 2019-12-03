@@ -13,7 +13,7 @@
 
 $this->extend('/base');
 
-$title ?? __('Report');
+$title = isset($title) ? $title : __('Report');
 
 $this->assign('page-title', __('Submit a {0}', [$title]));
 $this->assign('page-subtitle', __(' '));

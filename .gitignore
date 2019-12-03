@@ -3,3 +3,7 @@
 !*.gitkeep
 docs/phpdoc-cache-*
 /tmp/coverage.xml
+/tests/test_app/logs/*
+!/tests/test_app/logs/*.gitkeep
+/tests/test_app/tmp/*
+!/tests/test_app/tmp/*.gitkeep

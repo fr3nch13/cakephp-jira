@@ -37,13 +37,13 @@ Used to submit an issue to Jira.
 ---
 ## Properties
 <a name="property_issueType"></a>
-#### public $issueType : null|string
+#### public $issueType : string
 ---
 **Summary**
 
 The type of issue we're submitting.
 
-**Type:** null|string
+**Type:** string
 
 **Details:**
 
@@ -214,4 +214,4 @@ Submit the issue to Jira.
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-27 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-12-03 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)

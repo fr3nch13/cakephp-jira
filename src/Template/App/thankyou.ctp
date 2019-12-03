@@ -8,7 +8,7 @@
 
 $this->extend('/base');
 
-$type ?? __('Report');
+$type = isset($type) ? $type : __('Report');
 
 $this->assign('page-title', __('Thank You!'));
 $this->assign('page-subtitle', __(' '));

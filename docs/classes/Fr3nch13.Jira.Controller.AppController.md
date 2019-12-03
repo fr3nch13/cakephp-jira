@@ -25,6 +25,7 @@ Inherited:
 * [public $JiraForm](../classes/Fr3nch13.Jira.Controller.AppController.md#property_JiraForm)
 ---
 ### Methods
+* [public initialize()](../classes/Fr3nch13.Jira.Controller.AppController.md#method_initialize)
 * [public add()](../classes/Fr3nch13.Jira.Controller.AppController.md#method_add)
 * [public thankyou()](../classes/Fr3nch13.Jira.Controller.AppController.md#method_thankyou)
 ---
@@ -63,6 +64,23 @@ The form object.
 
 ---
 ## Methods
+<a name="method_initialize" class="anchor"></a>
+#### public initialize() : void
+
+```
+public initialize() : void
+```
+
+**Summary**
+
+Initialize method
+
+**Details:**
+* Inherited From: [\Fr3nch13\Jira\Controller\AppController](../classes/Fr3nch13.Jira.Controller.AppController.md)
+
+**Returns:** void
+
+
 <a name="method_add" class="anchor"></a>
 #### public add() : void&amp;#124;\Cake\Http\Response&amp;#124;null
 
@@ -113,4 +131,4 @@ The thank you page after they've submitted their report.
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-27 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-12-03 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
