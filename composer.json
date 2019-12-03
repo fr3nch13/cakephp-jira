@@ -39,8 +39,7 @@
     "scripts": {
         "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
         "pre-commit": [
-            "@cs-check",
-            "@test",
+            "@check",
             "@test-clover",
             "@phpdoc"
         ],
