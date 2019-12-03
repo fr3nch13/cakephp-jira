@@ -15,12 +15,12 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "7.*",
-        "cakephp/cakephp": "3.*",
+        "php": "^7.2",
         "lesstif/php-jira-rest-client": "1.*"
     },
     "require-dev": {
-        "fr3nch13/cakephp-pta": "^1.0.3"
+        "cakephp/cakephp": "^3.8",
+        "fr3nch13/cakephp-pta": "^1.1"
     },
     "autoload": {
         "psr-4": {
@@ -29,9 +29,11 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "App\\": "tests/test_app/src",
+            "PtaApp\\": "vendor/fr3nch13/cakephp-pta/tests/test_app/src",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests",
             "Fr3nch13\\Jira\\Test\\": "tests/",
-            "Fr3nch13\\Jira\\Test\\Fixture\\": "tests/Fixture/",
-            "App\\": "vendor/cakephp/app/src/"
+            "Fr3nch13\\Jira\\Test\\Fixture\\": "tests/Fixture/"
         }
     },
     "scripts": {

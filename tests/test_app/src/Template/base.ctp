@@ -1,5 +1,5 @@
 <?php
-$this->extend('/Content/base');
+//$this->extend('/Content/base');
 
 if (!$this->fetch('page-title')) {
     $this->assign('page-title', __('Base'));

@@ -55,32 +55,6 @@ class Plugin extends BasePlugin
     }
 
     /**
-     * Add plugin specific commands here.
-     *
-     * @param object $commands The passed commands object.
-     * @return object The modified commands object.
-     */
-    public function console($commands)
-    {
-        // Add console commands here.
-
-        return parent::console($commands);
-    }
-
-    /**
-     * Load needed Middleware
-     *
-     * @param object $middleware The passed middleware object.
-     * @return object The modified middleware object.
-     */
-    public function middleware($middleware)
-    {
-        // Add middleware here.
-
-        return parent::middleware($middleware);
-    }
-
-    /**
      * Add plugin specific routes here.
      *
      * @param object $routes The passed routes object.

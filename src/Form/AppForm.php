@@ -28,9 +28,9 @@ class AppForm extends Form
 
     /**
      * The type of issue we're submitting.
-     * @var null|string
+     * @var string
      */
-    public $issueType = null;
+    public $issueType = 'Task';
 
     /**
      * Settings for this form and for the JiraProject.

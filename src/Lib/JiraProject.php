@@ -92,6 +92,23 @@ class JiraProject
      * @var array
      */
     protected $allowedTypes = [
+        'Task' => [
+            'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
+            'jiraLabels' => 'task-submitted', // The label used to tag user submitted bugs.
+            // The form's field information.
+            'formData' => [
+                'fields' => [
+                    'summary' => [
+                        'type' => 'text',
+                        'required' => true,
+                    ],
+                    'details' => [
+                        'type' => 'textarea',
+                        'required' => true,
+                    ]
+                ]
+            ]
+        ],
         'Bug' => [
             'jiraType' => 'Bug', // Must be one of the types in the $this->validTypes.
             'jiraLabels' => 'bug-submitted', // The label used to tag user submitted bugs.

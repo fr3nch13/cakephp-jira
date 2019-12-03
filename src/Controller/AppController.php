@@ -7,6 +7,7 @@
 namespace Fr3nch13\Jira\Controller;
 
 use App\Controller\AppController as BaseController;
+use Fr3nch13\Jira\Form\AppForm as JiraForm;
 
 /**
  * App Controller
@@ -31,6 +32,19 @@ class AppController extends BaseController
      * @var object|null
      */
     public $JiraForm = null;
+
+    /**
+     * Initialize method
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->humanName = __('Task');
+        $this->JiraForm = new JiraForm();
+    }
 
     /**
      * The html form.

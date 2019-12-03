@@ -15,8 +15,6 @@ Plugin Definitions
 ---
 ### Methods
 * [public bootstrap()](../classes/Fr3nch13.Jira.Plugin.md#method_bootstrap)
-* [public console()](../classes/Fr3nch13.Jira.Plugin.md#method_console)
-* [public middleware()](../classes/Fr3nch13.Jira.Plugin.md#method_middleware)
 * [public routes()](../classes/Fr3nch13.Jira.Plugin.md#method_routes)
 ---
 ### Details
@@ -47,48 +45,6 @@ Bootstraping for this specific plugin.
 | <code>\Cake\Core\PluginApplicationInterface</code> | $app  | The app object. |
 
 **Returns:** void
-
-
-<a name="method_console" class="anchor"></a>
-#### public console() : object
-
-```
-public console(object  $commands) : object
-```
-
-**Summary**
-
-Add plugin specific commands here.
-
-**Details:**
-* Inherited From: [\Fr3nch13\Jira\Plugin](../classes/Fr3nch13.Jira.Plugin.md)
-##### Parameters:
-| Type | Name | Description |
-| ---- | ---- | ----------- |
-| <code>object</code> | $commands  | The passed commands object. |
-
-**Returns:** object - The modified commands object.
-
-
-<a name="method_middleware" class="anchor"></a>
-#### public middleware() : object
-
-```
-public middleware(object  $middleware) : object
-```
-
-**Summary**
-
-Load needed Middleware
-
-**Details:**
-* Inherited From: [\Fr3nch13\Jira\Plugin](../classes/Fr3nch13.Jira.Plugin.md)
-##### Parameters:
-| Type | Name | Description |
-| ---- | ---- | ----------- |
-| <code>object</code> | $middleware  | The passed middleware object. |
-
-**Returns:** object - The modified middleware object.
 
 
 <a name="method_routes" class="anchor"></a>
@@ -128,4 +84,4 @@ Add plugin specific routes here.
 
 ---
 
-This document was automatically generated from source code comments on 2019-11-27 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
+This document was automatically generated from source code comments on 2019-12-03 using [phpDocumentor](http://www.phpdoc.org/) and [fr3nch13/phpdoc-markdown](https://github.com/fr3nch13/phpdoc-markdown)
