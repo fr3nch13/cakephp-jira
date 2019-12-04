@@ -19,7 +19,7 @@
         "lesstif/php-jira-rest-client": "1.*"
     },
     "require-dev": {
-        "cakephp/cakephp": "^3.8.6",
+        "cakephp/cakephp": "^3.8",
         "fr3nch13/cakephp-pta": "^1.1.0"
     },
     "autoload": {

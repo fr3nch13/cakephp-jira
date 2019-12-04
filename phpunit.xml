@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
     colors="true"
-    processIsolation="false"
+    processIsolation="true"
     stopOnFailure="false"
     syntaxCheck="false"
     bootstrap="./tests/bootstrap.php"
@@ -13,7 +13,7 @@
 
     <!-- Add any additional test suites you want to run here -->
     <testsuites>
-        <testsuite name="Jira">
+        <testsuite name="Fr3nch13\Jira">
             <directory>./tests/TestCase/</directory>
         </testsuite>
     </testsuites>
