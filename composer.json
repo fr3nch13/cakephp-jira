@@ -16,7 +16,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.2",
-        "lesstif/php-jira-rest-client": "1.*"
+        "lesstif/php-jira-rest-client": "^1.41"
     },
     "require-dev": {
         "cakephp/cakephp": "^3.8",
