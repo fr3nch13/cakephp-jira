@@ -40,8 +40,11 @@
         "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
         "pre-commit": [
             "@check",
-            "@test-clover",
+            "@coverage-clover",
             "@phpdoc"
+        ],
+        "ci": [
+            "@check"
         ],
         "check": [
             "@cs-check",
@@ -61,8 +64,9 @@
         "phpdoc-run": "vendor/bin/phpdoc --sourcecode -v",
         "phpdoc-fix": "php vendor/fr3nch13/phpdoc-markdown/bin/fixHtmlToMd.php",
         "test": "vendor/bin/phpunit --colors=always",
-        "test-coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-text",
-        "test-clover": "vendor/bin/phpunit --coverage-clover=tmp/coverage.xml"
+        "coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-text",
+        "coverage-clover": "vendor/bin/phpunit --coverage-clover=tmp/coverage.xml",
+        "coverage-text": "vendor/bin/phpunit --coverage-text --colors=never"
     },
     "config": {
         "sort-packages": true

@@ -29,9 +29,8 @@ install:
 
 script:
     - composer dumpautoload
-    - composer pre-commit
-    - if [[ $COVERAGE = 1 ]]; then composer test-coverage; fi
-    - if [[ $COVERAGE = 1 ]]; then composer test-clover; fi
+    - composer ci
+    - if [[ $COVERAGE = 1 ]]; then composer coverage-clover; fi
 
 after_success:
     - if [[ $COVERAGE = 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
