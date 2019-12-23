@@ -25,16 +25,12 @@ jobs:
 install:
     # disable xdebug for performance reasons when code coverage is not needed
     - if [[ $COVERAGE = 0 ]]; then phpenv config-rm xdebug.ini || echo "xdebug is not installed"; fi
-    - composer install
+    - composer install -vv
 
 script:
     - composer dumpautoload
-    - composer pre-commit
-    - if [[ $COVERAGE = 1 ]]; then composer test-coverage; fi
-    - if [[ $COVERAGE = 1 ]]; then composer test-clover; fi
-    - composer update
-    - composer dumpautoload
-    - composer pre-commit
+    - composer ci
+    - if [[ $COVERAGE = 1 ]]; then composer coverage-clover; fi
 
 after_success:
     - if [[ $COVERAGE = 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
