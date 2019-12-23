@@ -105,9 +105,9 @@ class JiraProject
                     'details' => [
                         'type' => 'textarea',
                         'required' => true,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ],
         'Bug' => [
             'jiraType' => 'Bug', // Must be one of the types in the $this->validTypes.
@@ -122,9 +122,9 @@ class JiraProject
                     'details' => [
                         'type' => 'textarea',
                         'required' => true,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ],
         'FeatureRequest' => [
             'jiraType' => 'Story', // Must be one of the types in the $this->validTypes.
@@ -139,10 +139,10 @@ class JiraProject
                     'details' => [
                         'type' => 'textarea',
                         'required' => true,
-                    ]
-                ]
-            ]
-        ]
+                    ],
+                ],
+            ],
+        ],
     ];
 
     /**

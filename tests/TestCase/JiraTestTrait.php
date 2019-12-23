@@ -121,7 +121,7 @@ trait JiraTestTrait
             ->setLead([
                 'key' => 'testusername',
                 'name' => 'Test User',
-                'displayName' => 'Test User'
+                'displayName' => 'Test User',
             ])
             ->setUrl('https://jira.example.com');
 

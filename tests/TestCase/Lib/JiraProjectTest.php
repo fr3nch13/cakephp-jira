@@ -194,9 +194,9 @@ class JiraProjectTest extends TestCase
                     'summary' => [
                         'type' => 'text',
                         'required' => true,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
 
         $types = $this->JiraProject->getAllowedTypes();
@@ -227,9 +227,9 @@ class JiraProjectTest extends TestCase
                     'summary' => [
                         'type' => 'text',
                         'required' => true,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
 
         $result = isset($this->JiraProject->allowedTypes['Test']) ? true : false;
@@ -258,9 +258,9 @@ class JiraProjectTest extends TestCase
                     'summary' => [
                         'type' => 'text',
                         'required' => true,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
 
         $data = $this->JiraProject->getFormData('Test');
@@ -298,15 +298,15 @@ class JiraProjectTest extends TestCase
                     'description' => [
                         'type' => 'textarea',
                         'required' => true,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
 
         // emulate submitted form data
         $data = [
             'summary' => 'Summary for TEST-7',
-            'description' => 'Description for TEST-7'
+            'description' => 'Description for TEST-7',
         ];
 
         $result = $this->JiraProject->submitIssue('Test', $data);
