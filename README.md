@@ -163,6 +163,18 @@ In case you want to see how I'm creating the link to the pages, see the [`src/Te
 
 If you want to overwrite the plugin templates, do so like you're supposed according to the [CakePHP Documentation](https://book.cakephp.org/3/en/plugins.html#overriding-plugin-templates-from-inside-your-application).
 
+## Contributing
+
+Rules are simple:
+
+- New feature needs tests.
+- All tests must pass.
+    ```bash
+    composer pre-commit
+    ```
+- 1 feature per PR
+
+We would be happy to merge your feature then.
 
 ## Notes
 - I've inlcuded the composer.lock file, and if you're forking/pull requesting, you should use it/update it as well. This way our environment is as close as possible. This helps in debugging/replicating an issue.
