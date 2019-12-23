@@ -43,11 +43,11 @@ class TestForm extends AppForm
                     // this is really the only required field.
                     'summary' => [
                         'type' => 'string',
-                        'required' => true
-                    ]
+                        'required' => true,
+                    ],
                     // add more fields here, like description, etc.
-                ]
-            ]
+                ],
+            ],
         ];
 
         parent::__construct($eventManager);

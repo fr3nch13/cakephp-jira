@@ -71,7 +71,7 @@ class AppController extends BaseController
 
         $this->set([
             'form' => $this->JiraForm,
-            'errors' => $errors
+            'errors' => $errors,
         ]);
     }
 

@@ -80,8 +80,8 @@ class PluginTest extends TestCase
         $app->pluginRoutes($routeBuilder);
         $plugins = $app->getPlugins();
 
-        $url = Router::url(['plugin' => 'Fr3nch13/Jira']);
+        $url = Router::url(['plugin' => 'Fr3nch13/Jira', 'controller' => 'Bugs']);
 
-        $this->assertEquals($url, '/jira');
+        $this->assertEquals($url, '/jira/bugs');
     }
 }

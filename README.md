@@ -162,3 +162,7 @@ In my particular instance, I have the links as part of a dropdown menu in my app
 In case you want to see how I'm creating the link to the pages, see the [`src/Template/Element/nav-links.ctp`](blob/master/src/Template/Element/nav-links.ctp) file.
 
 If you want to overwrite the plugin templates, do so like you're supposed according to the [CakePHP Documentation](https://book.cakephp.org/3/en/plugins.html#overriding-plugin-templates-from-inside-your-application).
+
+
+## Notes
+- I've inlcuded the composer.lock file, and if you're forking/pull requesting, you should use it/update it as well. This way our environment is as close as possible. This helps in debugging/replicating an issue.
