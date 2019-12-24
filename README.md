@@ -10,14 +10,9 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/?branch=master)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
-This is a CakePHP 3.x plugin to interact with your Jira Server.
-
-Note: As of the initial version of this plugin, it is read-only,
-and only supports pulling in info from a single project, it's versions, and all of it's issues.
+This is a CakePHP 4.x plugin to interact with your Jira Server.
 
 This makes heavy use of [lesstif/php-jira-rest-client's](https://github.com/lesstif/php-jira-rest-client) project as essentially a CakePHP specific wrapper around that project.
-
-Yes, I know there aren't any unit tests yet. If people other than me start using it, I'll add unit tests... Unless you want to (I would be using phpunit like how CakePHP does it).
 
 ## Installation
 
@@ -34,7 +29,7 @@ Or add the below to your composer.json file:
 ```
 {
     "require": {
-        "fr3nch13/cakephp-jira": "1.*"
+        "fr3nch13/cakephp-jira": "^2.0"
     }
 }
 ```
@@ -141,17 +136,15 @@ If you're not using `dotenv`, then put this in your `config/app.php` file:
 
 The primary entry point is the Jira Helper.
 
-To view the API for the JiraHelper see [The JiraHelper API](blob/master/docs/classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
-
-I have also added the ability to send send Issues to your Jira server.
+I have also added the ability to send Issues to your Jira server.
 
 The 2 default/preconfigured Issues are Bugs and Feature Requests, but you can configure your own as well.
 
 To create your own Issue setup, see these as examples:
 - [`Fr3nch\Jira\Controller\TestsController`](blob/master/src/Controller/TestsController.php)
 - [`Fr3nch\Jira\Form\TestForm`](blob/master/src/Form/TestForm.php) <-- How you define another Issue type. see the `__construct()` method.
-- [`Template/Tests/add.ctp`](blob/master/src/Template/Tests/add.ctp)
-- [`Template/Tests/thankyou.ctp`](blob/master/src/Template/Tests/thankyou.ctp)
+- [`templates/Tests/add.php`](blob/master/templates/Tests/add.php)
+- [`templates/Tests/thankyou.php`](blob/master/templates/Tests/thankyou.php)
 
 In my particular instance, I have the links as part of a dropdown menu in my apps' header. My apps use the AdmilLte/bootstrap template/frontend, so if you want, you can include the element existing here like so:
 ```php
@@ -159,9 +152,15 @@ In my particular instance, I have the links as part of a dropdown menu in my app
 <?= $this->element('Fr3nch13/Jira.nav-links') ?>
 <?php endif; //Plugin::isLoaded('Fr3nch13/Jira') ?>
 ```
-In case you want to see how I'm creating the link to the pages, see the [`src/Template/Element/nav-links.ctp`](blob/master/src/Template/Element/nav-links.ctp) file.
+In case you want to see how I'm creating the link to the pages, see the [`templates/element/nav-links.php`](blob/master/templates/element/nav-links.php) file.
 
-If you want to overwrite the plugin templates, do so like you're supposed according to the [CakePHP Documentation](https://book.cakephp.org/3/en/plugins.html#overriding-plugin-templates-from-inside-your-application).
+If you want to overwrite the plugin templates, do so like you're supposed according to the [CakePHP Documentation](https://book.cakephp.org/4/en/plugins.html#overriding-plugin-templates-from-inside-your-application).
+
+## Version compatibility
+
+The major versions are locked to the major versions of CakePHP.
+- Jira 1.x is locked to CakePHP ^3.8
+- Jira 2.x is locked to CakePHP ^4.0
 
 ## Contributing
 
@@ -170,7 +169,7 @@ Rules are simple:
 - New feature needs tests.
 - All tests must pass.
     ```bash
-    composer pre-commit
+    composer ci
     ```
 - 1 feature per PR
 
