@@ -163,6 +163,12 @@ In case you want to see how I'm creating the link to the pages, see the [`src/Te
 
 If you want to overwrite the plugin templates, do so like you're supposed according to the [CakePHP Documentation](https://book.cakephp.org/3/en/plugins.html#overriding-plugin-templates-from-inside-your-application).
 
+## Version compatibility
+
+The major versions are locked to the major versions of CakePHP.
+- Jira 1.x is locked to CakePHP ^3.8
+- Jira 2.x is locked to CakePHP ^4.0
+
 ## Contributing
 
 Rules are simple:
