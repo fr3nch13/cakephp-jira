@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * JiraHelper
@@ -6,7 +7,6 @@
 
 namespace Fr3nch13\Jira\View\Helper;
 
-use Cake\Core\Configure;
 use Cake\View\Helper;
 use Cake\View\View;
 use Fr3nch13\Jira\Lib\JiraProject;
@@ -65,9 +65,9 @@ class JiraHelper extends Helper
     /**
      * Gets a list of all versions within your project.
      *
-     * @return \ArrayObject|\JiraRestApi\Issue\Version[] A list of version objects.
+     * @return array A list of version objects.
      */
-    public function getVersions()
+    public function getVersions(): ?array
     {
         return $this->JiraProject->getVersions();
     }
@@ -77,7 +77,7 @@ class JiraHelper extends Helper
      *
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getIssues()
+    public function getIssues(): ?\JiraRestApi\Issue\IssueSearchResult
     {
         return $this->JiraProject->getIssues();
     }
@@ -87,7 +87,7 @@ class JiraHelper extends Helper
      *
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getOpenIssues()
+    public function getOpenIssues(): ?\JiraRestApi\Issue\IssueSearchResult
     {
         return $this->JiraProject->getOpenIssues();
     }
@@ -109,7 +109,7 @@ class JiraHelper extends Helper
      *
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getBugs()
+    public function getBugs(): ?\JiraRestApi\Issue\IssueSearchResult
     {
         return $this->JiraProject->getBugs();
     }
@@ -119,7 +119,7 @@ class JiraHelper extends Helper
      *
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getOpenBugs()
+    public function getOpenBugs(): ?\JiraRestApi\Issue\IssueSearchResult
     {
         return $this->JiraProject->getOpenBugs();
     }

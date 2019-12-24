@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Test suite bootstrap.
  *
@@ -7,7 +9,6 @@
  * installed as a dependency of an application.
  */
 
-//
 putenv('JIRA_SCHEMA=https');
 putenv('JIRA_HOST=jira.example.com');
 putenv('JIRA_USERNAME=testusername');

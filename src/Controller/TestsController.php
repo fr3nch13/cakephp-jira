@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * TestsController
@@ -6,7 +7,6 @@
 
 namespace Fr3nch13\Jira\Controller;
 
-use Fr3nch13\Jira\Controller\AppController;
 use Fr3nch13\Jira\Form\TestForm as JiraForm;
 
 /**
@@ -22,7 +22,7 @@ class TestsController extends AppController
      *
      * @return void
      */
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
 

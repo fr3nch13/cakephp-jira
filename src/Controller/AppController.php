@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * AppController
@@ -38,7 +39,7 @@ class AppController extends BaseController
      *
      * @return void
      */
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
 
@@ -49,9 +50,9 @@ class AppController extends BaseController
     /**
      * The html form.
      *
-     * @return void|\Cake\Http\Response|null Redirects on success.
+     * @return null|\Cake\Http\Response Redirects on success.
      */
-    public function add()
+    public function add(): ?\Cake\Http\Response
     {
         $errors = [];
         if ($this->getRequest()->is('post')) {
@@ -73,6 +74,8 @@ class AppController extends BaseController
             'form' => $this->JiraForm,
             'errors' => $errors,
         ]);
+
+        return null;
     }
 
     /**
@@ -80,8 +83,7 @@ class AppController extends BaseController
      *
      * @return void
      */
-    public function thankyou()
+    public function thankyou(): void
     {
-        //
     }
 }

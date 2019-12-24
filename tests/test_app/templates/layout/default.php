@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -13,7 +15,6 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,8 +22,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
+        <?= $this->fetch('page-title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
@@ -37,19 +37,20 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+                <h1><a href="#"><?= $this->fetch('page-title') ?></a></h1>
+                <h2><a href="#"><?= $this->fetch('page-subtitle') ?></a></h2>
             </li>
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+                <li><a target="_blank" href="https://book.cakephp.org/4.0/">Documentation</a></li>
+                <li><a target="_blank" href="https://api.cakephp.org/4.0/">API</a></li>
             </ul>
         </div>
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
-        <?= $this->fetch('content') ?>
+        <?= $this->fetch('page-content') ?>
     </div>
     <footer>
     </footer>

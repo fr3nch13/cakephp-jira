@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
+
 /**
  * JiraTestTrait
  */
 namespace Fr3nch13\Jira\Test\TestCase;
 
-use Cake\Core\Configure;
 use Fr3nch13\Jira\Lib\JiraProject;
 use JiraRestApi\Issue\Issue;
 use JiraRestApi\Issue\IssueField;
@@ -100,7 +101,7 @@ trait JiraTestTrait
      *
      * @return void
      */
-    public function setUpJira()
+    public function setUpJira(): void
     {
         if ($this->ProjectService === null) {
             $this->ProjectService = Mockery::mock('overload:JiraRestApi\Project\ProjectService');
@@ -276,7 +277,7 @@ trait JiraTestTrait
      *
      * @return void
      */
-    public function tearDownJira()
+    public function tearDownJira(): void
     {
         $this->JiraProject = null;
         $this->ProjectService = null;

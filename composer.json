@@ -19,8 +19,7 @@
         "lesstif/php-jira-rest-client": "^1.41"
     },
     "require-dev": {
-        "cakephp/cakephp": "^3.8",
-        "fr3nch13/cakephp-pta": "^1.1.0"
+        "fr3nch13/cakephp-pta": "2.0.2"
     },
     "autoload": {
         "psr-4": {
@@ -39,15 +38,16 @@
     "scripts": {
         "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
         "pre-commit": [
-            "@check",
-            "@coverage-clover",
-            "@phpdoc"
+            "@ci",
+            "echo 'PHP Documentation will be added here.'"
         ],
         "ci": [
-            "@check"
+            "@check",
+            "@coverage-text"
         ],
         "check": [
             "@cs-check",
+            "@phpstan",
             "@test"
         ],
         "fix": [
@@ -56,13 +56,7 @@
         ],
         "cs-check": "vendor/bin/phpcs --colors -p -s --extensions=ctp,php ./src ./tests",
         "cs-fix": "vendor/bin/phpcbf --colors --extensions=ctp,php ./src ./tests",
-        "phpdoc": [
-            "export COMPOSER_PROCESS_TIMEOUT=9000",
-            "@phpdoc-run",
-            "@phpdoc-fix"
-        ],
-        "phpdoc-run": "vendor/bin/phpdoc --sourcecode -v",
-        "phpdoc-fix": "php vendor/fr3nch13/phpdoc-markdown/bin/fixHtmlToMd.php",
+        "phpstan": "phpstan analyse src/ -c phpstan.neon --level=4 --no-progress -vvv",
         "test": "vendor/bin/phpunit --colors=always",
         "coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-text",
         "coverage-clover": "vendor/bin/phpunit --coverage-clover=tmp/coverage.xml",

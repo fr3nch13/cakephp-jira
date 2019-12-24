@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Plugin Definitions
  */
@@ -8,9 +10,9 @@ namespace Fr3nch13\Jira;
 use Cake\Core\BasePlugin;
 use Cake\Core\Configure;
 use Cake\Core\PluginApplicationInterface;
+use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
-use Cake\Routing\Route\DashedRoute;
 
 /**
  * Plugin Definitions
@@ -23,7 +25,7 @@ class Plugin extends BasePlugin
      * @param \Cake\Core\PluginApplicationInterface $app The app object.
      * @return void
      */
-    public function bootstrap(PluginApplicationInterface $app)
+    public function bootstrap(PluginApplicationInterface $app): void
     {
         // Add constants, load configuration defaults,
         // and initiate any required cakephp plugins.
@@ -55,10 +57,10 @@ class Plugin extends BasePlugin
     /**
      * Add plugin specific routes here.
      *
-     * @param object $routes The passed routes object.
+     * @param \Cake\Routing\RouteBuilder $routes The passed routes object.
      * @return void
      */
-    public function routes($routes)
+    public function routes(RouteBuilder $routes): void
     {
         // Add routes.
         Router::plugin(

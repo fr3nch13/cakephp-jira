@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * AppForm
  */
@@ -43,20 +45,19 @@ class AppForm extends Form
      *
      * @param \Cake\Event\EventManager|null $eventManager The event manager.
      *  Defaults to a new instance.
-     * @return void
      */
-    public function __construct(EventManager $eventManager = null)
+    public function __construct(?EventManager $eventManager = null)
     {
-        parent::__construct($eventManager);
-
+        if ($eventManager !== null) {
+            parent::__construct($eventManager);
+        }
         $this->JiraProject = new JiraProject();
 
         if (!empty($this->settings)) {
             $this->JiraProject->modifyAllowedTypes($this->issueType, $this->settings);
         }
 
-        /** @scrutinizer ignore-call */
-        $formData = $this->getFormData($this->issueType);
+        $formData = $this->getFormData();
         $this->setFormData($formData);
     }
 
@@ -66,7 +67,7 @@ class AppForm extends Form
      * @param \Cake\Form\Schema $schema The existing schema.
      * @return \Cake\Form\Schema The modified schema.
      */
-    protected function _buildSchema(Schema $schema)
+    protected function _buildSchema(Schema $schema): Schema
     {
         $data = $this->getFormData();
         if (!isset($data['fields'])) {
@@ -85,7 +86,7 @@ class AppForm extends Form
      * @param \Cake\Validation\Validator $validator The existing validator.
      * @return \Cake\Validation\Validator The modified validator.
      */
-    protected function _buildValidator(Validator $validator)
+    public function validationDefault(Validator $validator): Validator
     {
         $data = $this->getFormData();
         if (!isset($data['fields'])) {
@@ -101,6 +102,9 @@ class AppForm extends Form
             if ($v['type'] == 'boolean') {
                 $validator->boolean($k);
             }
+            if (isset($v['required']) && $v['required'] === true) {
+                $validator->requirePresence($k);
+            }
         }
 
         return $validator;
@@ -110,9 +114,9 @@ class AppForm extends Form
      * Submit the issue to Jira.
      *
      * @param array $data The array of post data from the form template.
-     * @return int|bool True is the issue was submitted or false if there was an problem.
+     * @return bool True is the issue was submitted or false if there was an problem.
      */
-    protected function _execute(array $data = [])
+    protected function _execute(array $data = []): bool
     {
         try {
             /** @scrutinizer ignore-call */
@@ -128,7 +132,11 @@ class AppForm extends Form
             return false;
         }
 
-        return $result;
+        if ($result > 0) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -137,7 +145,7 @@ class AppForm extends Form
      * @param array $data The array of data.
      * @return void
      */
-    public function setFormData(array $data = [])
+    public function setFormData(array $data = []): void
     {
         $this->JiraProject->setFormData($this->issueType, $data);
     }
@@ -147,7 +155,7 @@ class AppForm extends Form
      *
      * @return array The array of the current form data.
      */
-    public function getFormData()
+    public function getFormData(): array
     {
         return $this->JiraProject->getFormData($this->issueType);
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * PluginTest
@@ -7,10 +8,7 @@
 namespace Fr3nch13\Jira\Test\TestCase;
 
 use App\Application;
-use Cake\Console\CommandCollection;
 use Cake\Core\Configure;
-use Cake\Core\Plugin;
-use Cake\Http\MiddlewareQueue;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\RouteCollection;
 use Cake\Routing\Router;
@@ -32,7 +30,7 @@ class PluginTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -42,7 +40,7 @@ class PluginTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
     }
@@ -52,7 +50,7 @@ class PluginTest extends TestCase
      *
      * @return void
      */
-    public function testBootstrap()
+    public function testBootstrap(): void
     {
         $app = new Application(CONFIG);
         $app->bootstrap();
@@ -70,7 +68,7 @@ class PluginTest extends TestCase
      *
      * @return void
      */
-    public function testRoutes()
+    public function testRoutes(): void
     {
         $app = new Application(CONFIG);
         $app->bootstrap();
