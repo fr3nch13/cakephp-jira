@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * AppControllerTest
  */
+
 namespace Fr3nch\Jira\Test\TestCase\Controller;
 
 use App\Application;
@@ -15,8 +16,6 @@ use Fr3nch13\Jira\Test\TestCase\JiraTestTrait;
 
 /**
  * App Controller Test
- * @runTestsInSeparateProcesses
- * @preserveGlobalState disabled
  */
 class AppControllerTest extends TestCase
 {
