@@ -1,16 +1,14 @@
 <?php
+declare(strict_types=1);
 
 /**
  * JiraProjectTest
  */
 
-namespace Fr3nch13\Jira\Test\TestCase;
+namespace Fr3nch13\Jira\Test\TestCase\Lib;
 
 use App\Application;
-use Cake\Core\Configure;
-use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\TestSuite\TestCase;
-use Fr3nch13\Jira\Plugin;
 use Fr3nch13\Jira\Test\TestCase\JiraTestTrait;
 use JiraRestApi\Issue\Issue;
 use JiraRestApi\Project\Project;
@@ -35,7 +33,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -50,7 +48,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->tearDownJira();
 
@@ -62,7 +60,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function testGetInfo()
+    public function testGetInfo(): void
     {
         $info = $this->JiraProject->getInfo();
 
@@ -74,7 +72,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function testGetVersions()
+    public function testGetVersions(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -91,7 +89,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function testGetIssues()
+    public function testGetIssues(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -108,7 +106,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function testGetOpenIssues()
+    public function testGetOpenIssues(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -125,7 +123,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function testGetIssue()
+    public function testGetIssue(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -144,7 +142,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function testGetBugs()
+    public function testGetBugs(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -161,7 +159,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function testGetOpenBugs()
+    public function testGetOpenBugs(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -178,7 +176,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function testModifyAllowedTypes()
+    public function testModifyAllowedTypes(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -211,7 +209,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function testIsAllowedType()
+    public function testIsAllowedType(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -238,11 +236,47 @@ class JiraProjectTest extends TestCase
     }
 
     /**
+     * testGetVersions
+     *
+     * @return void
+     */
+    public function testSetFormData(): void
+    {
+        $this->JiraProject->modifyAllowedTypes('Test', [
+            'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
+            'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
+            // The form's field information.
+            'formData' => [
+                'fields' => [
+                    'summary' => [
+                        'type' => 'text',
+                        'required' => true,
+                    ],
+                ],
+            ],
+        ]);
+
+        $expected = [
+            'fields' => [
+                'summary' => [
+                    'type' => 'text',
+                    'required' => true,
+                ],
+            ],
+        ];
+
+        $this->JiraProject->setFormData('Test', $expected);
+        $data = $this->JiraProject->getFormData('Test');
+
+        $this->assertEquals($data, $expected);
+    }
+
+    /**
      * testGetFormData
      *
      * @return void
      */
-    public function testGetFormData()
+    public function testGetFormData(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -278,7 +312,7 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
-    public function testSubmitIssue()
+    public function testSubmitIssue(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');

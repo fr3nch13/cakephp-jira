@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * MissingIssueExceptionTest
  */
@@ -18,7 +20,7 @@ class MissingIssueExceptionTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -28,7 +30,7 @@ class MissingIssueExceptionTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
     }
@@ -38,7 +40,7 @@ class MissingIssueExceptionTest extends TestCase
      *
      * @return void
      */
-    public function testExceptionCode()
+    public function testExceptionCode(): void
     {
         try {
             throw new MissingIssueException('TEST');
@@ -52,7 +54,7 @@ class MissingIssueExceptionTest extends TestCase
      *
      * @return void
      */
-    public function testExceptionMessage()
+    public function testExceptionMessage(): void
     {
         try {
             throw new MissingIssueException('20');

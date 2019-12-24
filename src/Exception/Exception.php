@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Exception
  */
@@ -8,9 +10,9 @@ namespace Fr3nch13\Jira\Exception;
 use Cake\Core\Exception\Exception as BaseException;
 
 /**
- * Exception
+ * Issue Submission Exception
  *
- * General Exception scoped to this plugin.
+ * The generic Jira specific exception.
  */
 class Exception extends BaseException
 {

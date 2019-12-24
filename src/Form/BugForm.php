@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * BugForm
  */
@@ -6,9 +8,6 @@
 namespace Fr3nch13\Jira\Form;
 
 use Cake\Event\EventManager;
-use Fr3nch13\Jira\Exception\Exception;
-use Fr3nch13\Jira\Form\AppForm;
-use Fr3nch13\Jira\Lib\JiraProject;
 
 /**
  * Bug Form
@@ -24,7 +23,7 @@ class BugForm extends AppForm
      *  Defaults to a new instance.
      * @return void
      */
-    public function __construct(EventManager $eventManager = null)
+    public function __construct(?EventManager $eventManager = null)
     {
         $this->issueType = 'Bug';
 

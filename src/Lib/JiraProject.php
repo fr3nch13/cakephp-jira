@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * JiraProjectReader
  */
@@ -14,9 +16,11 @@ use Fr3nch13\Jira\Exception\MissingIssueException;
 use Fr3nch13\Jira\Exception\MissingIssueFieldException;
 use Fr3nch13\Jira\Exception\MissingProjectException;
 use JiraRestApi\Configuration\ArrayConfiguration;
+use JiraRestApi\Issue\Issue;
 use JiraRestApi\Issue\IssueField;
 use JiraRestApi\Issue\IssueService;
 use JiraRestApi\Issue\JqlQuery;
+use JiraRestApi\JiraException;
 use JiraRestApi\Project\ProjectService;
 
 /**
@@ -50,9 +54,9 @@ class JiraProject
 
     /**
      * The list of a Project's Versions.
-     * @var \ArrayObject|\JiraRestApi\Issue\Version[]
+     * @var array
      */
-    protected $Versions;
+    protected $Versions = [];
 
     /**
      * The project service object.
@@ -168,7 +172,7 @@ class JiraProject
         $this->ProjectService = new ProjectService($this->ConfigObj);
         try {
             $this->Project = $this->ProjectService->get($this->projectKey);
-        } catch (\JiraRestApi\JiraException $e) {
+        } catch (JiraException $e) {
             $this->setError($this->projectKey, 'MissingProjectException');
             throw new MissingProjectException($this->projectKey);
         }
@@ -184,7 +188,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\MissingConfigException When a config setting isn't set.
      * @return void
      */
-    public function configure()
+    public function configure(): void
     {
         $schema = Configure::read('Jira.schema');
         if (!$schema) {
@@ -226,7 +230,7 @@ class JiraProject
      * @return \JiraRestApi\Project\Project The information about the project.
      * @throws \Fr3nch13\Jira\Exception\MissingProjectException If the project can't be found.
      */
-    public function getInfo()
+    public function getInfo(): \JiraRestApi\Project\Project
     {
         return $this->Project;
     }
@@ -234,9 +238,9 @@ class JiraProject
     /**
      * Get the Project's Versions.
      *
-     * @return \ArrayObject|\JiraRestApi\Issue\Version[] A list of version objects.
+     * @return array A list of version objects.
      */
-    public function getVersions()
+    public function getVersions(): array
     {
         return $this->Versions;
     }
@@ -247,7 +251,7 @@ class JiraProject
      * @param string|null $type Filter the Issues by type.
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getIssues($type = null)
+    public function getIssues(?string $type = null): \JiraRestApi\Issue\IssueSearchResult
     {
         $cacheKey = 'all';
         if ($type) {
@@ -274,7 +278,7 @@ class JiraProject
      * @param string|null $type Filter the Issues by type.
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getOpenIssues($type = null)
+    public function getOpenIssues(?string $type = null): \JiraRestApi\Issue\IssueSearchResult
     {
         $cacheKey = 'open';
         if ($type) {
@@ -304,7 +308,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\Exception If the issue's id isn't given.
      * @throws \Fr3nch13\Jira\Exception\MissingIssueException If the project's issue can't be found.
      */
-    public function getIssue($id = null)
+    public function getIssue(?int $id = null): \JiraRestApi\Issue\Issue
     {
         if (!is_int($id)) {
             $this->setError(__('Missing the Issue\'s ID.'), 'Exception');
@@ -312,7 +316,8 @@ class JiraProject
         }
         $key = $this->projectKey . '-' . $id;
         if (!isset($this->issuesCache[$key])) {
-            if (!$this->issuesCache[$key] = $this->IssueService->get($key)) {
+            $this->issuesCache[$key] = $this->IssueService->get($key);
+            if (!$this->issuesCache[$key]) {
                 $this->setError($key, 'MissingIssueException');
                 throw new MissingIssueException($key);
             }
@@ -325,7 +330,7 @@ class JiraProject
      * Gets a list of issues that are considered bugs.
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getBugs()
+    public function getBugs(): \JiraRestApi\Issue\IssueSearchResult
     {
         return $this->getIssues('Bug');
     }
@@ -334,7 +339,7 @@ class JiraProject
      * Gets a list of open issues that are considered bugs.
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
-    public function getOpenBugs()
+    public function getOpenBugs(): \JiraRestApi\Issue\IssueSearchResult
     {
         return $this->getOpenIssues('Bug');
     }
@@ -350,7 +355,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If a type is given, and that type is not configured.
      * @return array the content of $this->allowedTypes.
      */
-    public function getAllowedTypes($type = null)
+    public function getAllowedTypes(?string $type = null): array
     {
         if ($type) {
             if (!isset($this->allowedTypes[$type])) {
@@ -372,7 +377,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\MissingIssueFieldException If we're adding a new issue type, and the summary field isn't defined.
      * @return void
      */
-    public function modifyAllowedTypes($type, $settings = [])
+    public function modifyAllowedTypes(string $type, array $settings = []): void
     {
         if (!isset($this->allowedTypes[$type])) {
             $this->allowedTypes[$type] = [];
@@ -403,9 +408,9 @@ class JiraProject
      * @param string $type The type to check.
      * @return bool if it's allowed or not.
      */
-    public function isAllowedType($type)
+    public function isAllowedType(string $type): bool
     {
-        return (isset($this->allowedTypes[$type]) ? true : false);
+        return isset($this->allowedTypes[$type]) ? true : false;
     }
 
     /**
@@ -416,7 +421,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\Exception If the form data for that type is missing.
      * @return array The array of data to fill in the form with.
      */
-    public function getFormData($type = null)
+    public function getFormData(?string $type = null): array
     {
         if (!$type) {
             $this->setError('[$type is not set]', 'MissingAllowedTypeException');
@@ -447,7 +452,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that type is not configured.
      * @return void
      */
-    public function setFormData($type, $data = [])
+    public function setFormData(string $type, array $data = []): void
     {
         if (!$type) {
             $this->setError('[$type is not set]', 'MissingAllowedTypeException');
@@ -471,9 +476,9 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\IssueSubmissionException If submitting the issue fails.
      * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that issue type is not configured.
      * @throws \Fr3nch13\Jira\Exception\MissingIssueFieldException If we're adding a new issue, and required fields aren't defined.
-     * @return int|bool If the request was successfully submitted.
+     * @return int > 0 If the request was successfully submitted.
      */
-    public function submitIssue($type, array $data = [])
+    public function submitIssue(string $type, array $data = []): int
     {
         if (!$type) {
             $this->setError('[$type is not set]', 'MissingAllowedTypeException');
@@ -496,7 +501,7 @@ class JiraProject
 
         try {
             $ret = $issueService->create($issueField);
-        } catch (\JiraRestApi\JiraException $e) {
+        } catch (JiraException $e) {
             //Sample return error with json in it.
             //Pasting here so I can mock this return message in the unit tests.
             //CURL HTTP Request Failed: Status Code : 400, URL:https://[hostname]/rest/api/2/issue
@@ -538,11 +543,11 @@ class JiraProject
             throw new IssueSubmissionException($msg);
         }
 
-        if ($ret instanceof \JiraRestApi\Issue\Issue && $ret->id) {
+        if ($ret instanceof Issue && $ret->id) {
             return (int)$ret->id;
         }
 
-        return true;
+        return 0;
     }
 
     /**
@@ -553,7 +558,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\MissingProjectException If submitting the issue fails.
      * @return \JiraRestApi\Issue\IssueField
      */
-    public function buildSubmittedIssue($type, $data = [])
+    public function buildSubmittedIssue(string $type, array $data = []): \JiraRestApi\Issue\IssueField
     {
         $typeInfo = $this->getAllowedTypes($type);
 
@@ -615,7 +620,7 @@ class JiraProject
      * @param string $key The key to use in the this->errors array.
      * @return bool If saved or not.
      */
-    public function setError($msg = '', $key = '')
+    public function setError(string $msg = '', string $key = ''): bool
     {
         if (!trim($msg)) {
             return false;
@@ -636,7 +641,7 @@ class JiraProject
      * @param string|null $key The key to the specific message to get.
      * @return array|string|false
      */
-    public function getErrors($key = null)
+    public function getErrors(?string $key = null)
     {
         if ($key) {
             if (isset($this->errors[$key])) {

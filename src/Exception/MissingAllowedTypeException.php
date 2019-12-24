@@ -1,11 +1,13 @@
 <?php
+declare(strict_types=1);
+
 /**
  * MissingAllowedTypeException
  */
 
 namespace Fr3nch13\Jira\Exception;
 
-use Fr3nch13\Jira\Exception\Exception as BaseException;
+use Cake\Core\Exception\Exception as BaseException;
 
 /**
  * Missing Allowed Type Exception

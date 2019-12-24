@@ -1,15 +1,14 @@
 <?php
+declare(strict_types=1);
+
 /**
  * JiraHelperTest
  */
 namespace Fr3nch13\Jira\Test\TestCase\View\Helper;
 
 use App\Application;
-use Cake\Core\Configure;
-use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
-use Fr3nch13\Jira\Plugin;
 use Fr3nch13\Jira\Test\TestCase\JiraTestTrait;
 use Fr3nch13\Jira\View\Helper\JiraHelper;
 use JiraRestApi\Issue\Issue;
@@ -41,7 +40,7 @@ class JiraHelperTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         if (!$this->incomplete) {
@@ -59,7 +58,7 @@ class JiraHelperTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->tearDownJira();
 
@@ -71,7 +70,7 @@ class JiraHelperTest extends TestCase
      *
      * @return void
      */
-    public function testGetInfo()
+    public function testGetInfo(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -88,7 +87,7 @@ class JiraHelperTest extends TestCase
      *
      * @return void
      */
-    public function testGetVersions()
+    public function testGetVersions(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -105,7 +104,7 @@ class JiraHelperTest extends TestCase
      *
      * @return void
      */
-    public function testGetIssues()
+    public function testGetIssues(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -122,7 +121,7 @@ class JiraHelperTest extends TestCase
      *
      * @return void
      */
-    public function testGetOpenIssues()
+    public function testGetOpenIssues(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -139,7 +138,7 @@ class JiraHelperTest extends TestCase
      *
      * @return void
      */
-    public function testGetIssue()
+    public function testGetIssue(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -158,7 +157,7 @@ class JiraHelperTest extends TestCase
      *
      * @return void
      */
-    public function testGetBugs()
+    public function testGetBugs(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
@@ -175,7 +174,7 @@ class JiraHelperTest extends TestCase
      *
      * @return void
      */
-    public function testGetOpenBugs()
+    public function testGetOpenBugs(): void
     {
         if ($this->incomplete) {
             $this->markTestIncomplete('Not implemented yet.');
