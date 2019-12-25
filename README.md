@@ -1,23 +1,18 @@
 # CakePHP Jira Plugin
 
-[![Build Status](https://travis-ci.com/fr3nch13/cakephp-jira.svg?branch=master)](https://travis-ci.com/fr3nch13/cakephp-jira)
+[![Build Status](https://travis-ci.com/fr3nch13/cakephp-jira.svg?branch=1.x)](https://travis-ci.com/fr3nch13/cakephp-jira)
 [![Total Downloads](https://img.shields.io/packagist/dt/fr3nch13/cakephp-jira.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-jira)
 [![Latest Stable Version](https://img.shields.io/packagist/v/fr3nch13/cakephp-jira.svg?style=flat-square)](https://packagist.org/packages/fr3nch13/cakephp-jira)
 [![Coverage Status](https://img.shields.io/codecov/c/github/fr3nch13/cakephp-jira.svg?style=flat-square)](https://codecov.io/github/fr3nch13/cakephp-jira)
 
-[![Build Status](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/build.png?b=master)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/build-status/master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/?branch=master)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+[![Build Status](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/build.png?b=1.x)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/build-status/1.x)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/quality-score.png?b=1.x)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/?branch=1.x)
+[![Code Coverage](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/coverage.png?b=1.x)](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/?branch=1.x)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/fr3nch13/cakephp-jira/badges/code-intelligence.svg?b=1.x)](https://scrutinizer-ci.com/code-intelligence)
 
 This is a CakePHP 3.x plugin to interact with your Jira Server.
 
-Note: As of the initial version of this plugin, it is read-only,
-and only supports pulling in info from a single project, it's versions, and all of it's issues.
-
 This makes heavy use of [lesstif/php-jira-rest-client's](https://github.com/lesstif/php-jira-rest-client) project as essentially a CakePHP specific wrapper around that project.
-
-Yes, I know there aren't any unit tests yet. If people other than me start using it, I'll add unit tests... Unless you want to (I would be using phpunit like how CakePHP does it).
 
 ## Installation
 
@@ -141,17 +136,15 @@ If you're not using `dotenv`, then put this in your `config/app.php` file:
 
 The primary entry point is the Jira Helper.
 
-To view the API for the JiraHelper see [The JiraHelper API](blob/master/docs/classes/Fr3nch13.Jira.View.Helper.JiraHelper.md)
-
-I have also added the ability to send send Issues to your Jira server.
+I have also added the ability to send Issues to your Jira server.
 
 The 2 default/preconfigured Issues are Bugs and Feature Requests, but you can configure your own as well.
 
 To create your own Issue setup, see these as examples:
-- [`Fr3nch\Jira\Controller\TestsController`](blob/master/src/Controller/TestsController.php)
-- [`Fr3nch\Jira\Form\TestForm`](blob/master/src/Form/TestForm.php) <-- How you define another Issue type. see the `__construct()` method.
-- [`Template/Tests/add.ctp`](blob/master/src/Template/Tests/add.ctp)
-- [`Template/Tests/thankyou.ctp`](blob/master/src/Template/Tests/thankyou.ctp)
+- [`Fr3nch\Jira\Controller\TestsController`](blob/1.x/src/Controller/TestsController.php)
+- [`Fr3nch\Jira\Form\TestForm`](blob/1.x/src/Form/TestForm.php) <-- How you define another Issue type. see the `__construct()` method.
+- [`Template/Tests/add.ctp`](blob/1.x/src/Template/Tests/add.ctp)
+- [`Template/Tests/thankyou.ctp`](blob/1.x/src/Template/Tests/thankyou.ctp)
 
 In my particular instance, I have the links as part of a dropdown menu in my apps' header. My apps use the AdmilLte/bootstrap template/frontend, so if you want, you can include the element existing here like so:
 ```php
@@ -159,7 +152,7 @@ In my particular instance, I have the links as part of a dropdown menu in my app
 <?= $this->element('Fr3nch13/Jira.nav-links') ?>
 <?php endif; //Plugin::isLoaded('Fr3nch13/Jira') ?>
 ```
-In case you want to see how I'm creating the link to the pages, see the [`src/Template/Element/nav-links.ctp`](blob/master/src/Template/Element/nav-links.ctp) file.
+In case you want to see how I'm creating the link to the pages, see the [`src/Template/Element/nav-links.ctp`](blob/1.x/src/Template/Element/nav-links.ctp) file.
 
 If you want to overwrite the plugin templates, do so like you're supposed according to the [CakePHP Documentation](https://book.cakephp.org/3/en/plugins.html#overriding-plugin-templates-from-inside-your-application).
 
@@ -176,7 +169,7 @@ Rules are simple:
 - New feature needs tests.
 - All tests must pass.
     ```bash
-    composer pre-commit
+    composer ci
     ```
 - 1 feature per PR
 

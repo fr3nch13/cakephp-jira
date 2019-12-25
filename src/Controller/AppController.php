@@ -7,6 +7,7 @@
 namespace Fr3nch13\Jira\Controller;
 
 use App\Controller\AppController as BaseController;
+use Cake\Http\Response;
 use Fr3nch13\Jira\Form\AppForm as JiraForm;
 
 /**
@@ -49,9 +50,9 @@ class AppController extends BaseController
     /**
      * The html form.
      *
-     * @return void|\Cake\Http\Response|null Redirects on success.
+     * @return \Cake\Http\Response|null Redirects on success.
      */
-    public function add()
+    public function add(): ?Response
     {
         $errors = [];
         if ($this->getRequest()->is('post')) {
@@ -73,6 +74,8 @@ class AppController extends BaseController
             'form' => $this->JiraForm,
             'errors' => $errors,
         ]);
+
+        return null;
     }
 
     /**

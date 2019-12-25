@@ -55,8 +55,7 @@ class AppForm extends Form
             $this->JiraProject->modifyAllowedTypes($this->issueType, $this->settings);
         }
 
-        /** @scrutinizer ignore-call */
-        $formData = $this->getFormData($this->issueType);
+        $formData = $this->getFormData();
         $this->setFormData($formData);
     }
 
