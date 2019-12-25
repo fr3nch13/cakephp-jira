@@ -50,7 +50,7 @@ class JiraProject
 
     /**
      * The list of a Project's Versions.
-     * @var \ArrayObject|\JiraRestApi\Issue\Version[]
+     * @var array
      */
     protected $Versions;
 
@@ -234,7 +234,7 @@ class JiraProject
     /**
      * Get the Project's Versions.
      *
-     * @return \ArrayObject|\JiraRestApi\Issue\Version[] A list of version objects.
+     * @return array A list of version objects.
      */
     public function getVersions()
     {
@@ -312,7 +312,8 @@ class JiraProject
         }
         $key = $this->projectKey . '-' . $id;
         if (!isset($this->issuesCache[$key])) {
-            if (!$this->issuesCache[$key] = $this->IssueService->get($key)) {
+            $this->issuesCache[$key] = $this->IssueService->get($key);
+            if (!$this->issuesCache[$key]) {
                 $this->setError($key, 'MissingIssueException');
                 throw new MissingIssueException($key);
             }
