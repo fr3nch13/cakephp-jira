@@ -39,9 +39,6 @@ class JiraProjectTest extends TestCase
     {
         parent::setUp();
 
-        $app = new Application(CONFIG);
-        $app->bootstrap();
-        $app->pluginBootstrap();
         $this->setUpJira();
     }
 
@@ -311,6 +308,6 @@ class JiraProjectTest extends TestCase
 
         $result = $this->JiraProject->submitIssue('Test', $data);
 
-        $this->assertEquals('7', $result);
+        $this->assertEquals(true, $result);
     }
 }

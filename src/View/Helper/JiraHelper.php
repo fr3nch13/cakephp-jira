@@ -55,7 +55,7 @@ class JiraHelper extends Helper
      * @return object Object containing the information about your project.
      * @throws \Fr3nch13\Jira\Exception\MissingProjectException If the project can't be found.
      */
-    public function getInfo()
+    public function getInfo(): object
     {
         $info = $this->JiraProject->getInfo();
 
@@ -67,7 +67,7 @@ class JiraHelper extends Helper
      *
      * @return array A list of version objects.
      */
-    public function getVersions()
+    public function getVersions(): array
     {
         return $this->JiraProject->getVersions();
     }
@@ -75,9 +75,9 @@ class JiraHelper extends Helper
     /**
      * Gets a list of all issues within your project.
      *
-     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
+     * @return \JiraRestApi\Issue\IssueSearchResult A list of issue objects.
      */
-    public function getIssues()
+    public function getIssues(): \JiraRestApi\Issue\IssueSearchResult
     {
         return $this->JiraProject->getIssues();
     }
@@ -85,9 +85,9 @@ class JiraHelper extends Helper
     /**
      * Gets a list of all open issues within your project.
      *
-     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
+     * @return \JiraRestApi\Issue\IssueSearchResult A list of issue objects.
      */
-    public function getOpenIssues()
+    public function getOpenIssues(): \JiraRestApi\Issue\IssueSearchResult
     {
         return $this->JiraProject->getOpenIssues();
     }
@@ -99,7 +99,7 @@ class JiraHelper extends Helper
      * @return object the object that has the info of that issue.
      * @throws \Fr3nch13\Jira\Exception\MissingIssueException If the project's issue can't be found.
      */
-    public function getIssue($id = null)
+    public function getIssue(int $id): object
     {
         return $this->JiraProject->getIssue($id);
     }
@@ -107,9 +107,9 @@ class JiraHelper extends Helper
     /**
      * Gets a list of all issues that are bugs within your project.
      *
-     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
+     * @return \JiraRestApi\Issue\IssueSearchResult A list of issue objects.
      */
-    public function getBugs()
+    public function getBugs(): \JiraRestApi\Issue\IssueSearchResult
     {
         return $this->JiraProject->getBugs();
     }
@@ -117,9 +117,9 @@ class JiraHelper extends Helper
     /**
      * Gets a list of all open issues that are bugs within your project.
      *
-     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
+     * @return \JiraRestApi\Issue\IssueSearchResult A list of issue objects.
      */
-    public function getOpenBugs()
+    public function getOpenBugs(): \JiraRestApi\Issue\IssueSearchResult
     {
         return $this->JiraProject->getOpenBugs();
     }

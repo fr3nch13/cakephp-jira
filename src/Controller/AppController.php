@@ -7,7 +7,6 @@
 namespace Fr3nch13\Jira\Controller;
 
 use App\Controller\AppController as BaseController;
-use Cake\Http\Response;
 use Fr3nch13\Jira\Form\AppForm as JiraForm;
 
 /**
@@ -19,6 +18,7 @@ use Fr3nch13\Jira\Form\AppForm as JiraForm;
  * Inherited:
  *
  * {@inheritdoc}
+ *
  */
 class AppController extends BaseController
 {
@@ -30,18 +30,20 @@ class AppController extends BaseController
 
     /**
      * The form object.
-     * @var object|null
+     * @var object
      */
-    public $JiraForm = null;
+    public $JiraForm;
 
     /**
      * Initialize method
      *
      * @return void
      */
-    public function initialize()
+    public function initialize(): void
     {
         parent::initialize();
+
+        $this->modelClass = false;
 
         $this->humanName = __('Task');
         $this->JiraForm = new JiraForm();
@@ -52,7 +54,7 @@ class AppController extends BaseController
      *
      * @return \Cake\Http\Response|null Redirects on success.
      */
-    public function add(): ?Response
+    public function add(): ?\Cake\Http\Response
     {
         $errors = [];
         if ($this->getRequest()->is('post')) {
@@ -83,7 +85,7 @@ class AppController extends BaseController
      *
      * @return void
      */
-    public function thankyou()
+    public function thankyou(): void
     {
         //
     }

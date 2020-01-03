@@ -4,6 +4,8 @@
  *
  * It is setup based on my projects that use a boostrap/admin lte them that I wrote.
  * You don't have to use it, and infact you'll get an error if you don't have a Template/base.ctp page.
+ *
+ * @var \App\View\AppView $this
  */
 
 $this->extend('/base');

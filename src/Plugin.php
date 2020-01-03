@@ -23,7 +23,7 @@ class Plugin extends BasePlugin
      * @param \Cake\Core\PluginApplicationInterface $app The app object.
      * @return void
      */
-    public function bootstrap(PluginApplicationInterface $app)
+    public function bootstrap(PluginApplicationInterface $app): void
     {
         // Add constants, load configuration defaults,
         // and initiate any required cakephp plugins.
@@ -58,7 +58,7 @@ class Plugin extends BasePlugin
      * @param object $routes The passed routes object.
      * @return void
      */
-    public function routes($routes)
+    public function routes($routes): void
     {
         // Add routes.
         Router::plugin(

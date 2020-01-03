@@ -42,8 +42,6 @@ class AppForm extends Form
      * Constructor
      *
      * @param \Cake\Event\EventManager|null $eventManager The event manager.
-     *  Defaults to a new instance.
-     * @return void
      */
     public function __construct(EventManager $eventManager = null)
     {
@@ -65,7 +63,7 @@ class AppForm extends Form
      * @param \Cake\Form\Schema $schema The existing schema.
      * @return \Cake\Form\Schema The modified schema.
      */
-    protected function _buildSchema(Schema $schema)
+    protected function _buildSchema(Schema $schema): Schema
     {
         $data = $this->getFormData();
         if (!isset($data['fields'])) {
@@ -84,7 +82,7 @@ class AppForm extends Form
      * @param \Cake\Validation\Validator $validator The existing validator.
      * @return \Cake\Validation\Validator The modified validator.
      */
-    protected function _buildValidator(Validator $validator)
+    protected function _buildValidator(Validator $validator): Validator
     {
         $data = $this->getFormData();
         if (!isset($data['fields'])) {
@@ -109,15 +107,13 @@ class AppForm extends Form
      * Submit the issue to Jira.
      *
      * @param array $data The array of post data from the form template.
-     * @return int|bool True is the issue was submitted or false if there was an problem.
+     * @return bool True is the issue was submitted or false if there was an problem.
      */
-    protected function _execute(array $data = [])
+    protected function _execute(array $data = []): bool
     {
         try {
-            /** @scrutinizer ignore-call */
             $result = $this->JiraProject->submitIssue($this->issueType, $data);
         } catch (Exception $e) {
-            /** @scrutinizer ignore-call */
             $errors = $this->JiraProject->getErrors();
             foreach ($errors as $k => $v) {
                 // track the errors specific to jira/the JiraProject object.
@@ -136,7 +132,7 @@ class AppForm extends Form
      * @param array $data The array of data.
      * @return void
      */
-    public function setFormData(array $data = [])
+    public function setFormData(array $data = []): void
     {
         $this->JiraProject->setFormData($this->issueType, $data);
     }
@@ -146,7 +142,7 @@ class AppForm extends Form
      *
      * @return array The array of the current form data.
      */
-    public function getFormData()
+    public function getFormData(): array
     {
         return $this->JiraProject->getFormData($this->issueType);
     }

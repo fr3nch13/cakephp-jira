@@ -299,17 +299,13 @@ class JiraProject
     /**
      * Gets info on a particular issue within your project.
      *
-     * @param int|null $id The issue id. The integer part without the project key.
+     * @param int $id The issue id. The integer part without the project key.
      * @return \JiraRestApi\Issue\Issue|\JiraRestApi\Issue\IssueV3 the object that has the info of that issue.
      * @throws \Fr3nch13\Jira\Exception\Exception If the issue's id isn't given.
      * @throws \Fr3nch13\Jira\Exception\MissingIssueException If the project's issue can't be found.
      */
-    public function getIssue($id = null)
+    public function getIssue(int $id): \JiraRestApi\Issue\Issue
     {
-        if (!is_int($id)) {
-            $this->setError(__('Missing the Issue\'s ID.'), 'Exception');
-            throw new Exception(__('Missing the Issue\'s ID.'));
-        }
         $key = $this->projectKey . '-' . $id;
         if (!isset($this->issuesCache[$key])) {
             $this->issuesCache[$key] = $this->IssueService->get($key);
@@ -324,18 +320,18 @@ class JiraProject
 
     /**
      * Gets a list of issues that are considered bugs.
-     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
+     * @return \JiraRestApi\Issue\IssueSearchResult A list of issue objects.
      */
-    public function getBugs()
+    public function getBugs(): \JiraRestApi\Issue\IssueSearchResult
     {
         return $this->getIssues('Bug');
     }
 
     /**
      * Gets a list of open issues that are considered bugs.
-     * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
+     * @return \JiraRestApi\Issue\IssueSearchResult A list of issue objects.
      */
-    public function getOpenBugs()
+    public function getOpenBugs(): \JiraRestApi\Issue\IssueSearchResult
     {
         return $this->getOpenIssues('Bug');
     }
@@ -351,7 +347,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If a type is given, and that type is not configured.
      * @return array the content of $this->allowedTypes.
      */
-    public function getAllowedTypes($type = null)
+    public function getAllowedTypes(?string $type = null): array
     {
         if ($type) {
             if (!isset($this->allowedTypes[$type])) {
@@ -373,7 +369,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\MissingIssueFieldException If we're adding a new issue type, and the summary field isn't defined.
      * @return void
      */
-    public function modifyAllowedTypes($type, $settings = [])
+    public function modifyAllowedTypes(string $type, array $settings = []): void
     {
         if (!isset($this->allowedTypes[$type])) {
             $this->allowedTypes[$type] = [];
@@ -404,7 +400,7 @@ class JiraProject
      * @param string $type The type to check.
      * @return bool if it's allowed or not.
      */
-    public function isAllowedType($type)
+    public function isAllowedType(string $type): bool
     {
         return (isset($this->allowedTypes[$type]) ? true : false);
     }
@@ -417,7 +413,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\Exception If the form data for that type is missing.
      * @return array The array of data to fill in the form with.
      */
-    public function getFormData($type = null)
+    public function getFormData(?string $type = null): array
     {
         if (!$type) {
             $this->setError('[$type is not set]', 'MissingAllowedTypeException');
@@ -448,7 +444,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that type is not configured.
      * @return void
      */
-    public function setFormData($type, $data = [])
+    public function setFormData(string $type, array $data = []): void
     {
         if (!$type) {
             $this->setError('[$type is not set]', 'MissingAllowedTypeException');
@@ -472,15 +468,10 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\IssueSubmissionException If submitting the issue fails.
      * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that issue type is not configured.
      * @throws \Fr3nch13\Jira\Exception\MissingIssueFieldException If we're adding a new issue, and required fields aren't defined.
-     * @return int|bool If the request was successfully submitted.
+     * @return bool If the request was successfully submitted.
      */
-    public function submitIssue($type, array $data = [])
+    public function submitIssue(string $type, array $data = []): bool
     {
-        if (!$type) {
-            $this->setError('[$type is not set]', 'MissingAllowedTypeException');
-            throw new MissingAllowedTypeException('[$type is not set]');
-        }
-
         if (!$this->isAllowedType($type)) {
             $this->setError($type, 'MissingAllowedTypeException');
             throw new MissingAllowedTypeException($type);
@@ -539,11 +530,11 @@ class JiraProject
             throw new IssueSubmissionException($msg);
         }
 
-        if ($ret instanceof \JiraRestApi\Issue\Issue && $ret->id) {
-            return (int)$ret->id;
+        if ($ret instanceof \JiraRestApi\Issue\Issue && (int)$ret->id > 0) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -554,7 +545,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\MissingProjectException If submitting the issue fails.
      * @return \JiraRestApi\Issue\IssueField
      */
-    public function buildSubmittedIssue($type, $data = [])
+    public function buildSubmittedIssue(string $type, array $data = []): \JiraRestApi\Issue\IssueField
     {
         $typeInfo = $this->getAllowedTypes($type);
 
@@ -616,7 +607,7 @@ class JiraProject
      * @param string $key The key to use in the this->errors array.
      * @return bool If saved or not.
      */
-    public function setError($msg = '', $key = '')
+    public function setError(string $msg = '', string $key = ''): bool
     {
         if (!trim($msg)) {
             return false;

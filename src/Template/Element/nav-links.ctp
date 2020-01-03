@@ -1,6 +1,8 @@
 <?php
 /**
  * The template that can be used to place the links withing a bootstrap menu.
+ *
+ * @var \App\View\AppView $this
  */
 ?>
 <li class="dropdown jira jira-menu">

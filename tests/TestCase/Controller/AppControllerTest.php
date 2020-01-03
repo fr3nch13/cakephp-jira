@@ -5,10 +5,7 @@
 //
 namespace Fr3nch\Jira\Test\TestCase\Controller;
 
-use App\Application;
 use Cake\Core\Configure;
-use Cake\Routing\RouteBuilder;
-use Cake\Routing\RouteCollection;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use Fr3nch13\Jira\Test\TestCase\JiraTestTrait;
@@ -39,14 +36,6 @@ class AppControllerTest extends TestCase
     {
         parent::setUp();
 
-        Configure::write('debug', true);
-
-        $app = new Application(CONFIG);
-        $app->bootstrap();
-        $app->pluginBootstrap();
-        $collection = new RouteCollection();
-        $routeBuilder = new RouteBuilder($collection, '');
-        $app->pluginRoutes($routeBuilder);
         $this->setUpJira();
     }
 

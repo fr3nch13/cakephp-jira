@@ -9,6 +9,9 @@
  *
  * This is an example of the issue submission form.
  * It generates the form fields based on the settings from the underlying form object.
+ *
+ * @var \App\View\AppView $this
+ * @var object $form
  */
 
 $this->extend('/base');
