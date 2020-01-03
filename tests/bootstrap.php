@@ -8,6 +8,7 @@
  */
 
 //
+
 putenv('JIRA_SCHEMA=https');
 putenv('JIRA_HOST=jira.example.com');
 putenv('JIRA_USERNAME=testusername');

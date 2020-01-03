@@ -268,6 +268,13 @@ trait JiraTestTrait
             ->andReturn($this->IssueCreatedTest);
 
         $this->Issue = new Issue();
+        Configure::write('Jira', [
+            'schema' => env('JIRA_SCHEMA', 'https'),
+            'host' => env('JIRA_HOST', null),
+            'username' => env('JIRA_USERNAME', null),
+            'apiKey' => env('JIRA_API_KEY', null),
+            'projectKey' => env('JIRA_PROJECT_KEY', null),
+        ]);
         $this->JiraProject = new JiraProject();
     }
 

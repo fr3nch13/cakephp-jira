@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \App\View\AppView $this
+ */
 $this->extend('/Content/base');
 
 if (!$this->fetch('page-title')) {
