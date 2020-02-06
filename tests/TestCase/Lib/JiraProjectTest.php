@@ -87,11 +87,6 @@ class JiraProjectTest extends TestCase
      */
     public function testGetIssues()
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $issues = $this->JiraProject->getIssues();
 
         $this->assertEquals($this->IssueSearchResult, $issues);
@@ -104,11 +99,6 @@ class JiraProjectTest extends TestCase
      */
     public function testGetOpenIssues()
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $issues = $this->JiraProject->getOpenIssues();
 
         $this->assertEquals($this->IssueSearchResultOpen, $issues);
