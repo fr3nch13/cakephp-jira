@@ -1,6 +1,6 @@
 <?php
 /**
- * JiraProjectReader
+ * JiraProject
  */
 
 namespace Fr3nch13\Jira\Lib;
@@ -50,7 +50,7 @@ class JiraProject
 
     /**
      * The list of a Project's Versions.
-     * @var array
+     * @var array<\JiraRestApi\Issue\Version>
      */
     protected $Versions;
 
@@ -234,9 +234,9 @@ class JiraProject
     /**
      * Get the Project's Versions.
      *
-     * @return array A list of version objects.
+     * @return array<\JiraRestApi\Issue\Version> A list of version objects.
      */
-    public function getVersions()
+    public function getVersions(): array
     {
         return $this->Versions;
     }

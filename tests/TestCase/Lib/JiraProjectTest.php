@@ -73,14 +73,11 @@ class JiraProjectTest extends TestCase
      */
     public function testGetVersions()
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $versions = $this->JiraProject->getVersions();
 
-        $this->assertEquals($this->versions, $versions);
+        $this->assertInternalType('array', $versions);
+        $this->assertEquals(3, count($versions));
+        $this->assertInstanceOf(\JiraRestApi\Issue\Version::class, $versions[0]);
     }
 
     /**
@@ -124,11 +121,6 @@ class JiraProjectTest extends TestCase
      */
     public function testGetIssue()
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $issue = $this->JiraProject->getIssue(1);
 
         $this->assertInstanceOf(Issue::class, $issue);
@@ -143,11 +135,6 @@ class JiraProjectTest extends TestCase
      */
     public function testGetBugs()
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $issues = $this->JiraProject->getBugs();
 
         $this->assertEquals($this->IssueSearchResultBugs, $issues);
@@ -160,11 +147,6 @@ class JiraProjectTest extends TestCase
      */
     public function testGetOpenBugs()
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $issues = $this->JiraProject->getOpenBugs();
 
         $this->assertEquals($this->IssueSearchResultBugs, $issues);
@@ -177,11 +159,6 @@ class JiraProjectTest extends TestCase
      */
     public function testModifyAllowedTypes()
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $this->JiraProject->modifyAllowedTypes('Test', [
             'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
             'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
@@ -210,11 +187,6 @@ class JiraProjectTest extends TestCase
      */
     public function testIsAllowedType()
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $this->JiraProject->modifyAllowedTypes('Test', [
             'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
             'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
@@ -241,11 +213,6 @@ class JiraProjectTest extends TestCase
      */
     public function testGetFormData()
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $this->JiraProject->modifyAllowedTypes('Test', [
             'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
             'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
@@ -277,11 +244,6 @@ class JiraProjectTest extends TestCase
      */
     public function testSubmitIssue()
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $this->JiraProject->modifyAllowedTypes('Test', [
             'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
             'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
