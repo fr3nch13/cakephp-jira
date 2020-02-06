@@ -98,6 +98,9 @@ class AppForm extends Form
             if ($v['type'] == 'boolean') {
                 $validator->boolean($k);
             }
+            if (isset($v['required']) && $v['required'] === true) {
+                $validator->requirePresence($k);
+            }
         }
 
         return $validator;
