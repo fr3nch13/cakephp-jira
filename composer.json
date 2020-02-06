@@ -1,6 +1,6 @@
 {
     "name": "fr3nch13/cakephp-jira",
-    "description": "A CakePHP Plugin to intereact with Jira.",
+    "description": "A CakePHP 3.x Plugin to intereact with Jira.",
     "keywords": ["cakephp", "plugin", "jira"],
     "homepage": "https://github.com/fr3nch13/cakephp-jira",
     "type": "cakephp-plugin",
