@@ -65,9 +65,9 @@ class JiraHelper extends Helper
     /**
      * Gets a list of all versions within your project.
      *
-     * @return array A list of version objects.
+     * @return array<\JiraRestApi\Issue\Version> A list of version objects.
      */
-    public function getVersions(): ?array
+    public function getVersions(): array
     {
         return $this->JiraProject->getVersions();
     }
