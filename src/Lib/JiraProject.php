@@ -50,7 +50,7 @@ class JiraProject
 
     /**
      * The list of a Project's Versions.
-     * @var array<\JiraRestApi\Issue\Version>
+     * @var \ArrayObject<\JiraRestApi\Issue\Version>
      */
     protected $Versions;
 
@@ -173,7 +173,9 @@ class JiraProject
             throw new MissingProjectException($this->projectKey);
         }
 
-        $this->Versions = $this->ProjectService->getVersions($this->projectKey);
+        /** @var \ArrayObject $Versions */
+        $Versions = $this->ProjectService->getVersions($this->projectKey);
+        $this->Versions = $Versions;
         $this->IssueService = new IssueService($this->ConfigObj);
     }
 
@@ -234,9 +236,9 @@ class JiraProject
     /**
      * Get the Project's Versions.
      *
-     * @return array<\JiraRestApi\Issue\Version> A list of version objects.
+     * @return \ArrayObject<\JiraRestApi\Issue\Version> A list of version objects.
      */
-    public function getVersions(): array
+    public function getVersions(): \ArrayObject
     {
         return $this->Versions;
     }
