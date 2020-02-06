@@ -54,9 +54,9 @@ class JiraProject
 
     /**
      * The list of a Project's Versions.
-     * @var array
+     * @var array<\JiraRestApi\Issue\Version>
      */
-    protected $Versions = [];
+    protected $Versions;
 
     /**
      * The project service object.
@@ -177,7 +177,7 @@ class JiraProject
             throw new MissingProjectException($this->projectKey);
         }
 
-        $this->Versions = $this->ProjectService->getVersions($this->projectKey);
+        $this->Versions = (array)$this->ProjectService->getVersions($this->projectKey);
         $this->IssueService = new IssueService($this->ConfigObj);
     }
 
@@ -238,7 +238,7 @@ class JiraProject
     /**
      * Get the Project's Versions.
      *
-     * @return array A list of version objects.
+     * @return array<\JiraRestApi\Issue\Version> A list of version objects.
      */
     public function getVersions(): array
     {

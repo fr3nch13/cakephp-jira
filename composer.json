@@ -1,6 +1,6 @@
 {
     "name": "fr3nch13/cakephp-jira",
-    "description": "A CakePHP Plugin to intereact with Jira.",
+    "description": "A CakePHP 4.x Plugin to intereact with Jira.",
     "keywords": ["cakephp", "plugin", "jira"],
     "homepage": "https://github.com/fr3nch13/cakephp-jira",
     "type": "cakephp-plugin",
@@ -16,7 +16,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.2",
-        "lesstif/php-jira-rest-client": "^1.41"
+        "lesstif/php-jira-rest-client": "^1.44"
     },
     "require-dev": {
         "fr3nch13/cakephp-pta": "2.0.2"
