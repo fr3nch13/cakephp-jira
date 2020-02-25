@@ -35,7 +35,7 @@ use Cake\Routing\Router;
                     'plugin' => 'Fr3nch13/Jira',
                     'prefix' => false,
                     '?' => [
-                        'referer' => 1
+                        'referer' => 1,
                     ],
                 ]); ?>" class="jira-link btn btn-default btn-flat">Feature</a>
             </div>
