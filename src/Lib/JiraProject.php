@@ -102,7 +102,7 @@ class JiraProject
                         'type' => 'text',
                         'required' => true,
                     ],
-                    'details' => [
+                    'description' => [
                         'type' => 'textarea',
                         'required' => true,
                     ],
@@ -119,7 +119,7 @@ class JiraProject
                         'type' => 'text',
                         'required' => true,
                     ],
-                    'details' => [
+                    'description' => [
                         'type' => 'textarea',
                         'required' => true,
                     ],
@@ -136,7 +136,7 @@ class JiraProject
                         'type' => 'text',
                         'required' => true,
                     ],
-                    'details' => [
+                    'description' => [
                         'type' => 'textarea',
                         'required' => true,
                     ],
@@ -549,6 +549,7 @@ class JiraProject
     {
         $typeInfo = $this->getAllowedTypes($type);
 
+
         // make sure we can get the project info first.
         // getInfo will throw an exception if it can't find the project.
         // putting a try/catch around it so scrutinizer stops complaining.
@@ -567,6 +568,9 @@ class JiraProject
             $issueField->setSummary($data['summary']);
         }
         if (isset($data['description'])) {
+            if (isset($data['referer'])) {
+                $data['description'] = __("{0}\n\n-----------\n\nReferer: {1}", [$data['description'], $data['referer']]);
+            }
             $issueField->setDescription($data['description']);
         }
         if (isset($data['priority'])) {
