@@ -58,7 +58,14 @@ class AppController extends BaseController
     {
         $errors = [];
         if ($this->getRequest()->is('post')) {
-            if ($this->JiraForm->execute($this->getRequest()->getData())) {
+            $data = $this->getRequest()->getData();
+            if ($this->getRequest()->getQuery()) {
+                $query = $this->getRequest()->getQuery();
+                if (isset($query['referer'])) {
+                    $data['referer'] = $query['referer'];
+                }
+            }
+            if ($this->JiraForm->execute($data)) {
                 $this->Flash->success(__('The {0} has been saved.', [$this->humanName]));
 
                 return $this->redirect(['action' => 'thankyou', '?' => ['type' => $this->humanName]]);
