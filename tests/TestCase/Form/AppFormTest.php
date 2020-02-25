@@ -86,7 +86,7 @@ class AppFormTest extends TestCase
                     'type' => 'text',
                     'required' => true,
                 ],
-                'details' => [
+                'description' => [
                     'type' => 'textarea',
                     'required' => true,
                 ],
@@ -112,7 +112,7 @@ class AppFormTest extends TestCase
                     'type' => 'text',
                     'required' => true,
                 ],
-                'details' => [
+                'description' => [
                     'type' => 'textarea',
                     'required' => true,
                 ],
@@ -161,7 +161,7 @@ class AppFormTest extends TestCase
         $this->assertCount(2, $this->JiraForm->getErrors());
         $requestData = [
             'summary' => 'TEST SUMMARY',
-            'details' => 'test details',
+            'description' => 'test details',
         ];
         $this->assertTrue($this->JiraForm->validate($requestData));
         $this->assertCount(0, $this->JiraForm->getErrors());
@@ -176,7 +176,7 @@ class AppFormTest extends TestCase
     {
         $requestData = [
             'summary' => 'TEST SUMMARY',
-            'details' => 'test details',
+            'description' => 'test details',
         ];
 
         $result = $this->JiraForm->execute($requestData);
