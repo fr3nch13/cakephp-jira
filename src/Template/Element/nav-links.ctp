@@ -49,7 +49,17 @@ use Cake\Routing\Router;
 $(document).ready(function()
 {
     /**
-     * This updates the urls for the jira links so the
+    * Initially update the referer.
+    */
+    $('.jira-menu .jira-body a.jira-link').each(function(e)
+    {
+        var $href = $(this).attr('href');
+        console.log($href);
+        $href = $href.replace(/\?referer\=.*/, '?referer=' + encodeURI(window.location.href));
+        $(this).attr('href', $href);
+    });
+    /**
+     * This updates the urls for the jira links when the url changes so the
      * submitted issue has an accurate url being reported.
      */
     $(window).bind('locationchange', function()
