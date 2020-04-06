@@ -569,6 +569,9 @@ class JiraProject
             if (isset($data['referer'])) {
                 $data['description'] = __("{0}\n\n-----------\n\nReferer: {1}", [$data['description'], $data['referer']]);
             }
+            if (isset($data['username'])) {
+                $data['description'] = __("{0}\n\nUsername: {1}", [$data['description'], $data['username']]);
+            }
             $issueField->setDescription($data['description']);
         }
         if (isset($data['priority'])) {

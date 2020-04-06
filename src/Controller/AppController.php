@@ -7,6 +7,7 @@
 namespace Fr3nch13\Jira\Controller;
 
 use App\Controller\AppController as BaseController;
+use Cake\Core\Configure;
 use Fr3nch13\Jira\Form\AppForm as JiraForm;
 
 /**
@@ -85,9 +86,19 @@ class AppController extends BaseController
             $this->JiraForm->setData($this->JiraForm->getFormData());
         }
 
+        $username = null;
+        if (isset($this->Auth) && $this->Auth->user() && Configure::read('Jira.usernameField')) {
+            $user = $this->Auth->user();
+            $usernameField = Configure::read('Jira.usernameField');
+            if (isset($user->{$usernameField})) {
+                $username = $user->{$usernameField};
+            }
+        }
+
         $this->set([
             'form' => $this->JiraForm,
             'errors' => $errors,
+            'username' => $username,
         ]);
 
         return null;
