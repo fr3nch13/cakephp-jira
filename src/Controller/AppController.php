@@ -19,6 +19,7 @@ use Fr3nch13\Jira\Form\AppForm as JiraForm;
  *
  * {@inheritdoc}
  *
+ * @property \Cake\Controller\Component\AuthComponent $Auth
  */
 class AppController extends BaseController
 {
@@ -44,13 +45,9 @@ class AppController extends BaseController
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
-        $authAllowedActions = [];
-        // allow exceptions for all logged in users, including ones locked down by prefix.
-        if ($this->Auth->user()) {
-            $authAllowedActions[] = 'add';
-            $authAllowedActions[] = 'thankyou';
+        if (isset($this->Auth)) {
+            $this->Auth->allow(['add', 'thankyou']);
         }
-        $this->Auth->allow($authAllowedActions);
 
         $this->modelClass = false;
 
