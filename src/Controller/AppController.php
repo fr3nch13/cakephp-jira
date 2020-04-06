@@ -43,6 +43,15 @@ class AppController extends BaseController
     {
         parent::initialize();
 
+        $this->loadComponent('RequestHandler');
+        $authAllowedActions = [];
+        // allow exceptions for all logged in users, including ones locked down by prefix.
+        if ($this->Auth->user()) {
+            $authAllowedActions[] = 'add';
+            $authAllowedActions[] = 'thankyou';
+        }
+        $this->Auth->allow($authAllowedActions);
+
         $this->modelClass = false;
 
         $this->humanName = __('Task');
