@@ -63,6 +63,13 @@ $this->start('page-content');
                 ?>
                 </fieldset>
                 <fieldset>
+                    <?php if ($username) {
+                        echo $this->Form->control('username', [
+                            'type' => 'hidden',
+                            'value' => $username,
+                        ]);
+                    }
+                    ?>
                     <?= $this->Form->button(__('Send {0}', [$title])) ?>
                 </fieldset>
                 <?= $this->Form->end() ?>

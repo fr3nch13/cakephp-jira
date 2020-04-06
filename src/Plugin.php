@@ -45,6 +45,7 @@ class Plugin extends BasePlugin
                 'username' => env('JIRA_USERNAME', null),
                 'apiKey' => env('JIRA_API_KEY', null),
                 'projectKey' => env('JIRA_PROJECT_KEY', null),
+                'usernameField' => env('JIRA_USERNAME_FIELD', 'username'),
             ]);
         }
 
