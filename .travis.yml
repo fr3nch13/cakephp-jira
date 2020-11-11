@@ -17,7 +17,7 @@ jobs:
     #- php: nightly
 
     include:
-        - php: 7.2
+        - php: 7.3
           env: COVERAGE=1
 
 install:
