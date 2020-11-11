@@ -22,83 +22,70 @@ use Mockery;
 trait JiraTestTrait
 {
     /**
-     * Test subject
-     *
-     * @var \Fr3nch13\Jira\Lib\JiraProject
+     * @var \Fr3nch13\Jira\Lib\JiraProject Test subject
      */
     public $JiraProject;
 
     /**
-     * The project object.
-     * @var \JiraRestApi\Project\Project
+     * @var \JiraRestApi\Project\Project The project object.
      */
     public $Project = null;
 
     /**
-     * The project service object.
-     * @var \JiraRestApi\Project\ProjectService|null
+     * @var \JiraRestApi\Project\ProjectService|null The project service object.
      */
     public $ProjectService = null;
 
     /**
-     * The array of JiraRestApi\Issue\Issue objects.
-     * @var array
+     * @var array The array of JiraRestApi\Issue\Issue objects.
      */
     public $issues = [];
 
     /**
-     * The issue object.
-     * @var \JiraRestApi\Issue\Issue|null
+     * @var \JiraRestApi\Issue\Issue|null The issue object.
      */
     public $Issue = null;
 
     /**
-     * The issue service object - all.
-     * @var \JiraRestApi\Issue\IssueSearchResult|null
+     * @var \JiraRestApi\Issue\IssueSearchResult|null The issue service object - all.
      */
     public $IssueSearchResult = null;
 
     /**
-     * The issue service object - open.
-     * @var \JiraRestApi\Issue\IssueSearchResult|null
+     * @var \JiraRestApi\Issue\IssueSearchResult|null The issue service object - open.
      */
     public $IssueSearchResultOpen = null;
 
     /**
-     * The issue service object - bugs.
-     * @var \JiraRestApi\Issue\IssueSearchResult|null
+     * @var \JiraRestApi\Issue\IssueSearchResult|null The issue service object - bugs.
      */
     public $IssueSearchResultBugs = null;
 
     /**
-     * The issue service object - feature requests.
-     * @var \JiraRestApi\Issue\IssueSearchResult|null
+     * @var \JiraRestApi\Issue\IssueSearchResult|null The issue service object - feature requests.
      */
     public $IssueSearchResultFeatureRequests = null;
 
     /**
-     * The created Issue when testing a submission.
-     * @var \JiraRestApi\Issue\Issue|null
+     * @var \JiraRestApi\Issue\Issue|null The created Issue when testing a submission.
      */
     public $IssueCreatedTest = null;
 
     /**
-     * The issue service object.
-     * @var \JiraRestApi\Issue\IssueService|null
+     * @var \JiraRestApi\Issue\IssueService|null The issue service object.
      */
     public $IssueService = null;
 
     /**
-     * The array of JiraRestApi\Issue\Version objects.
-     * @var array
+     * @var array The array of JiraRestApi\Issue\Version objects.
      */
     public $versions = [];
 
     /**
      * setUpJira method
+     *
      * @runInSeparateProcess
      * @preserveGlobalState disabled
-     *
      * @return void
      */
     public function setUpJira(): void

@@ -17,8 +17,7 @@ use Cake\Core\Exception\Exception as BaseException;
 class IssueSubmissionException extends BaseException
 {
     /**
-     * Throw a 500 when something goes wrong.
-     * @var int
+     * @var int Throw a 500 when something goes wrong.
      */
     protected $_defaultCode = 500;
 

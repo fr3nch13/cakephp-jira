@@ -17,8 +17,7 @@ use Cake\Core\Exception\Exception as BaseException;
 class MissingProjectException extends BaseException
 {
     /**
-     * Thow a 404 when the project is missing.
-     * @var int
+     * @var int Thow a 404 when the project is missing.
      */
     protected $_defaultCode = 404;
 

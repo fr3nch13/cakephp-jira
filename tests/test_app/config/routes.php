@@ -19,8 +19,6 @@
  */
 
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
-use Cake\Routing\Route\DashedRoute;
-use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 
 /**
@@ -42,11 +40,10 @@ use Cake\Routing\Router;
  *
  * Cache: Routes are cached to improve performance, check the RoutingMiddleware
  * constructor in your `src/Application.php` file to change this behavior.
- *
  */
-Router::defaultRouteClass(DashedRoute::class);
+Router::defaultRouteClass(\Cake\Routing\Route\DashedRoute::class);
 
-Router::scope('/', function (RouteBuilder $routes) {
+Router::scope('/', function (\Cake\Routing\RouteBuilder $routes) {
     // Register scoped middleware for in scopes.
     $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
         'httpOnly' => true,
@@ -89,7 +86,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
-    $routes->fallbacks(DashedRoute::class);
+    $routes->fallbacks(\Cake\Routing\Route\DashedRoute::class);
 });
 
 /**
@@ -97,7 +94,7 @@ Router::scope('/', function (RouteBuilder $routes) {
  * open new scope and define routes there.
  *
  * ```
- * Router::scope('/api', function (RouteBuilder $routes) {
+ * Router::scope('/api', function (\Cake\Routing\RouteBuilder $routes) {
  *     // No $routes->applyMiddleware() here.
  *     // Connect API actions here.
  * });

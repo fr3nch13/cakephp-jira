@@ -17,8 +17,7 @@ use Cake\Core\Exception\Exception as BaseException;
 class MissingConfigException extends BaseException
 {
     /**
-     * Throw a 500 when config variable is missing.
-     * @var int
+     * @var int Throw a 500 when config variable is missing.
      */
     protected $_defaultCode = 500;
 

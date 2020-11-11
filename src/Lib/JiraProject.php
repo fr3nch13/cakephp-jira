@@ -29,50 +29,42 @@ use JiraRestApi\Project\ProjectService;
 class JiraProject
 {
     /**
-     * Config Object.
-     * @var \JiraRestApi\Configuration\ArrayConfiguration
+     * @var \JiraRestApi\Configuration\ArrayConfiguration Config Object.
      */
     public $ConfigObj;
 
     /**
-     * The key for the project.
-     * @var string|null
+     * @var string|null The key for the project.
      */
     public $projectKey = null;
 
     /**
-     * The project service object.
-     * @var \JiraRestApi\Project\ProjectService
+     * @var \JiraRestApi\Project\ProjectService The project service object.
      */
     public $ProjectService;
 
     /**
-     * The project object.
-     * @var \JiraRestApi\Project\Project
+     * @var \JiraRestApi\Project\Project The project object.
      */
     protected $Project;
 
     /**
-     * The list of a Project's Versions.
-     * @var array<\JiraRestApi\Issue\Version>
+     * @var array<\JiraRestApi\Issue\Version> The list of a Project's Versions.
      */
     protected $Versions;
 
     /**
-     * The project service object.
-     * @var \JiraRestApi\Issue\IssueService
+     * @var \JiraRestApi\Issue\IssueService The project service object.
      */
     public $IssueService;
 
     /**
-     * The Cached list of issues.
-     * @var array
+     * @var array The Cached list of issues.
      */
     protected $Issues = [];
 
     /**
-     * The cached list of returned issue info from the below getIssue() method.
-     * @var array
+     * @var array The cached list of returned issue info from the below getIssue() method.
      */
     protected $issuesCache = [];
 
@@ -80,6 +72,7 @@ class JiraProject
      * Valid Types.
      * Used to ensure we're getting a valid type when filtering.
      * Currently only support Jira Core and Software.
+     *
      * @see https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.html
      * @var array
      */
@@ -92,8 +85,7 @@ class JiraProject
     ];
 
     /**
-     * Types of issues allowed to be submitted.
-     * @var array
+     * @var array Types of issues allowed to be submitted.
      */
     protected $allowedTypes = [
         'Task' => [
@@ -152,6 +144,7 @@ class JiraProject
     /**
      * This is here for the Form object (or any other object) to use.
      * It tacks all errors, even if an exception is thrown.
+     *
      * @var array
      */
     protected $errors = [];
@@ -328,6 +321,7 @@ class JiraProject
 
     /**
      * Gets a list of issues that are considered bugs.
+     *
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
     public function getBugs(): \JiraRestApi\Issue\IssueSearchResult
@@ -337,6 +331,7 @@ class JiraProject
 
     /**
      * Gets a list of open issues that are considered bugs.
+     *
      * @return \JiraRestApi\Issue\IssueSearchResult|\JiraRestApi\Issue\IssueSearchResultV3 A list of issue objects.
      */
     public function getOpenBugs(): \JiraRestApi\Issue\IssueSearchResult

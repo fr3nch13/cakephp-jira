@@ -25,13 +25,12 @@ class JiraHelperTest extends TestCase
     use JiraTestTrait;
 
     /**
-     * The helper object.
-     * @var \Fr3nch13\Jira\View\Helper\JiraHelper|null
+     * @var \Fr3nch13\Jira\View\Helper\JiraHelper|null The helper object.
      */
     public $helper = null;
 
     /**
-     * Switcher to make this whole test suite incomplete.
+     * @var bool Switcher to make this whole test suite incomplete.
      */
     public $incomplete = false;
 
