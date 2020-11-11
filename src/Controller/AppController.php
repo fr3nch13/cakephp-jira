@@ -14,23 +14,16 @@ use Fr3nch13\Jira\Form\AppForm as JiraForm;
  * App Controller
  *
  * The base controller for the jira plugin.
- *
- * -----------------------------
- * Inherited:
- *
- * {@inheritdoc}
  */
 class AppController extends BaseController
 {
     /**
-     * Human name of this object.
-     * @var string
+     * @var string Human name of this object.
      */
     public $humanName = '';
 
     /**
-     * The form object.
-     * @var object|null
+     * @var object|null The form object.
      */
     public $JiraForm = null;
 

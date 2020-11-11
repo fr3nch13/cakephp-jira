@@ -25,19 +25,17 @@ class AppFormTest extends TestCase
     use JiraTestTrait;
 
     /**
-     * Human name of this object.
-     * @var string
+     * @var string Human name of this object.
      */
     public $humanName = '';
 
     /**
-     * The form object.
-     * @var object|null
+     * @var object|null The form object.
      */
     public $JiraForm = null;
 
     /**
-     * Switcher to make this whole test suite incomplete.
+     * @var bool Switcher to make this whole test suite incomplete.
      */
     public $incomplete = false;
 

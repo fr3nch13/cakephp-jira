@@ -17,8 +17,7 @@ use Cake\Core\Exception\Exception as BaseException;
 class MissingIssueException extends BaseException
 {
     /**
-     * Throw a 404 when something is missing.
-     * @var int
+     * @var int Throw a 404 when an issue is missing.
      */
     protected $_defaultCode = 404;
 

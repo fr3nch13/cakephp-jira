@@ -15,11 +15,11 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "lesstif/php-jira-rest-client": "^1.44"
     },
     "require-dev": {
-        "fr3nch13/cakephp-pta": "2.0.2"
+        "fr3nch13/cakephp-pta": "~2.1"
     },
     "autoload": {
         "psr-4": {
@@ -36,7 +36,6 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
         "pre-commit": [
             "@ci",
             "echo 'PHP Documentation will be added here.'"
@@ -54,8 +53,8 @@
             "@cs-fix",
             "@cs-check"
         ],
-        "cs-check": "vendor/bin/phpcs --colors -p -s --extensions=ctp,php ./src ./tests",
-        "cs-fix": "vendor/bin/phpcbf --colors --extensions=ctp,php ./src ./tests",
+        "cs-check": "vendor/bin/phpcs --colors -p -s --extensions=ctp,php ./src ./tests ./config",
+        "cs-fix": "vendor/bin/phpcbf --colors --extensions=ctp,php ./src ./tests ./config",
         "phpstan": "phpstan analyse src/ -c phpstan.neon --level=4 --no-progress -vvv",
         "test": "vendor/bin/phpunit --colors=always",
         "coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-text",

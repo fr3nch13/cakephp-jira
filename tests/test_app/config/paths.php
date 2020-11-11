@@ -19,20 +19,6 @@ if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
 
-$findRoot = function ($pluginRoot) {
-    do {
-        $lastRoot = $pluginRoot;
-        $pluginRoot = dirname($pluginRoot);
-        if (is_dir($pluginRoot . DS . 'vendor' . DS . 'cakephp' . DS . 'cakephp')) {
-            return $pluginRoot;
-        }
-    } while ($pluginRoot !== $lastRoot);
-
-    throw new Exception("Cannot find the root of the application, unable to run tests");
-};
-define('PLUGIN_ROOT', $findRoot(__FILE__));
-unset($findRoot);
-
 /**
  * These defines should only be edited if you have cake installed in
  * a directory layout other than the way it is distributed.
@@ -42,7 +28,9 @@ unset($findRoot);
 /**
  * The full path to the directory which holds "src", WITHOUT a trailing DS.
  */
-define('ROOT', dirname(__DIR__));
+if (!defined('ROOT')) {
+    define('ROOT', dirname(__DIR__));
+}
 
 /**
  * The actual directory name for the application directory. Normally
@@ -58,14 +46,10 @@ define('APP', ROOT . DS . APP_DIR . DS);
 /**
  * Path to the config directory.
  */
-define('CONFIG', ROOT . DS . 'config' . DS);
+define('CONFIG', __DIR__ . DS);
 
 /**
  * File path to the webroot directory.
- *
- * To derive your webroot from your webserver change this to:
- *
- * `define('WWW_ROOT', rtrim($_SERVER['DOCUMENT_ROOT'], DS) . DS);`
  */
 define('WWW_ROOT', ROOT . DS . 'webroot' . DS);
 

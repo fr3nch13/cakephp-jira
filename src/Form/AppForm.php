@@ -22,21 +22,17 @@ use Fr3nch13\Jira\Lib\JiraProject;
 class AppForm extends Form
 {
     /**
-     * Contains the loaded Jira Project object.
-     *
-     * @var \Fr3nch13\Jira\Lib\JiraProject
+     * @var \Fr3nch13\Jira\Lib\JiraProject Contains the loaded Jira Project object.
      */
     protected $JiraProject;
 
     /**
-     * The type of issue we're submitting.
-     * @var string
+     * @var string The type of issue we're submitting.
      */
     public $issueType = 'Task';
 
     /**
-     * Settings for this form and for the JiraProject.
-     * @var array
+     * @var array Settings for this form and for the JiraProject.
      */
     public $settings = [];
 
@@ -126,7 +122,7 @@ class AppForm extends Form
             $errors = $this->JiraProject->getErrors();
             foreach ($errors as $k => $v) {
                 // track the errors specific to jira/the JiraProject object.
-                $this->setErrors(["jira" => [$k => $v]]);
+                $this->setErrors(['jira' => [$k => $v]]);
             }
 
             return false;

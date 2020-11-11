@@ -17,8 +17,7 @@ use Cake\Core\Exception\Exception as BaseException;
 class MissingAllowedTypeException extends BaseException
 {
     /**
-     * Throw a 404 when allowed type is missing.
-     * @var int
+     * @var int Throw a 404 when allowed type is missing
      */
     protected $_defaultCode = 404;
 
