@@ -11,6 +11,7 @@ use JiraRestApi\Issue\Issue;
 use JiraRestApi\Issue\IssueField;
 use JiraRestApi\Issue\IssueSearchResult;
 use JiraRestApi\Issue\Version;
+use JiraRestApi\JiraException;
 use JiraRestApi\Project\Project;
 use Mockery;
 
@@ -250,6 +251,10 @@ trait JiraTestTrait
         $this->IssueService->shouldReceive('get')
             ->with('TEST-1')
             ->andReturn($this->issues[1]);
+
+        $this->IssueService->shouldReceive('get')
+            ->with('TEST-999')
+            ->andThrow(new JiraException('TEST-999'));
 
         $this->IssueService->shouldReceive('create')
             ->withAnyArgs()

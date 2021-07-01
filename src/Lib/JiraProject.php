@@ -309,9 +309,10 @@ class JiraProject
         }
         $key = $this->projectKey . '-' . $id;
         if (!isset($this->issuesCache[$key])) {
-            $this->issuesCache[$key] = $this->IssueService->get($key);
-            if (!$this->issuesCache[$key]) {
-                $this->setError($key, 'MissingIssueException');
+            try {
+                $this->issuesCache[$key] = $this->IssueService->get($key);
+            } catch (JiraException $e) {
+                $this->setError($this->projectKey, 'MissingIssueException');
                 throw new MissingIssueException($key);
             }
         }

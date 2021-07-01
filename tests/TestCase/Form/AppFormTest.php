@@ -127,12 +127,9 @@ class AppFormTest extends TestCase
      */
     public function testSchema(): void
     {
-        $schema = $this->JiraForm->schema();
-        $this->assertInstanceOf('Cake\Form\Schema', $schema);
-        $this->assertSame($schema, $this->JiraForm->schema(), 'Same instance each time');
-        $schema = new Schema();
-        $this->assertSame($schema, $this->JiraForm->schema($schema));
-        $this->assertSame($schema, $this->JiraForm->schema());
+        $schema = $this->JiraForm->getSchema();
+        $this->assertInstanceOf(Schema::class, $schema);
+        $this->assertSame($schema, $this->JiraForm->getSchema(), 'Same instance each time');
     }
 
     /**

@@ -9,6 +9,7 @@ namespace Fr3nch13\Jira\Test\TestCase\Lib;
 
 use App\Application;
 use Cake\TestSuite\TestCase;
+use Fr3nch13\Jira\Exception\MissingIssueException;
 use Fr3nch13\Jira\Test\TestCase\JiraTestTrait;
 use JiraRestApi\Issue\Issue;
 use JiraRestApi\Project\Project;
@@ -117,6 +118,18 @@ class JiraProjectTest extends TestCase
         $this->assertInstanceOf(Issue::class, $issue);
 
         $this->assertEquals(1, $issue->id);
+    }
+
+    /**
+     * testGetMissingIssue
+     *
+     * @return void
+     */
+    public function testGetMissingIssue(): void
+    {
+        $this->expectException(MissingIssueException::class);
+
+        $issue = $this->JiraProject->getIssue(999);
     }
 
     /**
