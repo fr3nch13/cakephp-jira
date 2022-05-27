@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * The default form for submitting reports.
  *
@@ -11,7 +12,7 @@
  * It generates the form fields based on the settings from the underlying form object.
  */
 
-$this->extend('/base');
+$this->extend('Fr3nch13/Jira./base');
 
 $title = isset($title) ? $title : __('Report');
 

@@ -12,7 +12,6 @@ use Cake\Core\Configure;
 use Cake\Core\PluginApplicationInterface;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
-use Cake\Routing\Router;
 
 /**
  * Plugin Definitions
@@ -47,6 +46,7 @@ class Plugin extends BasePlugin
                 'username' => env('JIRA_USERNAME', null),
                 'apiKey' => env('JIRA_API_KEY', null),
                 'projectKey' => env('JIRA_PROJECT_KEY', null),
+                'useV3RestApi' => env('JIRA_REST_API_V3', true),
             ]);
         }
 
@@ -63,7 +63,7 @@ class Plugin extends BasePlugin
     public function routes(RouteBuilder $routes): void
     {
         // Add routes.
-        Router::plugin(
+        $routes->plugin(
             'Fr3nch13/Jira',
             ['path' => '/jira'],
             function (RouteBuilder $routes) {

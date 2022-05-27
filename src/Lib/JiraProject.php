@@ -208,10 +208,16 @@ class JiraProject
             $this->setError('projectKey', 'MissingConfigException');
             throw new MissingConfigException('projectKey');
         }
+        $useV3RestApi = Configure::read('Jira.useV3RestApi');
+        if (!$useV3RestApi) {
+            $this->setError('useV3RestApi', 'MissingConfigException');
+            throw new MissingConfigException('useV3RestApi');
+        }
         $this->ConfigObj = new ArrayConfiguration([
             'jiraHost' => $schema . '://' . $host,
             'jiraUser' => $username,
             'jiraPassword' => $apiKey,
+            'useV3RestApi' => $useV3RestApi,
         ]);
 
         $this->projectKey = $projectKey;
