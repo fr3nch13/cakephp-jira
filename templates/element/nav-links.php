@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * The template that can be used to place the links withing a bootstrap menu.
  */

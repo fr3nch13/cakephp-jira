@@ -9,8 +9,6 @@ namespace Fr3nch13\Jira\Test\TestCase;
 
 use App\Application;
 use Cake\Core\Configure;
-use Cake\Routing\RouteBuilder;
-use Cake\Routing\RouteCollection;
 use Cake\Routing\Router;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
@@ -70,16 +68,12 @@ class PluginTest extends TestCase
      */
     public function testRoutes(): void
     {
-        $app = new Application(CONFIG);
-        $app->bootstrap();
-        $app->pluginBootstrap();
-        $collection = new RouteCollection();
-        $routeBuilder = new RouteBuilder($collection, '');
-        $app->pluginRoutes($routeBuilder);
-        $plugins = $app->getPlugins();
+        $this->loadPlugins(['Fr3nch13/Jira']);
 
         $url = Router::url(['plugin' => 'Fr3nch13/Jira', 'controller' => 'Bugs']);
-
         $this->assertEquals($url, '/jira/bugs');
+
+        $url = Router::url(['plugin' => 'Fr3nch13/Jira', 'controller' => 'FeatureRequests']);
+        $this->assertEquals($url, '/jira/feature-requests');
     }
 }

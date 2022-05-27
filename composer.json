@@ -15,11 +15,12 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.3",
-        "lesstif/php-jira-rest-client": "^1.44"
+        "cakephp/cakephp": "~4.3",
+        "php": "^7.4",
+        "lesstif/php-jira-rest-client": "^3.0"
     },
     "require-dev": {
-        "fr3nch13/cakephp-pta": "~2.1"
+        "fr3nch13/cakephp-pta": "~2.2"
     },
     "autoload": {
         "psr-4": {
@@ -62,6 +63,10 @@
         "coverage-text": "vendor/bin/phpunit --coverage-text --colors=never"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "cakephp/plugin-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
