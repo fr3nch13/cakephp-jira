@@ -213,11 +213,17 @@ class JiraProject
             $this->setError('useV3RestApi', 'MissingConfigException');
             throw new MissingConfigException('useV3RestApi');
         }
+        $jiraLogFile = Configure::read('Jira.jiraLogFile');
+        if (!$jiraLogFile) {
+            $this->setError('jiraLogFile', 'MissingConfigException');
+            throw new MissingConfigException('jiraLogFile');
+        }
         $this->ConfigObj = new ArrayConfiguration([
             'jiraHost' => $schema . '://' . $host,
             'jiraUser' => $username,
             'jiraPassword' => $apiKey,
             'useV3RestApi' => $useV3RestApi,
+            'jiraLogFile' => $jiraLogFile,
         ]);
 
         $this->projectKey = $projectKey;

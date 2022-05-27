@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df05cd7d5e4bd9f4a246bd8249bb733f",
+    "content-hash": "fecd61e588c8f5b512c5320d9b53f355",
     "packages": [
         {
             "name": "cakephp/cakephp",
@@ -623,16 +623,16 @@
         },
         {
             "name": "lesstif/php-jira-rest-client",
-            "version": "3.1.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lesstif/php-jira-rest-client.git",
-                "reference": "889091e1807fc3739f64568a777260f00d096978"
+                "reference": "05d583fbb94e5a10915ae25b329d13297789258f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lesstif/php-jira-rest-client/zipball/889091e1807fc3739f64568a777260f00d096978",
-                "reference": "889091e1807fc3739f64568a777260f00d096978",
+                "url": "https://api.github.com/repos/lesstif/php-jira-rest-client/zipball/05d583fbb94e5a10915ae25b329d13297789258f",
+                "reference": "05d583fbb94e5a10915ae25b329d13297789258f",
                 "shasum": ""
             },
             "require": {
@@ -649,6 +649,7 @@
                 "phpunit/phpunit": "^7.0 || ^8.0",
                 "symfony/var-dumper": "~2.8|~3.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -682,9 +683,9 @@
             ],
             "support": {
                 "issues": "https://github.com/lesstif/php-jira-rest-client/issues",
-                "source": "https://github.com/lesstif/php-jira-rest-client/tree/3.1.0"
+                "source": "https://github.com/lesstif/php-jira-rest-client/tree/main"
             },
-            "time": "2022-05-07T11:31:02+00:00"
+            "time": "2022-05-18T15:12:27+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -7031,7 +7032,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "lesstif/php-jira-rest-client": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
