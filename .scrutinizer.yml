@@ -21,7 +21,7 @@ build:
                             format: clover
     environment:
         php:
-            version: "7.3"
+            version: "7.4"
 filter:
     excluded_paths:
         - 'tests/*'
