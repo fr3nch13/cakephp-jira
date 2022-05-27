@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Cake\Core\Plugin;
 
-if(Plugin::isLoaded('Sis/AdminLTE')) {
+if (Plugin::isLoaded('Sis/AdminLTE')) {
     $this->extend('Sis/AdminLTE./Content/generic');
 }
 

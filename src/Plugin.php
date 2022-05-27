@@ -66,7 +66,7 @@ class Plugin extends BasePlugin
         $routes->plugin(
             'Fr3nch13/Jira',
             ['path' => '/jira'],
-            function (RouteBuilder $routes) {
+            function(RouteBuilder $routes) {
                 $routes->fallbacks(DashedRoute::class);
             }
         );
