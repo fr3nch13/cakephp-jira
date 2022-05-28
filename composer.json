@@ -17,7 +17,7 @@
     "require": {
         "cakephp/cakephp": "~4.3",
         "php": "^7.4",
-        "lesstif/php-jira-rest-client": "^3.0"
+        "lesstif/php-jira-rest-client": "dev-main"
     },
     "require-dev": {
         "fr3nch13/cakephp-pta": "~2.2"

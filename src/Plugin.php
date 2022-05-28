@@ -40,6 +40,9 @@ class Plugin extends BasePlugin
         }
 
         if (!Configure::read('Jira')) {
+            if (!defined('LOGS')) {
+                define('LOGS', '/tmp/');
+            }
             Configure::write('Jira', [
                 'schema' => env('JIRA_SCHEMA', 'https'),
                 'host' => $jiraHost,
@@ -47,6 +50,7 @@ class Plugin extends BasePlugin
                 'apiKey' => env('JIRA_API_KEY', null),
                 'projectKey' => env('JIRA_PROJECT_KEY', null),
                 'useV3RestApi' => env('JIRA_REST_API_V3', true),
+                'jiraLogFile' => LOGS . 'jira-client.log',
             ]);
         }
 
