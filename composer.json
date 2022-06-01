@@ -16,8 +16,8 @@
     "prefer-stable": true,
     "require": {
         "cakephp/cakephp": "~4.3",
-        "php": "^7.4",
-        "lesstif/php-jira-rest-client": "dev-main"
+        "lesstif/php-jira-rest-client": "~3.1.1",
+        "php": "^7.4"
     },
     "require-dev": {
         "fr3nch13/cakephp-pta": "~2.2"
@@ -59,8 +59,8 @@
         "phpstan": "phpstan analyse src/ -c phpstan.neon --level=4 --no-progress -vvv",
         "test": "vendor/bin/phpunit --colors=always",
         "coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-text",
-        "coverage-clover": "vendor/bin/phpunit --coverage-clover=tmp/coverage.xml",
-        "coverage-text": "vendor/bin/phpunit --coverage-text --colors=never"
+        "coverage-clover": "php -dxdebug.mode=coverage vendor/bin/phpunit --coverage-clover=tmp/coverage.xml",
+        "coverage-text": "php -dxdebug.mode=coverage vendor/bin/phpunit --coverage-text --colors=never"
     },
     "config": {
         "sort-packages": true,
