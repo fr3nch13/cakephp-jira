@@ -2779,21 +2779,21 @@
         },
         {
             "name": "fr3nch13/cakephp-pta",
-            "version": "2.2.2",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fr3nch13/cakephp-pta.git",
-                "reference": "f0a71e6f1d66df74c3e7a89a49cf6eee1b8a4f90"
+                "reference": "5d3c9b0b913f00385e9f5ad7f2114be7c3daff47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fr3nch13/cakephp-pta/zipball/f0a71e6f1d66df74c3e7a89a49cf6eee1b8a4f90",
-                "reference": "f0a71e6f1d66df74c3e7a89a49cf6eee1b8a4f90",
+                "url": "https://api.github.com/repos/fr3nch13/cakephp-pta/zipball/5d3c9b0b913f00385e9f5ad7f2114be7c3daff47",
+                "reference": "5d3c9b0b913f00385e9f5ad7f2114be7c3daff47",
                 "shasum": ""
             },
             "require": {
                 "cakephp/bake": "^2.3",
-                "cakephp/cakephp": "~4.0",
+                "cakephp/cakephp": "~4.4.0",
                 "cakephp/cakephp-codesniffer": "~4.2",
                 "cakephp/debug_kit": "~4.4",
                 "cakephp/migrations": "~3.0",
@@ -2835,9 +2835,9 @@
             ],
             "support": {
                 "issues": "https://github.com/fr3nch13/cakephp-pta/issues",
-                "source": "https://github.com/fr3nch13/cakephp-pta/tree/2.2.2"
+                "source": "https://github.com/fr3nch13/cakephp-pta/tree/2.3.0"
             },
-            "time": "2022-04-29T20:59:52+00:00"
+            "time": "2022-09-27T19:00:19+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
