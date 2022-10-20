@@ -73,6 +73,10 @@ define('LOGS', ROOT . DS . 'logs' . DS);
  */
 define('CACHE', TMP . 'cache' . DS);
 
+if (!defined('PLUGIN_ROOT')) {
+    define('PLUGIN_ROOT', dirname(__DIR__));
+}
+
 /**
  * The absolute path to the "cake" directory, WITHOUT a trailing DS.
  *
