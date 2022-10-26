@@ -19,8 +19,6 @@ if (!Configure::read('debug')) :
     );
 endif;
 
-$rootDir = getenv('ROOT') ?? dirname(dirname(__DIR__));
-
 $cakeDescription = 'CakePHP: the rapid development PHP framework';
 ?>
 <!DOCTYPE html>
@@ -99,13 +97,13 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <div class="columns large-6">
         <h4>Filesystem</h4>
         <ul>
-        <?php if (is_writable($rootDir . DS . 'tmp')) : ?>
+        <?php if (is_writable(TMP)) : ?>
             <li class="bullet success">Your tmp directory is writable.</li>
         <?php else : ?>
             <li class="bullet problem">Your tmp directory is NOT writable.</li>
         <?php endif; ?>
 
-        <?php if (is_writable($rootDir . DS . 'logs')) : ?>
+        <?php if (is_writable(LOGS'))) : ?>
             <li class="bullet success">Your logs directory is writable.</li>
         <?php else : ?>
             <li class="bullet problem">Your logs directory is NOT writable.</li>

@@ -8,9 +8,6 @@ declare(strict_types=1);
 
 $message ?? '';
 
-/** @var string $rootDir */
-$rootDir = getenv('ROOT') ?? dirname(dirname(__DIR__));
-
 use Cake\Core\Configure;
 use Cake\Error\Debugger;
 
@@ -36,7 +33,7 @@ if (Configure::read('debug')) :
     <?php endif; ?>
     <?php if ($error instanceof Error) : ?>
         <strong>Error in: </strong>
-        <?= sprintf('%s, line %s', str_replace($rootDir, 'ROOT', $error->getFile()), $error->getLine()) ?>
+        <?= sprintf('%s, line %s', str_replace(ROOT, 'ROOT', $error->getFile()), $error->getLine()) ?>
     <?php endif; ?>
     <?php
     echo $this->element('auto_table_warning');

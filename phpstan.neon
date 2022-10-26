@@ -1,2 +1,10 @@
 parameters:
+    parallel:
+        processTimeout: 900.0
+    paths:
+    - config
+    - src
+    - templates
+    - tests
     ignoreErrors:
+    - '#Constant [A-Z]+ not found.#'

@@ -56,7 +56,7 @@
         ],
         "cs-check": "vendor/bin/phpcs --colors -p -s --extensions=ctp,php ./src ./tests ./config",
         "cs-fix": "vendor/bin/phpcbf --colors --extensions=ctp,php ./src ./tests ./config",
-        "phpstan": "phpstan analyse src/ -c phpstan.neon --level=4 --no-progress -vvv",
+        "phpstan": "phpstan analyse --level=7 --no-progress -vvv",
         "test": "vendor/bin/phpunit --colors=always",
         "coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-text",
         "coverage-clover": "php -dxdebug.mode=coverage vendor/bin/phpunit --coverage-clover=tmp/coverage.xml",
