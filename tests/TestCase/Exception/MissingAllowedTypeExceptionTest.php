@@ -45,7 +45,7 @@ class MissingAllowedTypeExceptionTest extends TestCase
         try {
             throw new MissingAllowedTypeException('TEST');
         } catch (MissingAllowedTypeException $e) {
-            $this->assertEquals($e->getCode(), 404);
+            $this->assertEquals(404, $e->getCode());
         }
     }
 
@@ -59,7 +59,7 @@ class MissingAllowedTypeExceptionTest extends TestCase
         try {
             throw new MissingAllowedTypeException('TEST');
         } catch (MissingAllowedTypeException $e) {
-            $this->assertEquals($e->getMessage(), 'Unknown Allowed Type: TEST');
+            $this->assertEquals('Unknown Allowed Type: TEST', $e->getMessage());
         }
     }
 }

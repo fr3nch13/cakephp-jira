@@ -20,7 +20,7 @@
         "php": "^7.4"
     },
     "require-dev": {
-        "fr3nch13/cakephp-pta": "~2.2"
+        "fr3nch13/cakephp-pta": "~2.4"
     },
     "autoload": {
         "psr-4": {
@@ -54,13 +54,13 @@
             "@cs-fix",
             "@cs-check"
         ],
-        "cs-check": "vendor/bin/phpcs --colors -p -s --extensions=ctp,php ./src ./tests ./config",
-        "cs-fix": "vendor/bin/phpcbf --colors --extensions=ctp,php ./src ./tests ./config",
-        "phpstan": "phpstan analyse src/ -c phpstan.neon --level=4 --no-progress -vvv",
-        "test": "vendor/bin/phpunit --colors=always",
-        "coverage": "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-text",
-        "coverage-clover": "php -dxdebug.mode=coverage vendor/bin/phpunit --coverage-clover=tmp/coverage.xml",
-        "coverage-text": "php -dxdebug.mode=coverage vendor/bin/phpunit --coverage-text --colors=never"
+        "cs-check": "php -d memory_limit=-1 ./vendor/bin/phpcs --colors -p -s --extensions=php ./src ./tests ./config",
+        "cs-fix": "php -d memory_limit=-1 ./vendor/bin/phpcbf --colors --extensions=php ./src ./tests ./config",
+        "phpstan": "php -d memory_limit=-1 ./vendor/bin/phpstan --no-progress -vvv",
+        "test": "php -d memory_limit=-1 ./vendor/bin/phpunit --colors=always",
+        "coverage": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage",
+        "coverage-clover": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover=tmp/coverage.xml",
+        "coverage-text": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-text --colors=never"
     },
     "config": {
         "sort-packages": true,

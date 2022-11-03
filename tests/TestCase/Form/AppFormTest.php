@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Fr3nch13\Jira\Test\TestCase\Form;
 
 use App\Application;
+use Cake\Event\EventManager;
 use Cake\Form\Schema;
 use Cake\TestSuite\TestCase;
 use Cake\Validation\Validator;
@@ -30,14 +31,9 @@ class AppFormTest extends TestCase
     public $humanName = '';
 
     /**
-     * @var object|null The form object.
+     * @var \Fr3nch13\Jira\Form\AppForm The form object.
      */
-    public $JiraForm = null;
-
-    /**
-     * @var bool Switcher to make this whole test suite incomplete.
-     */
-    public $incomplete = false;
+    public $JiraForm;
 
     /**
      * setUp method
@@ -67,6 +63,17 @@ class AppFormTest extends TestCase
         $this->tearDownJira();
 
         parent::tearDown();
+    }
+
+    /**
+     * testGetInfo
+     *
+     * @return void
+     */
+    public function testConstruct(): void
+    {
+        $JiraForm = new JiraForm(new EventManager());
+        $this->assertInstanceOf(JiraForm::class, $JiraForm);
     }
 
     /**
@@ -149,7 +156,7 @@ class AppFormTest extends TestCase
      *
      * @return void
      */
-    public function testValidate()
+    public function testValidate(): void
     {
         $requestData = [];
         $this->assertFalse($this->JiraForm->validate($requestData));
@@ -169,8 +176,6 @@ class AppFormTest extends TestCase
      */
     public function testExecute(): void
     {
-        //$this->markTestIncomplete('Not implemented yet.');
-
         $requestData = [
             'summary' => 'TEST SUMMARY',
             'details' => 'test details',

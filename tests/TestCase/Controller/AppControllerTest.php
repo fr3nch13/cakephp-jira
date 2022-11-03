@@ -30,6 +30,16 @@ class AppControllerTest extends TestCase
     use JiraTestTrait;
 
     /**
+     * @var string The controller name
+     */
+    public $controller = 'app';
+
+    /**
+     * @var string The type of issue to submit to Jira.
+     */
+    public $type = 'Report';
+
+    /**
      * setUp method
      *
      * @return void
@@ -62,12 +72,45 @@ class AppControllerTest extends TestCase
      *
      * @return void
      */
-    public function testAdd(): void
+    public function testAddGet(): void
     {
-        $this->get('/jira/app/add');
+        $this->get('/jira/' . $this->controller . '/add');
 
         $this->assertResponseOk();
-        $this->assertResponseContains('action="/jira/app/add"');
+        $this->assertResponseContains('action="/jira/' . $this->controller . '/add"');
+    }
+
+    /**
+     * testAdd
+     *
+     * @return void
+     */
+    public function testAddPostSuccess(): void
+    {
+        $postData = [
+            'summary' => 'This is the summary',
+            'details' => 'Details of the Jira issue.',
+        ];
+        $this->post('/jira/' . $this->controller . '/add', $postData);
+
+        $this->assertResponseSuccess();
+        $this->assertRedirectContains('/jira/' . $this->controller . '/thankyou?type=' . urlencode($this->type));
+    }
+
+    /**
+     * testAdd
+     *
+     * @return void
+     */
+    public function testAddPostFail(): void
+    {
+        $postData = [];
+        $this->post('/jira/' . $this->controller . '/add', $postData);
+
+        $this->assertResponseOk();
+
+        $this->assertResponseContains('<div class="error-message" id="summary-error">This field is required</div>');
+        $this->assertResponseContains('<div class="error-message" id="details-error">This field is required</div>');
     }
 
     /**
@@ -77,12 +120,12 @@ class AppControllerTest extends TestCase
      */
     public function testThankyou(): void
     {
-        $this->get('/jira/app/thankyou');
+        $this->get('/jira/' . $this->controller . '/thankyou');
 
         //debug((string)$this->_response->getBody());
         //debug($this->_response->getHeaders());
 
         $this->assertResponseOk();
-        $this->assertResponseContains('<h4>Thank you for submitting the Report.</h4>');
+        $this->assertResponseContains('<h4>Thank you for submitting the ' . $this->type . '.</h4>');
     }
 }

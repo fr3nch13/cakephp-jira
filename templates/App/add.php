@@ -1,20 +1,24 @@
 <?php
+
 declare(strict_types=1);
+
 /**
  * The default form for submitting reports.
  *
  * It is setup based on my projects that use a boostrap/AdminLte theme that I wrote.
- * You don't have to use it, and infact you'll get an error if you don't have a Template/base.ctp page.
- * To see an example of the `/base.ctp` file, see: `Template/base-example.ctp` file.
+ * You don't have to use it, and infact you'll get an error if you don't have a Template/base.php page.
  *
  *
  * This is an example of the issue submission form.
  * It generates the form fields based on the settings from the underlying form object.
+ *
+ * @var \App\View\AppView $this
+ * @var \Fr3nch13\Jira\Form\AppForm $form The form object with settings and fields for creating the html form below.
  */
 
 $this->extend('Fr3nch13/Jira./base');
 
-$title = isset($title) ? $title : __('Report');
+$title = $this->get('title', __('Report'));
 
 $this->assign('page-title', __('Submit a {0}', [$title]));
 $this->assign('page-subtitle', __(' '));
@@ -69,4 +73,4 @@ $this->start('page-content');
         <!-- /.box-body -->
     </div>
 </section>
-<?php $this->end('page-content'); ?>
+<?php $this->end(); //page-content ?>
