@@ -132,18 +132,6 @@ class AppFormTest extends TestCase
      *
      * @return void
      */
-    public function testBuildSchema(): void
-    {
-        $schema = $this->JiraForm->_buildSchema(new Schema());
-        $this->assertInstanceOf(Schema::class, $schema);
-        $this->assertSame($schema, $this->JiraForm->getSchema(), 'Same instance each time');
-    }
-
-    /**
-     * Test schema()
-     *
-     * @return void
-     */
     public function testSchema(): void
     {
         $schema = $this->JiraForm->getSchema();
