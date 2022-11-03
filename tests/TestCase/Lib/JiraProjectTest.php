@@ -571,7 +571,6 @@ class JiraProjectTest extends TestCase
             ],
         ]);
 
-
         $this->expectException(MissingIssueFieldException::class);
         $result = $this->JiraProject->submitIssue('Test', []);
     }

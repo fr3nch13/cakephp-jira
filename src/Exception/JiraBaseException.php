@@ -37,7 +37,7 @@ class JiraBaseException extends CakeException
         if (!$this->_messageTemplate) {
             $this->_messageTemplate = __('Jira Error(s): %s');
         }
-        
+
         if (is_string($message)) {
             $message = [0 => $message];
         }
