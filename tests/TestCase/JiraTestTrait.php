@@ -23,22 +23,12 @@ use Mockery;
 trait JiraTestTrait
 {
     /**
-     * @var \Fr3nch13\Jira\Lib\JiraProject Test subject
+     * @var \Fr3nch13\Jira\Lib\JiraProject|null Test subject
      */
-    public $JiraProject;
+    public $JiraProject = null;
 
     /**
-     * @var \JiraRestApi\Project\Project The project object.
-     */
-    public $Project = null;
-
-    /**
-     * @var \JiraRestApi\Project\ProjectService|null The project service object.
-     */
-    public $ProjectService = null;
-
-    /**
-     * @var array The array of JiraRestApi\Issue\Issue objects.
+     * @var array<\JiraRestApi\Issue\Issue> Holds the list of issues for this instance.
      */
     public $issues = [];
 
@@ -73,12 +63,22 @@ trait JiraTestTrait
     public $IssueCreatedTest = null;
 
     /**
-     * @var \JiraRestApi\Issue\IssueService|null The issue service object.
+     * @var \JiraRestApi\Issue\IssueService|\Mockery\LegacyMockInterface|null The issue service object.
      */
     public $IssueService = null;
 
     /**
-     * @var array The array of JiraRestApi\Issue\Version objects.
+     * @var \JiraRestApi\Project\Project|null The project object.
+     */
+    public $Project = null;
+
+    /**
+     * @var \Mockery\LegacyMockInterface|null The project service object.
+     */
+    public $ProjectService = null;
+
+    /**
+     * @var array<\JiraRestApi\Issue\Version> The list of Versions for this instance.
      */
     public $versions = [];
 
@@ -91,17 +91,16 @@ trait JiraTestTrait
      */
     public function setUpJira(): void
     {
-        if ($this->ProjectService === null) {
-            $this->ProjectService = Mockery::mock('overload:JiraRestApi\Project\ProjectService');
-        }
-        if ($this->IssueService === null) {
-            $this->IssueService = Mockery::mock('overload:JiraRestApi\Issue\IssueService');
-        }
+        /** @var \Mockery\Mock $ProjectService */
+        $ProjectService = Mockery::mock('overload:JiraRestApi\Project\ProjectService');
+
+        /** @var \Mockery\Mock $IssueService */
+        $IssueService = Mockery::mock('overload:JiraRestApi\Issue\IssueService');
 
         $projectKey = 'TEST';
 
         $this->Project = new Project();
-        $this->Project->setId(1)
+        $this->Project->setId('1')
             ->setKey($projectKey)
             ->setName('Test')
             ->setAvatarUrls([])
@@ -127,7 +126,7 @@ trait JiraTestTrait
         // create some generic issues.
         for ($i = 0; $i < 5; $i++) {
             $this->issues[$i] = new Issue();
-            $this->issues[$i]->id = $i;
+            $this->issues[$i]->id = strval($i);
             $this->issues[$i]->key = $projectKey . '-' . $i;
             $this->issues[$i]->fields = new IssueField();
             $this->issues[$i]->fields->setProjectId($projectKey)
@@ -145,7 +144,7 @@ trait JiraTestTrait
         // add a bug issue
         $i = 5;
         $this->issues[$i] = new Issue();
-        $this->issues[$i]->id = $i;
+        $this->issues[$i]->id = strval($i);
         $this->issues[$i]->key = $projectKey . '-' . $i;
         $this->issues[$i]->fields = new IssueField();
         $this->issues[$i]->fields->setProjectId($projectKey)
@@ -162,7 +161,7 @@ trait JiraTestTrait
         // add a feature request
         $i = 6;
         $this->issues[$i] = new Issue();
-        $this->issues[$i]->id = $i;
+        $this->issues[$i]->id = strval($i);
         $this->issues[$i]->key = $projectKey . '-' . $i;
         $this->issues[$i]->fields = new IssueField();
         $this->issues[$i]->fields->setProjectId($projectKey)
@@ -206,59 +205,67 @@ trait JiraTestTrait
         $this->IssueCreatedTest->id = '7';
         $this->IssueCreatedTest->key = 'TEST-7';
 
-        $this->ProjectService->shouldReceive('get')
-            ->with($projectKey)
+        /** @var \Mockery\Expectation $expectation */
+        $expectation = $ProjectService->shouldReceive('get');
+        $expectation->with($projectKey)
             ->andReturn($this->Project);
 
-        $this->ProjectService->shouldReceive('getVersions')
-            ->with($projectKey)
+        /** @var \Mockery\Expectation $expectation */
+        $expectation = $ProjectService->shouldReceive('getVersions');
+        $expectation->with($projectKey)
             ->andReturn($this->versions);
 
         $projectKey = $projectKey;
-        $this->IssueService->shouldReceive('search')
-            ->withArgs(function ($query, $start, $max) use ($projectKey) {
-                if ($query == '"project" = "' . $projectKey . '" ORDER BY key DESC') {
-                    return true;
-                }
+        /** @var \Mockery\Expectation $expectation */
+        $expectation = $IssueService->shouldReceive('search');
+        $expectation->withArgs(function ($query, $start, $max) use ($projectKey) {
+            if ($query == '"project" = "' . $projectKey . '" ORDER BY key DESC') {
+                return true;
+            }
 
-                return false;
-            })
-            ->andReturn($this->IssueSearchResult);
+            return false;
+        })->andReturn($this->IssueSearchResult);
 
-        $this->IssueService->shouldReceive('search')
-            ->withArgs(function ($query, $start, $max) use ($projectKey) {
-                if ($query == '"project" = "' . $projectKey . '" AND resolution is EMPTY ORDER BY key DESC') {
-                    return true;
-                }
+        /** @var \Mockery\Expectation $expectation */
+        $expectation = $IssueService->shouldReceive('search');
+        $expectation->withArgs(function ($query, $start, $max) use ($projectKey) {
+            if ($query == '"project" = "' . $projectKey . '" AND resolution is EMPTY ORDER BY key DESC') {
+                return true;
+            }
 
-                return false;
-            })
-            ->andReturn($this->IssueSearchResultOpen);
+            return false;
+        })->andReturn($this->IssueSearchResultOpen);
 
-        $this->IssueService->shouldReceive('search')
-            ->withArgs(function ($query, $start, $max) use ($projectKey) {
-                if (
-                    $query == '"project" = "' . $projectKey . '" and "type" = "Bug" AND resolution is EMPTY ORDER BY key DESC'
-                    || $query == '"project" = "' . $projectKey . '" and "type" = "Bug" ORDER BY key DESC'
-                ) {
-                    return true;
-                }
+        /** @var \Mockery\Expectation $expectation */
+        $expectation = $IssueService->shouldReceive('search');
+        $expectation->withArgs(function ($query, $start, $max) use ($projectKey) {
+            if (
+                $query == '"project" = "' . $projectKey . '" and "type" = "Bug" AND resolution is EMPTY ORDER BY key DESC'
+                || $query == '"project" = "' . $projectKey . '" and "type" = "Bug" ORDER BY key DESC'
+            ) {
+                return true;
+            }
 
-                return false;
-            })
-            ->andReturn($this->IssueSearchResultBugs);
+            return false;
+        })->andReturn($this->IssueSearchResultBugs);
 
-        $this->IssueService->shouldReceive('get')
-            ->with('TEST-1')
+        /** @var \Mockery\Expectation $expectation */
+        $expectation = $IssueService->shouldReceive('get');
+        $expectation->with('TEST-1')
             ->andReturn($this->issues[1]);
 
-        $this->IssueService->shouldReceive('get')
-            ->with('TEST-999')
+        /** @var \Mockery\Expectation $expectation */
+        $expectation = $IssueService->shouldReceive('get');
+        $expectation->with('TEST-999')
             ->andThrow(new JiraException('TEST-999'));
 
-        $this->IssueService->shouldReceive('create')
-            ->withAnyArgs()
+        /** @var \Mockery\Expectation $expectation */
+        $expectation = $IssueService->shouldReceive('create');
+        $expectation->withAnyArgs()
             ->andReturn($this->IssueCreatedTest);
+
+        $this->IssueService = $IssueService;
+        $this->ProjectService = $ProjectService;
 
         $this->Issue = new Issue();
         $this->JiraProject = new JiraProject();
@@ -274,7 +281,7 @@ trait JiraTestTrait
         $this->JiraProject = null;
         $this->ProjectService = null;
         $this->Project = null;
-        $this->issues = null;
+        $this->issues = [];
         $this->Issue = null;
         $this->IssueCreatedTest = null;
         $this->IssueSearchResult = null;
@@ -282,6 +289,6 @@ trait JiraTestTrait
         $this->IssueSearchResultFeatureRequests = null;
         $this->IssueSearchResultOpen = null;
         $this->IssueService = null;
-        $this->versions = null;
+        $this->versions = [];
     }
 }

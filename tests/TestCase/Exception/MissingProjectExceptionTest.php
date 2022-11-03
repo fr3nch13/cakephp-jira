@@ -45,7 +45,7 @@ class MissingProjectExceptionTest extends TestCase
         try {
             throw new MissingProjectException('TEST');
         } catch (MissingProjectException $e) {
-            $this->assertEquals($e->getCode(), 404);
+            $this->assertEquals(404, $e->getCode());
         }
     }
 
@@ -59,7 +59,7 @@ class MissingProjectExceptionTest extends TestCase
         try {
             throw new MissingProjectException('TEST');
         } catch (MissingProjectException $e) {
-            $this->assertEquals($e->getMessage(), 'Unable to find the project: TEST');
+            $this->assertEquals('Unable to find the project: TEST', $e->getMessage());
         }
     }
 }

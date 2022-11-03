@@ -45,7 +45,7 @@ class IssueSubmissionExceptionTest extends TestCase
         try {
             throw new IssueSubmissionException('TEST');
         } catch (IssueSubmissionException $e) {
-            $this->assertEquals($e->getCode(), 500);
+            $this->assertEquals(500, $e->getCode());
         }
     }
 
@@ -59,7 +59,7 @@ class IssueSubmissionExceptionTest extends TestCase
         try {
             throw new IssueSubmissionException('TEST');
         } catch (IssueSubmissionException $e) {
-            $this->assertEquals($e->getMessage(), 'Problem submitting the Issue. Error(s): TEST');
+            $this->assertEquals('Problem submitting the Issue. Error(s): TEST', $e->getMessage());
         }
     }
 }

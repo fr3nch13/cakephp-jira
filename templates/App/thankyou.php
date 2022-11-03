@@ -1,15 +1,19 @@
 <?php
+
 declare(strict_types=1);
+
 /**
  * The default thank you page.
  *
  * It is setup based on my projects that use a boostrap/admin lte them that I wrote.
  * You don't have to use it, and infact you'll get an error if you don't have a Template/base.ctp page.
+ *
+ * @var \App\View\AppView $this
  */
 
-$this->extend('/base');
+$this->extend('Fr3nch13/Jira./base');
 
-$type = isset($type) ? $type : __('Report');
+$type = $this->get('type', __('Report'));
 
 $this->assign('page-title', __('Thank You!'));
 $this->assign('page-subtitle', __(' '));
@@ -22,4 +26,4 @@ $this->start('page-content');
         </div>
     </div>
 </section>
-<?php $this->end('page-content'); ?>
+<?php $this->end(); //page-content ?>

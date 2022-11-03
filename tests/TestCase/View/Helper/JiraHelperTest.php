@@ -25,14 +25,9 @@ class JiraHelperTest extends TestCase
     use JiraTestTrait;
 
     /**
-     * @var \Fr3nch13\Jira\View\Helper\JiraHelper|null The helper object.
+     * @var \Fr3nch13\Jira\View\Helper\JiraHelper The helper object.
      */
-    public $helper = null;
-
-    /**
-     * @var bool Switcher to make this whole test suite incomplete.
-     */
-    public $incomplete = false;
+    public $helper;
 
     /**
      * setUp method
@@ -42,14 +37,13 @@ class JiraHelperTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        if (!$this->incomplete) {
-            $app = new Application(CONFIG);
-            $app->bootstrap();
-            $app->pluginBootstrap();
-            $View = new View();
-            $this->helper = new JiraHelper($View);
-            $this->setUpJira();
-        }
+
+        $app = new Application(CONFIG);
+        $app->bootstrap();
+        $app->pluginBootstrap();
+        $View = new View();
+        $this->helper = new JiraHelper($View);
+        $this->setUpJira();
     }
 
     /**
@@ -71,11 +65,6 @@ class JiraHelperTest extends TestCase
      */
     public function testGetInfo(): void
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $info = $this->helper->getInfo();
 
         $this->assertInstanceOf(Project::class, $info);
@@ -88,11 +77,6 @@ class JiraHelperTest extends TestCase
      */
     public function testGetVersions(): void
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $versions = $this->helper->getVersions();
 
         $this->assertEquals($this->versions, $versions);
@@ -105,11 +89,6 @@ class JiraHelperTest extends TestCase
      */
     public function testGetIssues(): void
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $issues = $this->helper->getIssues();
 
         $this->assertEquals($this->IssueSearchResult, $issues);
@@ -122,11 +101,6 @@ class JiraHelperTest extends TestCase
      */
     public function testGetOpenIssues(): void
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $issues = $this->helper->getOpenIssues();
 
         $this->assertEquals($this->IssueSearchResultOpen, $issues);
@@ -139,11 +113,6 @@ class JiraHelperTest extends TestCase
      */
     public function testGetIssue(): void
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $issue = $this->helper->getIssue(1);
 
         $this->assertInstanceOf(Issue::class, $issue);
@@ -158,11 +127,6 @@ class JiraHelperTest extends TestCase
      */
     public function testGetBugs(): void
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $issues = $this->helper->getBugs();
 
         $this->assertEquals($this->IssueSearchResultBugs, $issues);
@@ -175,11 +139,6 @@ class JiraHelperTest extends TestCase
      */
     public function testGetOpenBugs(): void
     {
-        if ($this->incomplete) {
-            $this->markTestIncomplete('Not implemented yet.');
-
-            return;
-        }
         $issues = $this->helper->getOpenBugs();
 
         $this->assertEquals($this->IssueSearchResultBugs, $issues);

@@ -10,3 +10,4 @@ docs/phpdoc-cache-*
 !/tests/test_app/tmp/*.gitkeep
 jira-rest-client.log
 .phpunit.result.cache
+tests/test_app/config/.env

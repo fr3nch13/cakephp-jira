@@ -8,10 +8,16 @@ declare(strict_types=1);
 namespace Fr3nch13\Jira\Test\TestCase\Lib;
 
 use App\Application;
+use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
+use Fr3nch13\Jira\Exception\MissingAllowedTypeException;
+use Fr3nch13\Jira\Exception\MissingConfigException;
+use Fr3nch13\Jira\Exception\MissingDataException;
 use Fr3nch13\Jira\Exception\MissingIssueException;
+use Fr3nch13\Jira\Exception\MissingIssueFieldException;
 use Fr3nch13\Jira\Test\TestCase\JiraTestTrait;
 use JiraRestApi\Issue\Issue;
+use JiraRestApi\Issue\IssueField;
 use JiraRestApi\Project\Project;
 
 /**
@@ -23,11 +29,6 @@ class JiraProjectTest extends TestCase
      * Use the Jira Test Trait
      */
     use JiraTestTrait;
-
-    /**
-     * Switcher to make this whole test suite incomplete.
-     */
-    public $incomplete = false;
 
     /**
      * setUp method
@@ -54,6 +55,102 @@ class JiraProjectTest extends TestCase
         $this->tearDownJira();
 
         parent::tearDown();
+    }
+
+    /**
+     * testConfigure
+     *
+     * @return void
+     */
+    public function testConfigure(): void
+    {
+        $this->JiraProject->configure();
+
+        $this->assertInstanceOf(\JiraRestApi\Configuration\ArrayConfiguration::class, $this->JiraProject->ConfigObj);
+    }
+
+    /**
+     * testConfigure
+     *
+     * @return void
+     */
+    public function testConfigureException_jiraLogFile(): void
+    {
+        $this->expectException(MissingConfigException::class);
+        Configure::delete('Jira.jiraLogFile');
+        $this->JiraProject->configure();
+    }
+
+    /**
+     * testConfigure
+     *
+     * @return void
+     */
+    public function testConfigureException_useV3RestApi(): void
+    {
+        $this->expectException(MissingConfigException::class);
+        Configure::delete('Jira.useV3RestApi');
+        $this->JiraProject->configure();
+    }
+
+    /**
+     * testConfigure
+     *
+     * @return void
+     */
+    public function testConfigureException_projectKey(): void
+    {
+        $this->expectException(MissingConfigException::class);
+        Configure::delete('Jira.projectKey');
+        $this->JiraProject->configure();
+    }
+
+    /**
+     * testConfigure
+     *
+     * @return void
+     */
+    public function testConfigureException_apiKey(): void
+    {
+        $this->expectException(MissingConfigException::class);
+        Configure::delete('Jira.apiKey');
+        $this->JiraProject->configure();
+    }
+
+    /**
+     * testConfigure
+     *
+     * @return void
+     */
+    public function testConfigureException_username(): void
+    {
+        $this->expectException(MissingConfigException::class);
+        Configure::delete('Jira.username');
+        $this->JiraProject->configure();
+    }
+
+    /**
+     * testConfigure
+     *
+     * @return void
+     */
+    public function testConfigureException_host(): void
+    {
+        $this->expectException(MissingConfigException::class);
+        Configure::delete('Jira.host');
+        $this->JiraProject->configure();
+    }
+
+    /**
+     * testConfigure
+     *
+     * @return void
+     */
+    public function testConfigureException_schema(): void
+    {
+        $this->expectException(MissingConfigException::class);
+        Configure::delete('Jira.schema');
+        $this->JiraProject->configure();
     }
 
     /**
@@ -121,6 +218,18 @@ class JiraProjectTest extends TestCase
     }
 
     /**
+     * testGetIssue no key
+     *
+     * @return void
+     */
+    public function testGetIssueNoKey(): void
+    {
+        $this->expectException(MissingDataException::class);
+
+        $issue = $this->JiraProject->getIssue();
+    }
+
+    /**
      * testGetMissingIssue
      *
      * @return void
@@ -130,6 +239,18 @@ class JiraProjectTest extends TestCase
         $this->expectException(MissingIssueException::class);
 
         $issue = $this->JiraProject->getIssue(999);
+    }
+
+    /**
+     * Get Allowed Types
+     *
+     * @return void
+     */
+    public function testGetAllowedTypes(): void
+    {
+        $this->expectException(MissingAllowedTypeException::class);
+
+        $issue = $this->JiraProject->getAllowedTypes('dontexist');
     }
 
     /**
@@ -189,6 +310,60 @@ class JiraProjectTest extends TestCase
      *
      * @return void
      */
+    public function testModifyAllowedTypesMissingSettings(): void
+    {
+        $this->expectException(MissingIssueFieldException::class);
+        $this->JiraProject->modifyAllowedTypes('dontexist');
+    }
+
+    /**
+     * modifyAllowedTypes
+     *
+     * @return void
+     */
+    public function testModifyAllowedTypesMissingFormData(): void
+    {
+        $this->expectException(MissingIssueFieldException::class);
+        $this->JiraProject->modifyAllowedTypes('dontexist', [
+            'jiraType' => 'Task',
+        ]);
+    }
+
+    /**
+     * modifyAllowedTypes
+     *
+     * @return void
+     */
+    public function testModifyAllowedTypesMissingFormDataFields(): void
+    {
+        $this->expectException(MissingIssueFieldException::class);
+        $this->JiraProject->modifyAllowedTypes('dontexist', [
+            'jiraType' => 'Task',
+            'formData' => [],
+        ]);
+    }
+
+    /**
+     * modifyAllowedTypes
+     *
+     * @return void
+     */
+    public function testModifyAllowedTypesMissingFormDataFieldsSummary(): void
+    {
+        $this->expectException(MissingIssueFieldException::class);
+        $this->JiraProject->modifyAllowedTypes('dontexist', [
+            'jiraType' => 'Task',
+            'formData' => [
+                'fields' => [],
+            ],
+        ]);
+    }
+
+    /**
+     * modifyAllowedTypes
+     *
+     * @return void
+     */
     public function testIsAllowedType(): void
     {
         $this->JiraProject->modifyAllowedTypes('Test', [
@@ -211,7 +386,7 @@ class JiraProjectTest extends TestCase
     }
 
     /**
-     * testGetVersions
+     * testSetFormData
      *
      * @return void
      */
@@ -247,6 +422,42 @@ class JiraProjectTest extends TestCase
     }
 
     /**
+     * testSetFormData
+     *
+     * @return void
+     */
+    public function testSetFormDataExceptionMissingAllowed(): void
+    {
+        $this->expectException(MissingAllowedTypeException::class);
+        $this->JiraProject->setFormData('nontexist');
+    }
+
+    /**
+     * testSetFormData
+     *
+     * @return void
+     */
+    public function testSetFormDataExceptionMissingData(): void
+    {
+        $this->JiraProject->modifyAllowedTypes('Test', [
+            'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
+            'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
+            // The form's field information.
+            'formData' => [
+                'fields' => [
+                    'summary' => [
+                        'type' => 'text',
+                        'required' => true,
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->expectException(MissingDataException::class);
+        $this->JiraProject->setFormData('Test');
+    }
+
+    /**
      * testGetFormData
      *
      * @return void
@@ -275,6 +486,28 @@ class JiraProjectTest extends TestCase
 
         // check value
         $this->assertEquals($data['fields']['summary']['type'], 'text');
+    }
+
+    /**
+     * testGetFormData
+     *
+     * @return void
+     */
+    public function testGetFormDataExceptionNoType(): void
+    {
+        $this->expectException(MissingAllowedTypeException::class);
+        $this->JiraProject->getFormData();
+    }
+
+    /**
+     * testGetFormData
+     *
+     * @return void
+     */
+    public function testGetFormDataExceptionNotAllowed(): void
+    {
+        $this->expectException(MissingAllowedTypeException::class);
+        $this->JiraProject->getFormData('dontexist');
     }
 
     /**
@@ -311,5 +544,125 @@ class JiraProjectTest extends TestCase
         $result = $this->JiraProject->submitIssue('Test', $data);
 
         $this->assertEquals('7', $result);
+    }
+
+    /**
+     * testSubmitIssue
+     *
+     * @return void
+     */
+    public function testSubmitIssueExceptionSummary(): void
+    {
+        $this->JiraProject->modifyAllowedTypes('Test', [
+            'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
+            'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
+            // The form's field information.
+            'formData' => [
+                'fields' => [
+                    'summary' => [
+                        'type' => 'text',
+                        'required' => true,
+                    ],
+                    'description' => [
+                        'type' => 'textarea',
+                        'required' => true,
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->expectException(MissingIssueFieldException::class);
+        $result = $this->JiraProject->submitIssue('Test', []);
+    }
+
+    /**
+     * testSubmitIssue
+     *
+     * @return void
+     */
+    public function testSubmitIssueExceptionNotAllowed(): void
+    {
+        $this->expectException(MissingAllowedTypeException::class);
+        $result = $this->JiraProject->submitIssue('dontexist');
+    }
+
+    /**
+     * buildSubmittedIssue
+     *
+     * @return void
+     */
+    public function testBuildSubmittedIssue(): void
+    {
+        $this->JiraProject->modifyAllowedTypes('Test', [
+            'jiraType' => 'Task', // Must be one of the types in the $this->validTypes.
+            'jiraLabels' => 'test-label', // The label used to tag user submitted bugs.
+            // The form's field information.
+            'formData' => [
+                'fields' => [
+                    'summary' => [
+                        'type' => 'text',
+                        'required' => true,
+                    ],
+                    'description' => [
+                        'type' => 'textarea',
+                        'required' => true,
+                    ],
+                ],
+            ],
+        ]);
+
+        // emulate submitted form data
+        $data = [
+            'summary' => 'Build Issue Summary',
+            'description' => 'Build Issue Description',
+            'priority' => 'High',
+            'assignee' => 'someguy',
+            'version' => '1.0.0',
+            'components' => 'frontend',
+            'duedate' => '2022-11-03',
+        ];
+
+        $result = $this->JiraProject->buildSubmittedIssue('Test', $data);
+
+        $this->assertInstanceOf(IssueField::class, $result);
+
+        $this->assertInstanceOf(\JiraRestApi\Issue\IssueType::class, $result->issuetype);
+        $this->assertEquals('Task', $result->issuetype->name);
+        $this->assertInstanceOf(\JiraRestApi\Issue\Priority::class, $result->priority);
+        $this->assertEquals('High', $result->priority->name);
+        $this->assertInstanceOf(\JiraRestApi\Project\Project::class, $result->project);
+        $this->assertEquals('TEST', $result->project->key);
+        $this->assertIsArray($result->components);
+        $this->assertInstanceOf(\JiraRestApi\Issue\Component::class, $result->components[0]);
+        $this->assertEquals('frontend', $result->components[0]->name);
+        $this->assertInstanceOf(\JiraRestApi\Issue\Reporter::class, $result->assignee);
+        $this->assertEquals('someguy', $result->assignee->name);
+        $this->assertIsArray($result->versions);
+        $this->assertInstanceOf(\JiraRestApi\Issue\Version::class, $result->versions[0]);
+        $this->assertEquals('1.0.0', $result->versions[0]->name);
+        $this->assertEquals('2022-11-03', $result->duedate);
+    }
+
+    /**
+     * testSetJiraError
+     *
+     * @return void
+     */
+    public function testSetJiraError(): void
+    {
+        $result = $this->JiraProject->setJiraError();
+        $this->assertEquals(false, $result);
+
+        $result = $this->JiraProject->setJiraError('Message');
+        $this->assertEquals(true, $result);
+
+        $result = $this->JiraProject->setJiraError('Message', 'Key');
+        $this->assertEquals(true, $result);
+
+        $expected = [
+            'Key' => 'Message',
+            0 => 'Message',
+        ];
+        $this->assertEquals($expected, $this->JiraProject->getJiraErrors());
     }
 }

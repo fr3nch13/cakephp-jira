@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -72,6 +75,10 @@ define('LOGS', ROOT . DS . 'logs' . DS);
  * Path to the cache files directory. It can be shared between hosts in a multi-server setup.
  */
 define('CACHE', TMP . 'cache' . DS);
+
+if (!defined('PLUGIN_ROOT')) {
+    define('PLUGIN_ROOT', dirname(__DIR__));
+}
 
 /**
  * The absolute path to the "cake" directory, WITHOUT a trailing DS.

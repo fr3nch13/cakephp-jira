@@ -1,10 +1,22 @@
 <?php
+
 declare(strict_types=1);
 
-$this->layout = 'error';
+/**
+ * @var \App\View\AppView $this
+ * @var string $message
+ * @var \Error $error
+ */
+
+$message = $this->get('message', '');
+
+use Cake\Core\Configure;
+use Cake\Error\Debugger;
+
+$this->setLayout('error');
 
 if (Configure::read('debug')) :
-    $this->layout = 'dev_error';
+    $this->setLayout('dev_error');
 
     $this->assign('title', $message);
     $this->assign('templateName', 'error500.ctp');

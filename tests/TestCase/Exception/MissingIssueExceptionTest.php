@@ -45,7 +45,7 @@ class MissingIssueExceptionTest extends TestCase
         try {
             throw new MissingIssueException('TEST');
         } catch (MissingIssueException $e) {
-            $this->assertEquals($e->getCode(), 404);
+            $this->assertEquals(404, $e->getCode());
         }
     }
 
@@ -59,7 +59,7 @@ class MissingIssueExceptionTest extends TestCase
         try {
             throw new MissingIssueException('20');
         } catch (MissingIssueException $e) {
-            $this->assertEquals($e->getMessage(), 'Unable to find the issue: 20');
+            $this->assertEquals('Unable to find the issue: 20', $e->getMessage());
         }
     }
 }

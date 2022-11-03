@@ -1,8 +1,11 @@
 <?php
+
 declare(strict_types=1);
+
 /**
- * The template that can be used to place the links withing a bootstrap menu.
+ * @var \App\View\AppView $this
  */
+
 ?>
 <li class="dropdown jira jira-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -15,10 +18,20 @@ declare(strict_types=1);
         </li>
         <li class="jira-body">
             <div class="pull-left">
-                <a href="<?= $this->Url->build(['action' => 'add', 'controller' => 'Bugs', 'plugin' => 'Fr3nch13/Jira', 'prefix' => false]); ?>" class="btn btn-default btn-flat">Bug</a>
+                <a href="<?= $this->Url->build([
+                    'action' => 'add',
+                    'controller' => 'Bugs',
+                    'plugin' => 'Fr3nch13/Jira',
+                    'prefix' => false,
+                ]); ?>" class="btn btn-default btn-flat">Bug</a>
             </div>
             <div class="pull-right">
-                <a href="<?= $this->Url->build(['action' => 'add', 'controller' => 'FeatureRequests', 'plugin' => 'Fr3nch13/Jira', 'prefix' => false]); ?>" class="btn btn-default btn-flat">Feature</a>
+                <a href="<?= $this->Url->build([
+                    'action' => 'add',
+                    'controller' => 'FeatureRequests',
+                    'plugin' => 'Fr3nch13/Jira',
+                    'prefix' => false,
+                ]); ?>" class="btn btn-default btn-flat">Feature</a>
             </div>
             <div style="clear: both;"></div>
         </li>

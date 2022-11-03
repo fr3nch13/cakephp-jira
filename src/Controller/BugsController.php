@@ -26,7 +26,7 @@ class BugsController extends AppController
     {
         parent::initialize();
 
-        $this->humanName = __('Bug');
+        $this->humanName = __('Bug Report');
         $this->JiraForm = new JiraForm();
     }
 }

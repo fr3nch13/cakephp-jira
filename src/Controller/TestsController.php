@@ -26,7 +26,7 @@ class TestsController extends AppController
     {
         parent::initialize();
 
-        $this->humanName = __('Test');
+        $this->humanName = __('Test Report');
         $this->JiraForm = new JiraForm();
     }
 }

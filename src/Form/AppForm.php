@@ -11,7 +11,8 @@ use Cake\Event\EventManager;
 use Cake\Form\Form;
 use Cake\Form\Schema;
 use Cake\Validation\Validator;
-use Fr3nch13\Jira\Exception\Exception;
+use Fr3nch13\Jira\Exception\JiraBaseException;
+use Fr3nch13\Jira\Exception\MissingDataException;
 use Fr3nch13\Jira\Lib\JiraProject;
 
 /**
@@ -32,7 +33,7 @@ class AppForm extends Form
     public $issueType = 'Task';
 
     /**
-     * @var array Settings for this form and for the JiraProject.
+     * @var array<string, mixed> Settings for this form and for the JiraProject.
      */
     public $settings = [];
 
@@ -61,13 +62,14 @@ class AppForm extends Form
      * Defines the schema from the JiraProject Object.
      *
      * @param \Cake\Form\Schema $schema The existing schema.
+     * @throws \Fr3nch13\Jira\Exception\MissingDataException If the issue's id isn't given.
      * @return \Cake\Form\Schema The modified schema.
      */
     protected function _buildSchema(Schema $schema): Schema
     {
         $data = $this->getFormData();
         if (!isset($data['fields'])) {
-            throw new Exception(__('Missing the fields.'));
+            throw new MissingDataException(__('Missing the fields.'));
         }
         foreach ($data['fields'] as $k => $v) {
             $schema->addField($k, $v);
@@ -80,13 +82,14 @@ class AppForm extends Form
      * Defines the validations
      *
      * @param \Cake\Validation\Validator $validator The existing validator.
+     * @throws \Fr3nch13\Jira\Exception\MissingDataException If the issue's id isn't given.
      * @return \Cake\Validation\Validator The modified validator.
      */
     public function validationDefault(Validator $validator): Validator
     {
         $data = $this->getFormData();
         if (!isset($data['fields'])) {
-            throw new Exception(__('Missing the fields.'));
+            throw new MissingDataException(__('Missing the fields.'));
         }
         foreach ($data['fields'] as $k => $v) {
             if ($v['type'] == 'string' || $v['type'] == 'text') {
@@ -109,17 +112,15 @@ class AppForm extends Form
     /**
      * Submit the issue to Jira.
      *
-     * @param array $data The array of post data from the form template.
+     * @param array<string, mixed> $data The array of post data from the form template.
      * @return bool True is the issue was submitted or false if there was an problem.
      */
     protected function _execute(array $data = []): bool
     {
         try {
-            /** @scrutinizer ignore-call */
             $result = $this->JiraProject->submitIssue($this->issueType, $data);
-        } catch (Exception $e) {
-            /** @scrutinizer ignore-call */
-            $errors = $this->JiraProject->getErrors();
+        } catch (JiraBaseException $e) {
+            $errors = $this->JiraProject->getJiraErrors();
             foreach ($errors as $k => $v) {
                 // track the errors specific to jira/the JiraProject object.
                 $this->setErrors(['jira' => [$k => $v]]);
@@ -138,7 +139,9 @@ class AppForm extends Form
     /**
      * Sets the formData variable.
      *
-     * @param array $data The array of data.
+     * @param array<string, mixed> $data The array of data.
+     * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that type is not configured.
+     * @throws \Fr3nch13\Jira\Exception\MissingDataException Uf the fields aren't defined.
      * @return void
      */
     public function setFormData(array $data = []): void
@@ -149,7 +152,9 @@ class AppForm extends Form
     /**
      * Gets the formData variable.
      *
-     * @return array The array of the current form data.
+     * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that type is not configured.
+     * @throws \Fr3nch13\Jira\Exception\MissingDataException If the form data for that type is missing.
+     * @return array<string, mixed> The array of the current form data.
      */
     public function getFormData(): array
     {
