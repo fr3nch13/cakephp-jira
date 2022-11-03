@@ -45,6 +45,10 @@ class TestForm extends AppForm
                         'required' => true,
                     ],
                     // add more fields here, like description, etc.
+                    'details' => [
+                        'type' => 'textarea',
+                        'required' => true,
+                    ],
                 ],
             ],
         ];

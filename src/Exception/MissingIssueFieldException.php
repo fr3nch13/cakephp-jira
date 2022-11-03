@@ -34,10 +34,6 @@ class MissingIssueFieldException extends JiraBaseException
     {
         $this->_messageTemplate = __('Missing the issue field: %s');
 
-        if (is_string($message)) {
-            $message = [0 => $message];
-        }
-
         parent::__construct($message, $code, $previous);
     }
 }

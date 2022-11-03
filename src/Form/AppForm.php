@@ -140,6 +140,8 @@ class AppForm extends Form
      * Sets the formData variable.
      *
      * @param array<string, mixed> $data The array of data.
+     * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that type is not configured.
+     * @throws \Fr3nch13\Jira\Exception\MissingDataException Uf the fields aren't defined.
      * @return void
      */
     public function setFormData(array $data = []): void
@@ -150,6 +152,8 @@ class AppForm extends Form
     /**
      * Gets the formData variable.
      *
+     * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that type is not configured.
+     * @throws \Fr3nch13\Jira\Exception\MissingDataException If the form data for that type is missing.
      * @return array<string, mixed> The array of the current form data.
      */
     public function getFormData(): array

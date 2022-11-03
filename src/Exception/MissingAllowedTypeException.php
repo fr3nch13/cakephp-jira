@@ -34,10 +34,6 @@ class MissingAllowedTypeException extends JiraBaseException
     {
         $this->_messageTemplate = __('Unknown Allowed Type: %s');
 
-        if (is_string($message)) {
-            $message = [0 => $message];
-        }
-
         parent::__construct($message, $code, $previous);
     }
 }

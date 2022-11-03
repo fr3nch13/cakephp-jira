@@ -36,7 +36,7 @@ class AppController extends BaseController
     {
         parent::initialize();
 
-        $this->humanName = __('Task');
+        $this->humanName = __('Report');
         $this->JiraForm = new JiraForm();
     }
 

@@ -32,11 +32,7 @@ class MissingDataException extends JiraBaseException
      */
     public function __construct($message = '', $code = null, $previous = null)
     {
-        $this->_messageTemplate = __('Seems that the config key `Jira.%s` is not set.');
-
-        if (is_string($message)) {
-            $message = [0 => $message];
-        }
+        $this->_messageTemplate = __('Missing Data: %s');
 
         parent::__construct($message, $code, $previous);
     }

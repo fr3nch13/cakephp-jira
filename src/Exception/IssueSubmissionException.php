@@ -33,11 +33,7 @@ class IssueSubmissionException extends JiraBaseException
     public function __construct($message = '', $code = null, $previous = null)
     {
         $this->_messageTemplate = __('Problem submitting the Issue. Error(s): %s');
-
-        if (is_string($message)) {
-            $message = [0 => $message];
-        }
-
+        
         parent::__construct($message, $code, $previous);
     }
 }

@@ -444,8 +444,13 @@ class JiraProject
         $allowedTypes = $this->getAllowedTypes();
 
         if (!isset($allowedTypes[$type]['formData'])) {
-            $this->setJiraError('No form data is set.', 'Exception');
+            $this->setJiraError('No form data is set.', 'MissingDataException');
             throw new MissingDataException(__('No form data is set.'));
+        }
+
+        if (!isset($allowedTypes[$type]['formData']['fields'])) {
+            $this->setJiraError('No form data fields are set.', 'MissingDataException');
+            throw new MissingDataException(__('No form data fields are set.'));
         }
 
         return $allowedTypes[$type]['formData'];
@@ -458,18 +463,19 @@ class JiraProject
      *  - Needs to be in the allowedTypes already.
      * @param array<string, mixed> $data The definition of the allowed types
      * @throws \Fr3nch13\Jira\Exception\MissingAllowedTypeException If that type is not configured.
+     * @throws \Fr3nch13\Jira\Exception\MissingDataException Uf the fields aren't defined.
      * @return void
      */
     public function setFormData(string $type, array $data = []): void
     {
-        if (!$type) {
-            $this->setJiraError('[$type is not set]', 'MissingAllowedTypeException');
-            throw new MissingAllowedTypeException('[$type is not set]');
-        }
-
         if (!$this->isAllowedType($type)) {
             $this->setJiraError($type, 'MissingAllowedTypeException');
             throw new MissingAllowedTypeException($type);
+        }
+
+        if (!isset($data['fields'])) {
+            $this->setJiraError('No form data fields are set.', 'MissingDataException');
+            throw new MissingDataException(__('No form data fields are set.'));
         }
 
         $this->allowedTypes[$type]['formData'] = $data;
@@ -488,11 +494,6 @@ class JiraProject
      */
     public function submitIssue(string $type, array $data = []): int
     {
-        if (!$type) {
-            $this->setJiraError('[$type is not set]', 'MissingAllowedTypeException');
-            throw new MissingAllowedTypeException('[$type is not set]');
-        }
-
         if (!$this->isAllowedType($type)) {
             $this->setJiraError($type, 'MissingAllowedTypeException');
             throw new MissingAllowedTypeException($type);
@@ -594,7 +595,7 @@ class JiraProject
             $issueField->setPriorityName($data['priority']);
         }
         if (isset($data['assignee'])) {
-            $issueField->setPriorityName($data['assignee']);
+            $issueField->setAssigneeName($data['assignee']);
         }
         if (isset($data['version'])) {
             $issueField->addVersion($data['version']);

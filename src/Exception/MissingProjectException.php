@@ -34,10 +34,6 @@ class MissingProjectException extends JiraBaseException
     {
         $this->_messageTemplate = __('Unable to find the project: %s');
 
-        if (is_string($message)) {
-            $message = [0 => $message];
-        }
-
         parent::__construct($message, $code, $previous);
     }
 }

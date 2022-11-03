@@ -45,7 +45,7 @@ class MissingIssueFieldExceptionTest extends TestCase
         try {
             throw new MissingIssueFieldException('TEST');
         } catch (MissingIssueFieldException $e) {
-            $this->assertEquals($e->getCode(), 404);
+            $this->assertEquals(404, $e->getCode());
         }
     }
 
@@ -59,7 +59,7 @@ class MissingIssueFieldExceptionTest extends TestCase
         try {
             throw new MissingIssueFieldException('test');
         } catch (MissingIssueFieldException $e) {
-            $this->assertEquals($e->getMessage(), 'Missing the issue field: test');
+            $this->assertEquals('Missing the issue field: test', $e->getMessage());
         }
     }
 }

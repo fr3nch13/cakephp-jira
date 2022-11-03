@@ -2,18 +2,18 @@
 declare(strict_types=1);
 
 /**
- * MissingProjectExceptionTest
+ * JiraBaseExceptionTest
  */
 
 namespace Fr3nch13\Jira\Test\TestCase\Exception;
 
 use Cake\TestSuite\TestCase;
-use Fr3nch13\Jira\Exception\MissingProjectException;
+use Fr3nch13\Jira\Exception\JiraBaseException;
 
 /**
- * Missing Project Exception Test
+ * Jira Base Exception Test
  */
-class MissingProjectExceptionTest extends TestCase
+class JiraBaseExceptionTest extends TestCase
 {
     /**
      * setUp method
@@ -43,9 +43,9 @@ class MissingProjectExceptionTest extends TestCase
     public function testExceptionCode(): void
     {
         try {
-            throw new MissingProjectException('TEST');
-        } catch (MissingProjectException $e) {
-            $this->assertEquals(404, $e->getCode());
+            throw new JiraBaseException('TEST');
+        } catch (JiraBaseException $e) {
+            $this->assertEquals(500, $e->getCode());
         }
     }
 
@@ -57,9 +57,9 @@ class MissingProjectExceptionTest extends TestCase
     public function testExceptionMessage(): void
     {
         try {
-            throw new MissingProjectException('TEST');
-        } catch (MissingProjectException $e) {
-            $this->assertEquals('Unable to find the project: TEST', $e->getMessage());
+            throw new JiraBaseException('TEST');
+        } catch (JiraBaseException $e) {
+            $this->assertEquals('Jira Error(s): TEST', $e->getMessage());
         }
     }
 }

@@ -2,18 +2,18 @@
 declare(strict_types=1);
 
 /**
- * MissingProjectExceptionTest
+ * MissingDataExceptionTest
  */
 
 namespace Fr3nch13\Jira\Test\TestCase\Exception;
 
 use Cake\TestSuite\TestCase;
-use Fr3nch13\Jira\Exception\MissingProjectException;
+use Fr3nch13\Jira\Exception\MissingDataException;
 
 /**
- * Missing Project Exception Test
+ * Missing Data Exception Test
  */
-class MissingProjectExceptionTest extends TestCase
+class MissingDataExceptionTest extends TestCase
 {
     /**
      * setUp method
@@ -43,9 +43,9 @@ class MissingProjectExceptionTest extends TestCase
     public function testExceptionCode(): void
     {
         try {
-            throw new MissingProjectException('TEST');
-        } catch (MissingProjectException $e) {
-            $this->assertEquals(404, $e->getCode());
+            throw new MissingDataException('TEST');
+        } catch (MissingDataException $e) {
+            $this->assertEquals(500, $e->getCode());
         }
     }
 
@@ -57,9 +57,9 @@ class MissingProjectExceptionTest extends TestCase
     public function testExceptionMessage(): void
     {
         try {
-            throw new MissingProjectException('TEST');
-        } catch (MissingProjectException $e) {
-            $this->assertEquals('Unable to find the project: TEST', $e->getMessage());
+            throw new MissingDataException('fields');
+        } catch (MissingDataException $e) {
+            $this->assertEquals('Missing Data: fields', $e->getMessage());
         }
     }
 }

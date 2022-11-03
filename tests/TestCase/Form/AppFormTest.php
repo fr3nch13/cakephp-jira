@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Fr3nch13\Jira\Test\TestCase\Form;
 
 use App\Application;
+use Cake\Event\EventManager;
 use Cake\Form\Schema;
 use Cake\TestSuite\TestCase;
 use Cake\Validation\Validator;
@@ -69,6 +70,17 @@ class AppFormTest extends TestCase
      *
      * @return void
      */
+    public function testConstruct(): void
+    {
+        $JiraForm = new JiraForm(new EventManager());
+        $this->assertInstanceOf(JiraForm::class, $JiraForm);
+    }
+
+    /**
+     * testGetInfo
+     *
+     * @return void
+     */
     public function testGetFormData(): void
     {
         $data = $this->JiraForm->getFormData();
@@ -113,6 +125,18 @@ class AppFormTest extends TestCase
         ];
 
         $this->assertEquals($data, $expected);
+    }
+
+    /**
+     * Test schema()
+     *
+     * @return void
+     */
+    public function testBuildSchema(): void
+    {
+        $schema = $this->JiraForm->_buildSchema(new Schema());
+        $this->assertInstanceOf(Schema::class, $schema);
+        $this->assertSame($schema, $this->JiraForm->getSchema(), 'Same instance each time');
     }
 
     /**
