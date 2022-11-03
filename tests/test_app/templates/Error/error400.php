@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 /**
  * @var \App\View\AppView $this
  * @var string $message
@@ -7,8 +9,8 @@ declare(strict_types=1);
  * @var \Error $error
  */
 
-$message ?? '';
-$url ?? '';
+$message = $this->get('message', '');
+$url = $this->get('url', '');
 
 use Cake\Core\Configure;
 use Cake\Error\Debugger;

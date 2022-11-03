@@ -103,7 +103,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
             <li class="bullet problem">Your tmp directory is NOT writable.</li>
         <?php endif; ?>
 
-        <?php if (is_writable(LOGS'))) : ?>
+        <?php if (is_writable(LOGS)) : ?>
             <li class="bullet success">Your logs directory is writable.</li>
         <?php else : ?>
             <li class="bullet problem">Your logs directory is NOT writable.</li>

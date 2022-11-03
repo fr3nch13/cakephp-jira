@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
+
 /**
  * @var \App\View\AppView $this
- * @var string $content
  */
 
-$content ?? '';
+$content = $this->get('content', '');
 $content = explode("\n", $content);
 
 foreach ($content as $line) :

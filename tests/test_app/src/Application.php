@@ -14,6 +14,7 @@ declare(strict_types=1);
  * @since     3.3.0
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App;
 
 use Cake\Core\Configure;
@@ -90,10 +91,10 @@ class Application extends BaseApplication
     {
         try {
             $this->addPlugin('Bake');
-            // Load more plugins here
-            $this->addPlugin('Migrations');
         } catch (\Cake\Core\Exception\MissingPluginException $e) {
             // Do not halt if the plugin is missing
         }
+        // Load more plugins here
+        $this->addPlugin('Migrations');
     }
 }

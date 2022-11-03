@@ -24,7 +24,7 @@ class JiraHelper extends Helper
     /**
      * List of loaded helpers.
      *
-     * @var array
+     * @var array<string>
      */
     public $helpers = ['Url', 'Html'];
 
@@ -39,7 +39,7 @@ class JiraHelper extends Helper
      * Initialize the helper
      *
      * @param \Cake\View\View $View The view object
-     * @param array $config Helper config settings
+     * @param array<string, mixed> $config Helper config settings
      * @return void
      */
     public function __construct(View $View, array $config = [])
@@ -52,7 +52,7 @@ class JiraHelper extends Helper
     /**
      * Get the information about the Jira Project
      *
-     * @return object Object containing the information about your project.
+     * @return \JiraRestApi\Project\Project Object containing the information about your project.
      * @throws \Fr3nch13\Jira\Exception\MissingProjectException If the project can't be found.
      */
     public function getInfo()
@@ -96,7 +96,7 @@ class JiraHelper extends Helper
      * Gets info on a particular issue within your project.
      *
      * @param int $id The issue id. The integer part without the project key.
-     * @return object the object that has the info of that issue.
+     * @return \JiraRestApi\Issue\Issue|\JiraRestApi\Issue\IssueV3 the object that has the info of that issue.
      * @throws \Fr3nch13\Jira\Exception\MissingIssueException If the project's issue can't be found.
      */
     public function getIssue($id = null)

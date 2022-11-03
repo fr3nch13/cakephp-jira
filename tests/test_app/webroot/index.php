@@ -29,8 +29,8 @@ if (\PHP_SAPI === 'cli-server') {
         $url_path &&
         strpos($url_path, '..') === false &&
         strpos($url_path, '.') !== false &&
-        is_file($file))
-    {
+        is_file($file)
+    ) {
         return false;
     }
 }

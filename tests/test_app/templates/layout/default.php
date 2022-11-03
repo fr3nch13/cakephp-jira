@@ -1,8 +1,11 @@
 <?php
+
 declare(strict_types=1);
+
 /**
  * @var \App\View\AppView $this
  */
+
 
 $cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
@@ -28,19 +31,20 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+                <h1><a href=""><?= $this->fetch('page-title') ?></a></h1>
+                <h2><a href=""><?= $this->fetch('page-subtitle') ?></a></h2>
             </li>
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+                <li><a target="_blank" href="https://book.cakephp.org/4/">Documentation</a></li>
+                <li><a target="_blank" href="https://api.cakephp.org/4/">API</a></li>
             </ul>
         </div>
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
-        <?= $this->fetch('content') ?>
+        <?= $this->fetch('page-content') ?>
     </div>
     <footer>
     </footer>

@@ -1,8 +1,11 @@
 <?php
+
 declare(strict_types=1);
+
 /**
  * @var \App\View\AppView $this
  */
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,6 +32,7 @@ declare(strict_types=1);
             <?= $this->Flash->render() ?>
 
             <?= $this->fetch('content') ?>
+            <?= $this->fetch('page-content') ?>
         </div>
         <div id="footer">
             <?= $this->Html->link(__('Back'), 'javascript:history.back()') ?>

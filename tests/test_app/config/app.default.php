@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Cake\Cache\Engine\FileEngine;
 use Cake\Database\Connection;
 use Cake\Database\Driver\Mysql;
@@ -7,7 +9,7 @@ use Cake\Log\Engine\FileLog;
 use Cake\Mailer\Transport\MailTransport;
 
 if (!defined('WWW_ROOT')) {
-    include('paths.php');
+    include 'paths.php';
 }
 
 return [

@@ -23,9 +23,9 @@ class AppController extends BaseController
     public $humanName = '';
 
     /**
-     * @var object|null The form object.
+     * @var \Fr3nch13\Jira\Form\AppForm The form object.
      */
-    public $JiraForm = null;
+    public $JiraForm;
 
     /**
      * Initialize method

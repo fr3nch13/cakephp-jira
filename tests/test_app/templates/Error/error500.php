@@ -1,12 +1,14 @@
 <?php
+
 declare(strict_types=1);
+
 /**
  * @var \App\View\AppView $this
  * @var string $message
  * @var \Error $error
  */
 
-$message ?? '';
+$message = $this->get('message', '');
 
 use Cake\Core\Configure;
 use Cake\Error\Debugger;

@@ -25,11 +25,6 @@ class JiraProjectTest extends TestCase
     use JiraTestTrait;
 
     /**
-     * Switcher to make this whole test suite incomplete.
-     */
-    public $incomplete = false;
-
-    /**
      * setUp method
      *
      * @return void
