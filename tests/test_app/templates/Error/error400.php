@@ -5,7 +5,7 @@ declare(strict_types=1);
 /**
  * @var \App\View\AppView $this
  * @var string $message
- * @var string $url
+ * @var null|string $url
  * @var \Error $error
  */
 

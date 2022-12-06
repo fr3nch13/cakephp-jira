@@ -117,7 +117,7 @@ class JiraHelperTest extends TestCase
 
         $this->assertInstanceOf(Issue::class, $issue);
 
-        $this->assertEquals(1, $issue->id);
+        $this->assertEquals(1, $issue->get('id'));
     }
 
     /**

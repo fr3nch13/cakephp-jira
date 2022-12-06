@@ -34,7 +34,7 @@ class JiraProject
     public $ConfigObj;
 
     /**
-     * @var string|null The key for the project.
+     * @var null|string The key for the project.
      */
     public $projectKey = null;
 
@@ -552,8 +552,8 @@ class JiraProject
             throw new IssueSubmissionException($msg);
         }
 
-        if ($ret instanceof Issue && $ret->id) {
-            return (int)$ret->id;
+        if ($ret instanceof Issue && $ret->get('id')) {
+            return (int)$ret->get('id');
         }
 
         return 0;
