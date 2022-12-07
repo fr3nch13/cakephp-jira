@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 /**
  * @var \App\View\AppView $this
+ * @var \Cake\Database\StatementInterface $error
  * @var string $message
  * @var string $url
- * @var \Error $error
  */
-
-$message = $this->get('message', '');
-$url = $this->get('url', '');
 
 use Cake\Core\Configure;
 use Cake\Error\Debugger;

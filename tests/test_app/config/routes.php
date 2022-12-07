@@ -36,6 +36,6 @@ return static function (RouteBuilder $routes) {
         $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
         $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
-         $routes->fallbacks(\Cake\Routing\Route\DashedRoute::class);
+         $routes->fallbacks(DashedRoute::class);
     });
 };
