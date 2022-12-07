@@ -313,7 +313,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\MissingIssueException If the project's issue can't be found.
      * @return \JiraRestApi\Issue\Issue|\JiraRestApi\Issue\IssueV3 the object that has the info of that issue.
      */
-    public function getIssue(?int $id = null): \JiraRestApi\Issue\Issue
+    public function getIssue(?int $id = null): Issue
     {
         if (!is_int($id)) {
             $this->setJiraError(__('Missing the Issue\'s ID.'), 'Exception');
@@ -552,8 +552,8 @@ class JiraProject
             throw new IssueSubmissionException($msg);
         }
 
-        if ($ret instanceof Issue && $ret->get('id')) {
-            return (int)$ret->get('id');
+        if ($ret instanceof Issue && $ret->id) {
+            return (int)$ret->id;
         }
 
         return 0;
@@ -567,7 +567,7 @@ class JiraProject
      * @throws \Fr3nch13\Jira\Exception\MissingProjectException If submitting the issue fails.
      * @return \JiraRestApi\Issue\IssueField
      */
-    public function buildSubmittedIssue(string $type, array $data = []): \JiraRestApi\Issue\IssueField
+    public function buildSubmittedIssue(string $type, array $data = []): IssueField
     {
         $typeInfo = $this->getAllowedTypes($type);
 

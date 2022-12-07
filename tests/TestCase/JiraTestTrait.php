@@ -123,6 +123,9 @@ trait JiraTestTrait
                 ->setUserReleaseDate(null);
         }
 
+        $issueTypeTask = new \JiraRestApi\Issue\IssueType();
+        $issueTypeTask->name = 'Task';
+
         // create some generic issues.
         for ($i = 0; $i < 5; $i++) {
             $this->issues[$i] = new Issue();
@@ -134,12 +137,15 @@ trait JiraTestTrait
                 ->setSummary(__('Summary for {0}-{1}', [$projectKey, $i]))
                 ->setReporterName('Customer')
                 ->setAssigneeName('Brian')
-                ->setAssigneeAccountId(1)
+                ->setAssigneeAccountId('1')
                 ->setPriorityName('Medium')
                 ->setDescription(__('Description for {0}-{1}', [$projectKey, $i]))
-                ->setIssueType('Task')
+                ->setIssueType($issueTypeTask)
                 ->addLabel('testing');
         }
+
+        $issueTypeBug = new \JiraRestApi\Issue\IssueType();
+        $issueTypeBug->name = 'Bug';
 
         // add a bug issue
         $i = 5;
@@ -152,11 +158,14 @@ trait JiraTestTrait
             ->setSummary(__('Summary for {0}-{1}', [$projectKey, $i]))
             ->setReporterName('Customer')
             ->setAssigneeName('Brian')
-            ->setAssigneeAccountId(1)
+            ->setAssigneeAccountId('1')
             ->setPriorityName('High')
             ->setDescription(__('Description for {0}-{1}', [$projectKey, $i]))
-            ->setIssueType('Bug')
+            ->setIssueType($issueTypeBug)
             ->addLabel('customer-reported');
+
+        $issueTypeTask = new \JiraRestApi\Issue\IssueType();
+        $issueTypeTask->name = 'Task';
 
         // add a feature request
         $i = 6;
@@ -169,10 +178,10 @@ trait JiraTestTrait
             ->setSummary(__('Summary for {0}-{1}', [$projectKey, $i]))
             ->setReporterName('Customer')
             ->setAssigneeName('Brian')
-            ->setAssigneeAccountId(1)
+            ->setAssigneeAccountId('1')
             ->setPriorityName('Medium')
             ->setDescription(__('Description for {0}-{1}', [$projectKey, $i]))
-            ->setIssueType('Task')
+            ->setIssueType($issueTypeTask)
             ->addLabel('feature-request');
 
         $this->IssueSearchResult = new IssueSearchResult();
@@ -215,7 +224,6 @@ trait JiraTestTrait
         $expectation->with($projectKey)
             ->andReturn($this->versions);
 
-        $projectKey = $projectKey;
         /** @var \Mockery\Expectation $expectation */
         $expectation = $IssueService->shouldReceive('search');
         $expectation->withArgs(function ($query, $start, $max) use ($projectKey) {

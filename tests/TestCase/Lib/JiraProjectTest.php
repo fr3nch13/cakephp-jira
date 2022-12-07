@@ -630,7 +630,7 @@ class JiraProjectTest extends TestCase
         $this->assertEquals('Task', $result->issuetype->name);
         $this->assertInstanceOf(\JiraRestApi\Issue\Priority::class, $result->priority);
         $this->assertEquals('High', $result->priority->name);
-        $this->assertInstanceOf(\JiraRestApi\Project\Project::class, $result->project);
+        $this->assertInstanceOf(Project::class, $result->project);
         $this->assertEquals('TEST', $result->project->key);
         $this->assertIsArray($result->components);
         $this->assertInstanceOf(\JiraRestApi\Issue\Component::class, $result->components[0]);
