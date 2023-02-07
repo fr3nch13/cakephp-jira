@@ -20,8 +20,7 @@
         "lesstif/php-jira-rest-client": "~3.1.1"
     },
     "require-dev": {
-        "fr3nch13/cakephp-pta": "~2.4",
-        "staabm/annotate-pull-request-from-checkstyle": "^1.8"
+        "fr3nch13/cakephp-pta": "~2.4"
     },
     "autoload": {
         "psr-4": {
