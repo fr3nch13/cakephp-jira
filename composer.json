@@ -15,7 +15,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4",
+        "php": "~7.4|~8.0",
         "cakephp/cakephp": "~4.4",
         "lesstif/php-jira-rest-client": "~3.1.1"
     },
@@ -57,10 +57,10 @@
         "cs-check": "php -d memory_limit=-1 ./vendor/bin/phpcs --colors -p -s --extensions=php ./src ./tests ./config",
         "cs-fix": "php -d memory_limit=-1 ./vendor/bin/phpcbf --colors --extensions=php ./src ./tests ./config",
         "phpstan": "php -d memory_limit=-1 ./vendor/bin/phpstan --no-progress -vvv",
-        "test": "php -d memory_limit=-1 ./vendor/bin/phpunit --colors=always",
-        "coverage": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage",
-        "coverage-clover": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover=tmp/coverage.xml",
-        "coverage-text": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-text --colors=never"
+        "test": "php -d memory_limit=-1 ./vendor/bin/phpunit --colors=always --testdox",
+        "coverage": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --testdox",
+        "coverage-clover": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover=tmp/coverage.xml --testdox",
+        "coverage-text": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-text --colors=never --testdox"
     },
     "config": {
         "sort-packages": true,

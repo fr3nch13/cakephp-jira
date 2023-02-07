@@ -166,8 +166,16 @@ class JiraProject
         try {
             $this->Project = $this->ProjectService->get($this->projectKey);
         } catch (JiraException $e) {
-            $this->setJiraError($this->projectKey, 'MissingProjectException');
-            throw new MissingProjectException($this->projectKey);
+            $msg = $e->getMessage();
+            if ($msg) {
+                $msg = $this->extractJiraError($msg);
+            }
+            $msg = __('{0}: {1}', [
+                $this->projectKey,
+                $msg,
+            ]);
+            $this->setJiraError($msg, 'MissingProjectException');
+            throw new MissingProjectException($msg);
         }
 
         $this->Versions = (array)$this->ProjectService->getVersions($this->projectKey);
@@ -324,8 +332,16 @@ class JiraProject
             try {
                 $this->issuesCache[$key] = $this->IssueService->get($key);
             } catch (JiraException $e) {
-                $this->setJiraError($this->projectKey, 'MissingIssueException');
-                throw new MissingIssueException($key);
+                $msg = $e->getMessage();
+                if ($msg) {
+                    $msg = $this->extractJiraError($msg);
+                }
+                $msg = __('{0}: {1}', [
+                    $key,
+                    $msg,
+                ]);
+                $this->setJiraError($msg, 'MissingIssueException');
+                throw new MissingIssueException($msg);
             }
         }
 
@@ -516,38 +532,10 @@ class JiraProject
             //CURL HTTP Request Failed: Status Code : 400, URL:https://[hostname]/rest/api/2/issue
             //Error Message : {"errorMessages":[],"errors":{"user_type":"Field 'user_type' cannot be set. It is not on the appropriate screen, or unknown."}}             */
             $msg = $e->getMessage();
-            if (strpos($msg, '{') !== false) {
-                $msgArray = str_split($msg);
-                // extract the json message.
-                $json = '';
-                $in = 0;
-                foreach ($msgArray as $i => $char) {
-                    if ($char == '{') {
-                        $in++;
-                    }
-                    if ($in) {
-                        $json .= $msg[$i];
-                    }
-                    if ($char == '}') {
-                        $in--;
-                    }
-                }
-                if ($json) {
-                    $json = json_decode($json, true);
-                }
-                if ($json) {
-                    $newMsg = [];
-                    if (isset($json['errorMessages'])) {
-                        foreach ($json['errorMessages'] as $jsonMsg) {
-                            $newMsg[] = $jsonMsg;
-                        }
-                        foreach ($json['errors'] as $jsonMsg) {
-                            $newMsg[] = $jsonMsg;
-                        }
-                        $msg = implode("\n", $newMsg);
-                    }
-                }
+            if ($msg) {
+                $msg = $this->extractJiraError($msg);
             }
+            
             $this->setJiraError($msg, 'IssueSubmissionException');
             throw new IssueSubmissionException($msg);
         }
@@ -652,5 +640,49 @@ class JiraProject
     public function getJiraErrors(): array
     {
         return $this->errors;
+    }
+
+    /**
+     * Extracts the error message from the JiraException.
+     * 
+     * @param string $message The message from the Jir a Exception
+     * @return string The extracted message if it is in json.
+     */
+    public function extractJiraError(string $msg): string
+    {
+        if (strpos($msg, '{') !== false) {
+            $msgArray = str_split($msg);
+            // extract the json message.
+            $json = '';
+            $in = 0;
+            foreach ($msgArray as $i => $char) {
+                if ($char == '{') {
+                    $in++;
+                }
+                if ($in) {
+                    $json .= $msg[$i];
+                }
+                if ($char == '}') {
+                    $in--;
+                }
+            }
+            if ($json) {
+                $json = json_decode($json, true);
+            }
+            if ($json) {
+                $newMsg = [];
+                if (isset($json['errorMessages'])) {
+                    foreach ($json['errorMessages'] as $jsonMsg) {
+                        $newMsg[] = $jsonMsg;
+                    }
+                    foreach ($json['errors'] as $jsonMsg) {
+                        $newMsg[] = $jsonMsg;
+                    }
+                    $msg = implode("\n", $newMsg);
+                }
+            }
+        }
+
+        return $msg;
     }
 }
