@@ -20,7 +20,8 @@
         "lesstif/php-jira-rest-client": "~3.1.1"
     },
     "require-dev": {
-        "fr3nch13/cakephp-pta": "~2.4"
+        "fr3nch13/cakephp-pta": "~2.4",
+        "phpunit/phpunit": "^9.6"
     },
     "autoload": {
         "psr-4": {
