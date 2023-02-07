@@ -535,7 +535,7 @@ class JiraProject
             if ($msg) {
                 $msg = $this->extractJiraError($msg);
             }
-            
+
             $this->setJiraError($msg, 'IssueSubmissionException');
             throw new IssueSubmissionException($msg);
         }
@@ -644,8 +644,8 @@ class JiraProject
 
     /**
      * Extracts the error message from the JiraException.
-     * 
-     * @param string $message The message from the Jir a Exception
+     *
+     * @param string $msg The message from the Jir a Exception
      * @return string The extracted message if it is in json.
      */
     public function extractJiraError(string $msg): string
