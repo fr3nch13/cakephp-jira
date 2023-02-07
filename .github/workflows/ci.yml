@@ -1,11 +1,6 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - '4.x'
-      - '4.next'
-      - '5.x'
   pull_request:
     branches:
       - '*'
@@ -14,13 +9,13 @@ permissions:
   contents: read
 
 jobs:
-  testsuite:
+  test:
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
         php-version: ['7.4', '8.0', '8.1', '8.2']
-    name: PHP ${{ matrix.php-version }}
+    name: Test PHP ${{ matrix.php-version }}
 
     steps:
     - uses: actions/checkout@v3
@@ -37,6 +32,26 @@ jobs:
 
     - name: Run PHPUnit
       run: composer run-script test
+  
+  coverage-php:
+    runs-on: ubuntu-22.04
+    name: Coverage
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        extensions: mbstring, intl
+        coverage: pcov
+
+    - name: Composer install
+      run: composer install
+
+    - name: Run PHPUnit
+      run: composer run-script coverage
 
   coding-standard:
     name: Coding Standard
@@ -59,8 +74,12 @@ jobs:
       run: composer run-script cs-checkstyle | vendor/bin/cs2pr
 
   static-analysis:
-    name: Static Analysis
     runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['7.4', '8.0', '8.1', '8.2']
+    name: Static Analysis - PHP ${{ matrix.php-version }}
 
     steps:
     - uses: actions/checkout@v3
@@ -68,7 +87,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
+        php-version: ${{ matrix.php-version }}
         extensions: mbstring, intl
         coverage: none
 
