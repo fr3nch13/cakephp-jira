@@ -20,7 +20,8 @@
         "lesstif/php-jira-rest-client": "~3.1.1"
     },
     "require-dev": {
-        "fr3nch13/cakephp-pta": "~2.4"
+        "fr3nch13/cakephp-pta": "~2.4",
+        "staabm/annotate-pull-request-from-checkstyle": "^1.8"
     },
     "autoload": {
         "psr-4": {
@@ -55,8 +56,9 @@
             "@cs-check"
         ],
         "cs-check": "php -d memory_limit=-1 ./vendor/bin/phpcs --colors -p -s --extensions=php ./src ./tests ./config",
+        "cs-checkstyle": "php -d memory_limit=-1 ./vendor/bin/phpcs --report=checkstyle --extensions=php ./src ./tests ./config",
         "cs-fix": "php -d memory_limit=-1 ./vendor/bin/phpcbf --colors --extensions=php ./src ./tests ./config",
-        "phpstan": "php -d memory_limit=-1 ./vendor/bin/phpstan --no-progress -vvv",
+        "phpstan": "php -d memory_limit=-1 ./vendor/bin/phpstan --no-progress -vvv --error-format=github",
         "test": "php -d memory_limit=-1 ./vendor/bin/phpunit --colors=always --testdox",
         "coverage": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --testdox",
         "coverage-clover": "php -d memory_limit=-1 -d xdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover=tmp/coverage.xml --testdox",
