@@ -685,6 +685,6 @@ class JiraProject
         }
         */
 
-        return $msg;
+        return str_replace("\n", " ", $msg);
     }
 }
