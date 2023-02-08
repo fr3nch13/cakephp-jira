@@ -15,7 +15,7 @@ build:
             tests:
                 override:
                     -
-                        command: composer coverage-clover
+                        command: composer run-script coverage-clover
                         coverage:
                             file: tmp/coverage.xml
                             format: clover
