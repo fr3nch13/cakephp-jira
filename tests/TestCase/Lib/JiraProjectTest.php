@@ -665,4 +665,17 @@ class JiraProjectTest extends TestCase
         ];
         $this->assertEquals($expected, $this->JiraProject->getJiraErrors());
     }
+
+    /**
+     * testExtractJiraError
+     *
+     * @return void
+     */
+    public function testExtractJiraError(): void
+    {
+        $jiraError = 'Error Message : {"errorMessages":[],"errors":{"user_type":"Field \'user_type\' cannot be set. It is not on the appropriate screen, or unknown."}}             ';
+
+        $expected = 'Field \'user_type\' cannot be set. It is not on the appropriate screen, or unknown.';
+        $this->assertEquals($expected, $this->JiraProject->extractJiraError($jiraError));
+    }
 }
