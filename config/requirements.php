@@ -20,6 +20,6 @@
 /*
  * You can remove this if you are confident that your PHP version is sufficient.
  */
-if (version_compare(PHP_VERSION, '7.2.0') < 0) {
-    trigger_error('Your PHP version must be equal or higher than 7.2.0 to use VM Central.' . PHP_EOL, E_USER_ERROR);
+if (version_compare(PHP_VERSION, '7.4.0') < 0) {
+    trigger_error('Your PHP version must be equal or higher than 7.2.0 to use this plugin.' . PHP_EOL, E_USER_ERROR);
 }
