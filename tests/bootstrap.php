@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use Cake\Core\Configure;
 /**
  * Test suite bootstrap.
  *
@@ -14,6 +15,12 @@ putenv('JIRA_HOST=jira.example.com');
 putenv('JIRA_USERNAME=testusername');
 putenv('JIRA_API_KEY=testapikey');
 putenv('JIRA_PROJECT_KEY=TEST');
+
+
+
+Configure::write('Tests.Plugins', [
+    'Fr3nch13/Jira',
+]);
 
 ////// Ensure we can setup an environment for the Test Application instance.
 $root = dirname(__DIR__);

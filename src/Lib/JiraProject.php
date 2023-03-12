@@ -650,6 +650,7 @@ class JiraProject
      */
     public function extractJiraError(string $msg): string
     {
+        /*
         if (strpos($msg, '{') !== false) {
             $msgArray = str_split($msg);
             // extract the json message.
@@ -682,7 +683,8 @@ class JiraProject
                 }
             }
         }
+        */
 
-        return $msg;
+        return str_replace("\n", " ", $msg);
     }
 }

@@ -15,13 +15,17 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "~7.4|~8.0",
+        "php": ">=7.4",
         "cakephp/cakephp": "~4.4",
-        "lesstif/php-jira-rest-client": "~3.1.1"
+        "lesstif/php-jira-rest-client": "~3.1|~4.1"
     },
     "require-dev": {
         "fr3nch13/cakephp-pta": "~2.4",
-        "phpunit/phpunit": "^9.6"
+        "phpunit/phpunit": "^9.6",
+        "symfony/dotenv": "~5.0||~6.0"
+    },
+    "suggest": {
+        "symfony/dotenv": "If you want to load your jira settings from a .env file."
     },
     "autoload": {
         "psr-4": {
