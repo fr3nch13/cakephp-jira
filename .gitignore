@@ -12,3 +12,6 @@ jira-rest-client.log
 .phpunit.result.cache
 tests/test_app/config/.env
 composer.lock
+
+# Visual Studio Code
+.vscode

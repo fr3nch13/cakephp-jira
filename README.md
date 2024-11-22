@@ -87,7 +87,7 @@ Load the helper in your `src/View/AppView.php's initialize()` method:
     }
 ```
 
-This plugin makes use of [josegonzalez/dotenv](https://github.com/josegonzalez/php-dotenv). If you're using his extension, than put the below in your `config/.env` file:
+This plugin makes use of [symfony/dotenv](https://github.com/symfony/dotenv). If you're using his extension, than put the below in your `config/.env` file:
 ```bash
 ##### Jira Settings. (if the JIRA plugin is active.)
 export JIRA_SCHEMA=""
@@ -141,10 +141,10 @@ I have also added the ability to send Issues to your Jira server.
 The 2 default/preconfigured Issues are Bugs and Feature Requests, but you can configure your own as well.
 
 To create your own Issue setup, see these as examples:
-- [`Fr3nch\Jira\Controller\TestsController`](blob/master/src/Controller/TestsController.php)
-- [`Fr3nch\Jira\Form\TestForm`](blob/master/src/Form/TestForm.php) <-- How you define another Issue type. see the `__construct()` method.
-- [`templates/Tests/add.php`](blob/master/templates/Tests/add.php)
-- [`templates/Tests/thankyou.php`](blob/master/templates/Tests/thankyou.php)
+- [`Fr3nch\Jira\Controller\TestsController`](src/Controller/TestsController.php)
+- [`Fr3nch\Jira\Form\TestForm`](src/Form/TestForm.php) <-- How you define another Issue type. see the `__construct()` method.
+- [`templates/Tests/add.php`](templates/Tests/add.php)
+- [`templates/Tests/thankyou.php`](templates/Tests/thankyou.php)
 
 In my particular instance, I have the links as part of a dropdown menu in my apps' header. My apps use the AdmilLte/bootstrap template/frontend, so if you want, you can include the element existing here like so:
 ```php
@@ -152,7 +152,7 @@ In my particular instance, I have the links as part of a dropdown menu in my app
 <?= $this->element('Fr3nch13/Jira.nav-links') ?>
 <?php endif; //Plugin::isLoaded('Fr3nch13/Jira') ?>
 ```
-In case you want to see how I'm creating the link to the pages, see the [`templates/element/nav-links.php`](blob/master/templates/element/nav-links.php) file.
+In case you want to see how I'm creating the link to the pages, see the [`templates/element/nav-links.php`](templates/element/nav-links.php) file.
 
 If you want to overwrite the plugin templates, do so like you're supposed according to the [CakePHP Documentation](https://book.cakephp.org/4/en/plugins.html#overriding-plugin-templates-from-inside-your-application).
 
@@ -174,6 +174,3 @@ Rules are simple:
 - 1 feature per PR
 
 We would be happy to merge your feature then.
-
-## Notes
-- I've inlcuded the composer.lock file, and if you're forking/pull requesting, you should use it/update it as well. This way our environment is as close as possible. This helps in debugging/replicating an issue.
